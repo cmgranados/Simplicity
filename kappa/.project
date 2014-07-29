@@ -3,6 +3,7 @@
 	<name>kappa</name>
 	<comment></comment>
 	<projects>
+		<project>simplicity</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

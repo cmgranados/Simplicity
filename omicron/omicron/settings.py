@@ -53,9 +53,9 @@ WSGI_APPLICATION = 'omicron.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'omicron',
-        'USER': 'omicron',
-        'PASSWORD': 'odisposD',
+        'NAME': 'simplicity',
+        'USER': 'simplicity',
+        'PASSWORD': 'porteaW1',
         'HOST': 'mysql1.itc.com.co',
     }
 }

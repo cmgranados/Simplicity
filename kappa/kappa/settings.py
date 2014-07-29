@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'south',
+    'businessrules',
+    'requirements',
+    'preconditions',
+    'states_simplicity',
+    'types_simplicity',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,9 +58,9 @@ WSGI_APPLICATION = 'kappa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kappa',
-        'USER': 'kappa',
-        'PASSWORD': 'serunFJH',
+        'NAME': 'simplicity',
+        'USER': 'simplicity',
+        'PASSWORD': 'porteaW1',
         'HOST': 'mysql1.itc.com.co',
     }
 }
