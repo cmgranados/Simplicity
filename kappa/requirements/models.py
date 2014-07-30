@@ -1,7 +1,7 @@
 from django.db import models
-from businessrules.models import BusinessRule
-from states_simplicity.models import State
-from types_simplicity.models import Type
+from shared.types_simplicity.models import Type
+from shared.states_simplicity.models import State
+from kappa.businessrules.models import BusinessRule
 
 
 class Requirement(models.Model):

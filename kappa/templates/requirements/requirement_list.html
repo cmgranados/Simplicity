@@ -1,0 +1,21 @@
+{% extends "shared/base_generic.html" %}
+{% block content %}
+<div class="title-module">
+	Requisitos
+</div>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Titulo</th>
+		<th>Descripci&oacute;n</th>
+	</tr>
+	
+	{% for requirement in object_list %}
+		<tr>
+	    	<td>{{ requirement.title }}</td> 
+	    	<td>{{ requirement.creation_date }}</td>
+	    </tr>
+	{% empty %}
+	    <h3>No hay requisitos.</h3>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.db import models
-from types_simplicity.models import Type
-from states_simplicity.models import State
+from shared.types_simplicity.models import Type
+from shared.states_simplicity.models import State
 
 
 class BusinessRule(models.Model):

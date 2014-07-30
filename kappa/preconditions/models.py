@@ -1,5 +1,5 @@
 from django.db import models
-from requirements.models import Requirement
+from kappa.requirements.models import Requirement
 
 
 class Precondition(models.Model):
