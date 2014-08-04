@@ -6,7 +6,7 @@ from shared.states_simplicity.models import State
 class BusinessRule(models.Model):
     business_rule_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, blank=False)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     type = models.ForeignKey(Type)
     state_type = models.ForeignKey(State)
     date_created = models.DateTimeField(blank=False)

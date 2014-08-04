@@ -27,7 +27,7 @@ class PreconditionRequirement(models.Model):
 
 class PreconditionDescription(models.Model):
     precondition_description_id = models.AutoField(primary_key=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     precondition = models.ForeignKey(Precondition)
 
     def __unicode__(self):

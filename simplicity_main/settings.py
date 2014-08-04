@@ -73,10 +73,10 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'simplicity_main',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'NAME': 'simplicity',
+        'USER': 'simplicity',
+        'PASSWORD': 'porteaW1',
+        'HOST': 'mysql1.itc.com.co',
     }
 }
 
