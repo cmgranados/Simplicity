@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Precondition, PreconditionRequirement, PreconditionDescription
+
+admin.site.register(Precondition, PreconditionRequirement, PreconditionDescription)

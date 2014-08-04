@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+
+from .models import Requirement, RequirementBusinessRule, RequirementInput
+
+admin.site.register(Requirement, RequirementBusinessRule, RequirementInput)
