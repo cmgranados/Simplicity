@@ -2,7 +2,7 @@ from django.db import models
 
 
 class StateType(models.Model):
-    state_type = models.AutoField(primary_key=True)
+    state_type_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, blank=False)
     description = models.TextField(blank=True)
 
@@ -13,7 +13,7 @@ class StateType(models.Model):
 
 
 class State(models.Model):
-    state = models.AutoField(primary_key=True)
+    state_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, blank=False)
     description = models.TextField(blank=True)
     state_type = models.ForeignKey(StateType)

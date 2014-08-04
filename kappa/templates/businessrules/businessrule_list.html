@@ -1,0 +1,21 @@
+{% extends "shared/base_generic.html" %}
+{% block content %}
+<div class="title-module">
+	Reglas de negocio
+</div>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Nombre</th>
+		<th>Descripci&oacute;n</th>
+	</tr>
+	
+	{% for br in object_list %}
+		<tr>
+	    	<td>{{ br.name }}</td> 
+	    	<td>{{ br.description }}</td>
+	    </tr>
+	{% empty %}
+	    <h3>No hay reglas de negocio.</h3>
+	{% endfor %}
+</table>
+{% endblock %}

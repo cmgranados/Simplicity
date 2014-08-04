@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'south',
+    'rest_framework',
     'kappa.businessrules',
     'kappa.requirements',
     'kappa.preconditions',
@@ -85,6 +86,20 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+# Configure authentication on rest request
+REST_FRAMEWORK = {
+    #'DEFAULT_PERMISSION_CLASSES': (
+    #    'rest_framework.permissions.IsAuthenticated',
+    #),
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+    #    'rest_framework.authentication.BasicAuthentication',
+    #),
+    #'DEFAULT_RENDERER_CLASSES': (
+        #'rest_framework.renderers.YAMLRenderer',
+        #'rest_framework.renderers.BrowsableAPIRenderer',
+    #)
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/

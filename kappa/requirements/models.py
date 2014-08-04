@@ -5,7 +5,7 @@ from kappa.businessrules.models import BusinessRule
 
 
 class Requirement(models.Model):
-    requirement = models.AutoField(primary_key=True)
+    requirement_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=512, blank=False)
     description = models.TextField(blank=True)
     type = models.ForeignKey(Type)
@@ -24,12 +24,12 @@ class Requirement(models.Model):
 
 
 class RequirementBusinessRule(models.Model):
-    requirement_business_rule = models.AutoField(primary_key=True)
+    requirement_business_rule_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     business_rule = models.ForeignKey(BusinessRule)
 
     def __unicode__(self):
-        return self.requirement_business_rule
+        return self.requirement_business_rule_id
 
     class Meta:
         unique_together = (("requirement", "business_rule"),)
@@ -37,29 +37,29 @@ class RequirementBusinessRule(models.Model):
 
 
 class RequirementInput(models.Model):
-    requirement_input = models.AutoField(primary_key=True)
+    requirement_input_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     value = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return self.requirement_input
+        return self.requirement_input_id
     class Meta:
         db_table = "req_requirement_input"
 
 
 class RequirementOutput(models.Model):
-    requirement_output = models.AutoField(primary_key=True)
+    requirement_output_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     value = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return self.requirement_output
+        return self.requirement_output_id
     class Meta:
         db_table = "req_requirement_output"
 
 
 class AcceptanceCriteria(models.Model):
-    acceptance_criteria = models.AutoField(primary_key=True)
+    acceptance_criteria_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     requirement = models.ForeignKey(Requirement)

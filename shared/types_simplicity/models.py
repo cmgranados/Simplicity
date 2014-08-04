@@ -2,7 +2,7 @@ from django.db import models
 
 
 class TypeClassification(models.Model):
-    type_classification = models.AutoField(primary_key=True)
+    type_classification_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, blank=False)
     code = models.CharField(max_length=45, blank=False)
 
@@ -13,7 +13,7 @@ class TypeClassification(models.Model):
 
 
 class Type(models.Model):
-    type = models.AutoField(primary_key=True)
+    type_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=512, blank=False)
     code = models.CharField(max_length=45, blank=False)
     type_classification = models.ForeignKey(TypeClassification)
