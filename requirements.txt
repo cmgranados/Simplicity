@@ -1,5 +1,11 @@
 Django==1.6.5
-mysql-python==1.2.5
-south==1.0
+South==1.0
 django-crispy-forms==1.4.0
-djangorestframework
+djangorestframework==2.3.14
+mysql-python==1.2.5
+oauthlib==0.6.3
+python-openid==2.2.5
+python-social-auth==0.1.26
+requests==2.3.0
+requests-oauthlib==0.4.1
+six==1.7.3

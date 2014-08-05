@@ -13,7 +13,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "shared/templates"), os.path.join(BASE_DIR, "kappa/templates")
+    os.path.join(BASE_DIR, "shared/templates"), 
+    os.path.join(BASE_DIR, "kappa/templates"),
+    os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
 )
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'), )
@@ -50,6 +52,7 @@ INSTALLED_APPS = (
     'kappa.preconditions',
     'shared.states_simplicity',
     'shared.types_simplicity',
+    'social.apps.django_app.default',
 )
 
 
@@ -71,12 +74,21 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
+             
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'simplicity',
+#        'USER': 'simplicity', 
+#        'PASSWORD': 'porteaW1',
+#        'HOST': 'mysql1.itc.com.co',
+#     }
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'simplicity',
-        'USER': 'simplicity',
-        'PASSWORD': 'porteaW1',
-        'HOST': 'mysql1.itc.com.co',
+        'USER': 'root', 
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
     }
 }
 
@@ -121,3 +133,27 @@ USE_TZ = True
 STATIC_URL = '/shared/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = '/welcome.html'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "289278710538-utbdbbmfcg9b0999ed2g7v4mm8fb5q5u.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "CEZmuDvD6LJNLjprNQmysVHl"
