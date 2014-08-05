@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms.widgets import TextInput, PasswordInput
 
 class UserCreationEmailForm(UserCreationForm):
 	email = forms.EmailField()
@@ -12,8 +14,14 @@ class UserCreationEmailForm(UserCreationForm):
 
 
 class EmailAuthenticationForm(forms.Form):
-	email = forms.EmailField()
-	password = forms.CharField(label='password', widget=forms.PasswordInput)
+	email = forms.EmailField(label="Correo electrónico", widget=TextInput(attrs={'class': 'form-control',
+                            'required': 'true',
+                            'placeholder': ''
+    }))
+	password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class': 'form-control',
+                            'required': 'true',
+                            'placeholder': ''
+    }))
 
 	def __init__(self, *args, **kwargs):
 		self.user_cache = None

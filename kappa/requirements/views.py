@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from kappa.requirements.models import Requirement
+from haystack.views import SearchView
 
 
 # Create your views here.
@@ -11,7 +12,7 @@ class RequirementListView(ListView):
         return context
 
 
-class FacetedSearchView():
+class FacetedSearchView(SearchView):
     def extra_context(self):
         extra = super(FacetedSearchView, self).extra_context()
 
