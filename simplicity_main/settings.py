@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'south',
     'rest_framework',
+    'haystack',
     'kappa.businessrules',
     'kappa.requirements',
     'kappa.preconditions',
@@ -99,6 +100,15 @@ REST_FRAMEWORK = {
         #'rest_framework.renderers.YAMLRenderer',
         #'rest_framework.renderers.BrowsableAPIRenderer',
     #)
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr'
+        # ...or for multicore...
+        # 'URL': 'http://127.0.0.1:8983/solr/mysite',
+    },
 }
 
 # Internationalization
