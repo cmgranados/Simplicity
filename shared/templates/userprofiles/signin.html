@@ -4,7 +4,7 @@
 		<form action="" method="post">
 			{% csrf_token %}
 			{{form.as_p}}
-			<input type="submit" value="Enviar">
-       		<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+			<input type="submit" value="Enviar" class="btn btn-default">
+       		<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-default">Login con Google</a>
 		</form>
 {% endblock %}
