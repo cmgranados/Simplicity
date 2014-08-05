@@ -11,3 +11,9 @@ python-ptrace==0.7
 requests==2.3.0
 solr==0.4
 winappdbg==1.5
+oauthlib==0.6.3
+python-openid==2.2.5
+python-social-auth==0.1.26
+requests==2.3.0
+requests-oauthlib==0.4.1
+six==1.7.3
