@@ -8,7 +8,6 @@ haystack==0.15
 mysql-python==1.2.5
 pysolr==3.2.0
 python-ptrace==0.7
-requests==2.3.0
 solr==0.4
 winappdbg==1.5
 oauthlib==0.6.3
