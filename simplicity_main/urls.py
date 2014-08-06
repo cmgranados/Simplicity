@@ -29,4 +29,5 @@ urlpatterns = patterns('',
                        url('', include('django.contrib.auth.urls', namespace='auth')),
                        url(r'^logout_auth/$', logout, name='logout_auth'),
                        url(r'^kappa/requirements/', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs, template="requirements/search.html"), name='haystack_search',),
+                       url(r'^welcome/', 'shared.userprofiles.views.welcome', name='welcome'),
 )

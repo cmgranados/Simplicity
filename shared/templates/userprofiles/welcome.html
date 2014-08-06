@@ -2,4 +2,6 @@
 {% block content %}
 		<p>Welcome
 		</p>
+		<br/>
+		<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
 {% endblock %}

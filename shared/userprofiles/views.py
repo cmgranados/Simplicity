@@ -18,3 +18,6 @@ def signin(request):
 		login(request, form.get_user())
 
 	return render(request, 'signin.html', {'form': form})
+
+def welcome(request):
+	return render(request, 'welcome.html')
