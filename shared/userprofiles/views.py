@@ -1,6 +1,8 @@
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .forms import UserCreationEmailForm, EmailAuthenticationForm
-from django.contrib.auth import login
+
 
 
 def signup(request):
@@ -19,5 +21,3 @@ def signin(request):
 
 	return render(request, 'signin.html', {'form': form})
 
-def welcome(request):
-	return render(request, 'welcome.html')

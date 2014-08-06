@@ -1,7 +1,8 @@
 {% extends "shared/base_generic.html" %}
 {% block content %}
-		<p>Welcome
-		</p>
+		<div class="user-details">
+          Welcome! You are logged in as <code>{{ user.username }}</code>!
+        </div>
 		<br/>
 		<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
 {% endblock %}
