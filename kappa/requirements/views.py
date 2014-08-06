@@ -3,6 +3,10 @@ from kappa.requirements.models import Requirement
 from haystack.views import SearchView
 
 
+from .forms import RequirementCreationForm
+from django.shortcuts import render
+
+
 # Create your views here.
 class RequirementListView(ListView):
     model = Requirement
@@ -22,3 +26,12 @@ class FacetedSearchView(SearchView):
             extra['facets'] = self.results.facet_counts()
 
         return extra
+
+def new_requirement(request):
+    form = RequirementCreationForm(request.POST or None)
+    
+    if form.is_valid():
+        form.save()
+
+    return render(request, 'signup.html', {'form': form})
+

@@ -16,3 +16,11 @@ class RequirementSearchForm(SearchForm):
             #sqs = sqs.filter(my_fieldname=AutoQuery(self.cleaned_data['my_fieldname']))
 
         return sqs
+
+class RequirementCreationForm(forms.Form):
+    
+    code = forms.CharField()
+    date_created = forms.DateField()
+    type = forms.ChoiceField()
+    description = forms.Textarea()
+    
