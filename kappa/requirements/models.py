@@ -19,6 +19,7 @@ class Requirement(models.Model):
 
     def __unicode__(self):
         return self.title
+
     class Meta:
         db_table = "req_requirement"
 
@@ -43,6 +44,7 @@ class RequirementInput(models.Model):
 
     def __unicode__(self):
         return self.requirement_input_id
+
     class Meta:
         db_table = "req_requirement_input"
 
@@ -54,6 +56,7 @@ class RequirementOutput(models.Model):
 
     def __unicode__(self):
         return self.requirement_output_id
+
     class Meta:
         db_table = "req_requirement_output"
 
@@ -69,5 +72,6 @@ class AcceptanceCriteria(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         db_table = "req_acceptance_criteria"

@@ -13,7 +13,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "shared/templates"), os.path.join(BASE_DIR, "kappa/templates")
+    os.path.join(BASE_DIR, "shared/templates"), 
+    os.path.join(BASE_DIR, "kappa/templates"),
+    os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
 )
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'), )
@@ -45,11 +47,13 @@ INSTALLED_APPS = (
     'crispy_forms',
     'south',
     'rest_framework',
+    'haystack',
     'kappa.businessrules',
     'kappa.requirements',
     'kappa.preconditions',
     'shared.states_simplicity',
     'shared.types_simplicity',
+    'social.apps.django_app.default',
 )
 
 
@@ -71,13 +75,22 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
+             
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'simplicity',
-        'USER': 'simplicity',
+        'USER': 'simplicity', 
         'PASSWORD': 'porteaW1',
         'HOST': 'mysql1.itc.com.co',
-    }
+     }
+
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'simplicity',
+#         'USER': 'root', 
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#     }
 }
 
 # List of finder classes that know how to find static files in
@@ -101,6 +114,15 @@ REST_FRAMEWORK = {
     #)
 }
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr'
+        # ...or for multicore...
+        # 'URL': 'http://127.0.0.1:8983/solr/mysite',
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -121,3 +143,47 @@ USE_TZ = True
 STATIC_URL = '/shared/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "1010561460797-pm4j7r96sh0v7sjies2smkgcek3ukmpj.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "i11C6rb2Ry_zQABMzHkVsqYL"
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.mail.mail_validation',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+

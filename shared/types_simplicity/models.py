@@ -8,6 +8,7 @@ class TypeClassification(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         db_table = "adm_type_classification"
 
@@ -21,5 +22,6 @@ class Type(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         db_table = "adm_type"

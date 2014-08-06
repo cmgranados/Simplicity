@@ -1,0 +1,10 @@
+{% extends "shared/base_generic.html" %}
+{% block content %}
+<div class="title-module">
+	{% if user and not user.is_anonymous%}
+		Bienvenido {{user.get_full_name}} a Simplicity
+	{% else %}
+		
+	{% endif %}
+</div>
+{% endblock %}

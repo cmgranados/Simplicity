@@ -8,6 +8,7 @@ class StateType(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         db_table = "adm_state_type"
 
@@ -20,5 +21,6 @@ class State(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         db_table = "adm_state"
