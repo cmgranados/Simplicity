@@ -28,7 +28,6 @@
 	        {% if user and not user.is_anonymous %}
 	        	<li><a href="#">Kappa</a></li>
 		        <li class="dropdown">
-		        
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="#">Perfil de usuario</a></li>
@@ -43,6 +42,12 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+	<section class="page-title">
+		<div class="container">
+			{% block title_section %}
+			{% endblock %}
+		</div>
+	</section>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">

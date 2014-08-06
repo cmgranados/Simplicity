@@ -1,0 +1,18 @@
+{% for result in page.object_list %}
+    <tr>
+    	<td>
+        	<a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+        	<br/>
+        	<p>{{result.object.description}}</p>
+        </td>
+        <td>
+        	<p>{{result.object.state}}</p>
+        </td>
+    </tr>
+{% empty %}
+	<tr>
+    	<td>
+        	<p>No encontro resultados.</p>
+        </td>
+    </tr>
+{% endfor %}

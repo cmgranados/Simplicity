@@ -1,6 +1,36 @@
+.form-group {
+    width:100% !important;
+}
+
+.form-control {
+    width:91% !important;
+}
+
 .title-module {
 	text-align: center;
 	font-size: 2em;
 	font-style: normal;
 	width: 100%;
+}
+
+.margin-containers {
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.page-title {
+	background: #ffffff;
+	color: #5e5e5e;
+	margin-bottom: 20px;
+	margin-top: -20px;
+}
+
+.page-title h1{
+	display: block;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 30px;
+	text-transform: uppercase;
 }
