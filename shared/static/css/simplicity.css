@@ -1,8 +1,8 @@
-.form-group {
+.form-group-large {
     width:100% !important;
 }
 
-.form-control {
+.form-control-large {
     width:88% !important;
 }
 
@@ -15,8 +15,6 @@
 
 .margin-containers {
 	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
 	margin-bottom: 20px;
 }
 
