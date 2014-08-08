@@ -37,28 +37,32 @@
 	        {% else %}
 	        	<li><a href="{% url 'signin' %}">Iniciar sesi&oacute;n</a></li>
 	        {% endif %}
-	        
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<section class="page-title">
-		<div class="container">
+		<div class="container-fluid">
 			{% block title_section %}
 			{% endblock %}
 		</div>
 	</section>
-	<div>
-			{% block section_option %}
-			{% endblock %}
-	</div>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-7 col-md-offset-3">
-				{% block content %}
-				{% endblock %}
-			</div>
-		</div>
+	<div class="row">
+	  <div class="col-md-2">
+		  {% block section_option %}
+		  {% endblock %}
+	  </div>
+	  		
+	  <div class="col-md-8">
+		  {% block content %}
+		  {% endblock %}
+	  </div>
+	  <div class="col-md-2">
+	  	  {% block section_statistics %}
+		  {% endblock %}
+	  </div>
+	</div>
 	</div>
 				
 </body>
