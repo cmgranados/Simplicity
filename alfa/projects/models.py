@@ -7,15 +7,13 @@ from kappa.requirements.models import Requirement
 class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, blank=False)
-    type = models.ForeignKey(Type)
-    business_type = models.ForeignKey(Type)
-    client_type = models.ForeignKey(Type)
-    projec_type = models.ForeignKey(Type)
-    state_type = models.ForeignKey(State)
+    type = models.ForeignKey(Type, related_name='project_projecttype')
+    business_type = models.ForeignKey(Type, related_name='project_businesstype')
+    client_type = models.ForeignKey(Type, related_name='project_clienttype')
     date_started = models.DateTimeField(blank=False)
     date_created = models.DateTimeField(blank=False)
     date_modified = models.DateTimeField(blank=False)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(null=True)
     partaker = models.ForeignKey(User)
     keywords=models.CharField(max_length=512, null=True)
     
@@ -25,10 +23,10 @@ class Project(models.Model):
     class Meta:
         db_table = "af_pr_project"
         
-class Project_association(models.Model):
+class ProjectAssociation(models.Model):
     association_id = models.AutoField(primary_key=True)
-    project_id = models.ForeignKey(Project)
-    association_project = models.ForeignKey(Project)
+    project_id = models.ForeignKey(Project, related_name='projectassociation_projectid')
+    association_project = models.ForeignKey(Project, related_name='projectassociation_associationproject')
 
     def __unicode__(self):
         return self.association_id
@@ -37,7 +35,7 @@ class Project_association(models.Model):
         unique_together = (("project_id", "association_project"),)
         db_table = "af_pj_project_association"
 
-class Requirement_association(models.Model):
+class RequirementAssociation(models.Model):
     association_id = models.AutoField(primary_key=True)
     project_id = models.ForeignKey(Project)
     requirement_id = models.ForeignKey(Requirement)
@@ -47,6 +45,6 @@ class Requirement_association(models.Model):
 
     class Meta:
         unique_together = (("project_id", "requirement_id"),)
-        db_table = "af_req_requirement_association"
+        db_table = "af_pj_requirement_association"
 
 # Create your models here.
