@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from haystack.forms import SearchForm
-from haystack.inputs import AutoQuery
-import datetime
 
 
 class RequirementSearchForm(SearchForm):
@@ -21,10 +19,12 @@ class RequirementSearchForm(SearchForm):
 		sqs = sqs.order_by('pub_created')
 		return sqs
 
-class RequirementCreationForm(forms.Form):
-    
-    code = forms.CharField()
-    date_created = forms.DateField()
-    type = forms.ChoiceField()
-    description = forms.Textarea()
-    
+# Requirements Wizard
+class RequirementForm1(forms.Form):
+	code = forms.CharField()
+	date_created = forms.DateField()
+	type = forms.ChoiceField()
+	description = forms.Textarea()
+
+class RequirementForm2(forms.Form):
+	message = forms.CharField(widget=forms.Textarea)

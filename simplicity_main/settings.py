@@ -15,6 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates"), 
     os.path.join(BASE_DIR, "kappa/templates"),
+    os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
 )
 
@@ -56,6 +57,7 @@ INSTALLED_APPS = (
     'shared.types_simplicity',
     'shared.userprofiles',
     'social.apps.django_app.default',
+    'django.contrib.formtools',
 )
 
 

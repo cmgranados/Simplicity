@@ -1,10 +1,8 @@
 from django.views.generic.list import ListView
 from kappa.requirements.models import Requirement
 from haystack.views import SearchView
-
-
-from .forms import RequirementCreationForm
-from django.shortcuts import render
+from django.contrib.formtools.wizard.views import SessionWizardView
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -27,11 +25,7 @@ class FacetedSearchView(SearchView):
 
         return extra
 
-def new_requirement(request):
-    form = RequirementCreationForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-
-    return render(request, 'signup.html', {'form': form})
-
+class RequirementWizard(SessionWizardView):
+    def done(self, form_list, **kwargs):
+        # do_something_with_the_form_data(form_list)
+        return HttpResponseRedirect('/page-to-redirect-to-when-done/')
