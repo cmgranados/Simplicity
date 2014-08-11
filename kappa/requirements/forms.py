@@ -21,10 +21,22 @@ class RequirementSearchForm(SearchForm):
 
 # Requirements Wizard
 class RequirementForm1(forms.Form):
+	title = forms.CharField()
 	code = forms.CharField()
-	date_created = forms.DateField()
-	type = forms.ChoiceField()
-	description = forms.Textarea()
+	date_created = forms.CharField()
 
 class RequirementForm2(forms.Form):
-	message = forms.CharField(widget=forms.Textarea)
+	# precondition table
+	requirementform2 = forms.CharField()
+	
+class RequirementForm3(forms.Form):
+	# business rules table
+	requirementform3 = forms.CharField()
+
+class RequirementForm4(forms.Form):
+	# information flows - inputs table, outputs table
+	requirementform4 = forms.CharField()
+
+class RequirementForm5(forms.Form):
+	# acceptance criteria
+	requirementform5 = forms.CharField()
