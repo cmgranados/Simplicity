@@ -191,3 +191,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
 
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')

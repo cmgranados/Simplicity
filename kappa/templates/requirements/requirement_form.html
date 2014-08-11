@@ -5,7 +5,8 @@
 <h2>CREACION REQUISITO</h2>
 <p>Paso {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
 
-<form action="/kappa/new_requirement" method="post">{% csrf_token %}
+
+<form action="new_requirement" method="post">{% csrf_token %}
 <table>
 {{ wizard.management_form }}
 {% if wizard.form.forms %}

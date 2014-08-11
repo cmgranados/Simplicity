@@ -1,0 +1,3 @@
+
+class MyConstants:
+    TYPE_CLASSIFICATION_CODE = {'REQUIREMENT': "REQ"}
