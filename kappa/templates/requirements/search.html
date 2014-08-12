@@ -1,4 +1,5 @@
 {% extends "shared/base_generic.html" %}
+{% load crispy_forms_tags %}
 {% block title_section %}
 	<h1>Requisitos</h1>
 {%endblock%}
@@ -9,54 +10,13 @@
 {%endblock%}
 {% block content %}
 <form method="get" action="." class="form-horizontal" role="form">
-    <div class="panel-group" id="accordion">
-    	<div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSimple">
-		          Busqueda simple
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseSimple" class="panel-collapse collapse in">
-	      		<div class="panel-body">
-				    <div class="form-group">
-				    	<div class="col-sm-7">
-				        	{{ form }}
-				        </div>
-				        <div class="col-sm-2">
-				        	<input type="submit" value="Enviar" class="btn btn-default" />
-				        </div>
-				    </div>
-				</div>
-	    	</div>
-	    </div>
-	    <div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdvanced">
-		          Busqueda avanzada
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseAdvanced" class="panel-collapse collapse in">
-	      		<div class="panel-body">
-				    
-				</div>
-	    	</div>
-	    </div>
-	</div>
-	<!-- <div class="row">
-		<div class="pull-right">
-			<label for="orderOptions" class="col-sm-6 control-label">Ordenar por: </label>
-		   	<div class="col-sm-6">
-				<select class="form-control" id="orderOptions" name="sort">
-				  <option>M&aacute;s nuevo</option>
-				  <option>M&aacute;s viejo</option>
-				</select>
-			</div>
-		</div>
-	</div> -->
+
+      	{{ form|crispy }}
+      	<div class="form-actions">
+      	</div>
+      	
+      	
+				        
 </form>
 <div class="margin-containers">
 {% if query %}
