@@ -50,7 +50,7 @@ class RequirementForm1(forms.Form):
 		self.fields['title'].label = "Nombre"
 		self.fields['code'].label = "Código"
 		self.fields['date_created'].label = "Fecha de creación"
-		self.fields['type'].label = "Tipo de Requisito"
+# 		self.fields['type'].label = "Tipo de Requisito"
 		self.fields['description'].label = "Definición de Requisito"
 
 class RequirementForm2(forms.Form):
