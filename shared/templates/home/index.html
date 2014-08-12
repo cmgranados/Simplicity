@@ -1,24 +1,91 @@
 {% extends "shared/base_generic.html" %}
-{% block content %}
+{% load static %}
+{% block section_option%}
 <div class="title-module">
 	{% if user and not user.is_anonymous%}
-		Bienvenido {{user.get_full_name}} a Simplicity
-		<ul class="nav nav-pills ">
-		  <li class="active"><a href="#">Home</a></li>
-		  <li><a href="#">Profile</a></li>
-		  <li><a href="#">Messages</a></li>
-		</ul>
 
+	<div class="row">
+		<div class="col-md-12 col-md-offset-4">
+			<h4><small>Bienvenido</small> {{user.get_full_name}}  <small>a Simplicity</small></h4>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-5 col-xs-2">
+
+			<ul class="nav nav-pills-sm nav-justified">
+			  <li class="active"><a href="#">Archivo</a></li>
+			  <li><a href="#">Editar</a></li>
+			  <li><a href="#">Vista</a></li>
+			  <li><a href="#">Administraci&oacute;n</a></li>
+			</ul>
+		</div>
+	</div>
 	{% else %}
 		
 	{% endif %}
 </div>
 {% endblock %}
 
+{% block content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+        	 <h3 class="panel-title">Acceso a sistemas</h3>
+    	</div>
+    	<div class="panel-body">
+    		<div class="row">
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Alpha.png" %}" alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Kappa.png" %}"  alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/pi2.png" %}" alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Rho.png" %}"  alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Kappa.png" %}"  alt="...">
+			    </a>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Omicron.png" %}" alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Epsilon.png" %}" alt="...">
+			    </a>
+			  </div>
+			  <div class="col-xs-3 col-md-2">
+			    <a href="#" class="thumbnail">
+			      <img src="{% static "img/Omega.png" %}" alt="...">
+			    </a>
+			  </div>
+			</div>
+    	</div>
+	</div>
+{% endblock %}
+
 {% block section_statistics %}
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-        	 <h3 class="panel-title">Panel Title</h3>
+        	 <h3 class="panel-title">Estad&iacute;sticos Simplicity</h3>
 
     	</div>
     	<div class="panel-body">Panel content</div>

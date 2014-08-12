@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>CREACION REQUISITO</h2>
-<p>Paso {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+<p>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
 
 
 <form action="new_requirement" method="post">{% csrf_token %}
@@ -12,7 +12,7 @@
 {% if wizard.form.forms %}
     {{ wizard.form.management_form }}
     {% for form in wizard.form.forms %}
-        {{ form }}
+        {{ form.as_table }}
     {% endfor %}
 {% else %}
     {{ wizard.form }}
