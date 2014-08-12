@@ -10,28 +10,16 @@ from kappa.requirements.forms import RequirementForm1, RequirementForm2, Require
 from kappa.requirements.models import Requirement
 
 FORMS = [
-<<<<<<< HEAD
          ("requirement_form_1", RequirementForm1),
          ("requirement_form_2", RequirementForm2),
          ("requirement_form_3", RequirementForm3),
-=======
-#("requirement_form_1", RequirementForm1),
- #        ("requirement_form_2", RequirementForm2),
-  #       ("requirement_form_3", RequirementForm3),
->>>>>>> 22e38b635708221d4caf55ee01573e66b5dfff96
          ("requirement_form_4", RequirementForm4)]
 
 
 TEMPLATES = {
-<<<<<<< HEAD
              "requirement_form_1": "requirement_form_1.html",
              "requirement_form_2": "requirement_form_2.html",
              "requirement_form_3": "requirement_form_3.html",
-=======
-#"requirement_form_1": "requirement_form_1.html",
- #            "requirement_form_2": "requirement_form_2.html",
-  #           "requirement_form_3": "requirement_form_3.html",
->>>>>>> 22e38b635708221d4caf55ee01573e66b5dfff96
              "requirement_form_4": "requirement_form_4.html"}
 
 # Create your views here.
