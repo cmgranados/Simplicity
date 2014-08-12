@@ -9,14 +9,14 @@ from haystack.views import SearchView
 from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3
 from kappa.requirements.models import Requirement
 
-FORMS = [("requirementform1", RequirementForm1),
-         ("requirementform2", RequirementForm2),
-         ("requirementform3", RequirementForm3)]
+FORMS = [("requirement_form_1", RequirementForm1),
+         ("requirement_form_2", RequirementForm2),
+         ("requirement_form_3", RequirementForm3)]
 
 
-TEMPLATES = {"requirementform1": "requirementform1.html",
-             "requirementform2": "requirementform2.html",
-             "requirementform3": "requirementform3.html"}
+TEMPLATES = {"requirement_form_1": "requirement_form_1.html",
+             "requirement_form_2": "requirement_form_2.html",
+             "requirement_form_3": "requirement_form_3.html"}
 
 # Create your views here.
 class RequirementListView(ListView):
