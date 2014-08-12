@@ -13,15 +13,14 @@ class Requirement(models.Model):
     date_created = models.DateTimeField(blank=False)
     date_modified = models.DateTimeField(blank=False)
     code = models.CharField(max_length=45, blank=False)
-    business_type = models.CharField(max_length=255, blank=False)
-    keywords = models.TextField(blank=True, null=True)
+    keywords = models.CharField(max_length=512, null=True)
     is_active = models.CharField(max_length=20, blank=False)
 
     def __unicode__(self):
         return self.title
 
     class Meta:
-        db_table = "req_requirement"
+        db_table = "kp_req_requirement"
 
 
 class RequirementBusinessRule(models.Model):
@@ -34,7 +33,7 @@ class RequirementBusinessRule(models.Model):
 
     class Meta:
         unique_together = (("requirement", "business_rule"),)
-        db_table = "req_requirement_business_rule"
+        db_table = "kp_req_requirement_business_rule"
 
 
 class RequirementInput(models.Model):
@@ -46,7 +45,7 @@ class RequirementInput(models.Model):
         return self.requirement_input_id
 
     class Meta:
-        db_table = "req_requirement_input"
+        db_table = "kp_req_requirement_input"
 
 
 class RequirementOutput(models.Model):
@@ -58,7 +57,7 @@ class RequirementOutput(models.Model):
         return self.requirement_output_id
 
     class Meta:
-        db_table = "req_requirement_output"
+        db_table = "kp_req_requirement_output"
 
 
 class AcceptanceCriteria(models.Model):
@@ -74,4 +73,4 @@ class AcceptanceCriteria(models.Model):
         return self.name
 
     class Meta:
-        db_table = "req_acceptance_criteria"
+        db_table = "kp_req_acceptance_criteria"

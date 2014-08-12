@@ -49,17 +49,18 @@
 	</section>
 	<div class="container-fluid">
 	<div class="row">
-	  <div class="col-md-2">
+	  <div class="col-md-12">
 		  {% block section_option %}
 		  {% endblock %}
 	  </div>
-	  		
-	  <div class="col-md-8">
-		  {% block content %}
-		  {% endblock %}
-	  </div>
+	</div>
+	<div class="row">
 	  <div class="col-md-2">
 	  	  {% block section_statistics %}
+		  {% endblock %}
+	  </div>
+	  <div class="col-md-10">
+		  {% block content %}
 		  {% endblock %}
 	  </div>
 	</div>

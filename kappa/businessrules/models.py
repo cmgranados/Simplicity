@@ -16,4 +16,4 @@ class BusinessRule(models.Model):
     def __unicode__(self):
         return self.name
     class Meta:
-        db_table = "br_business_rule"
+        db_table = "kp_br_business_rule"

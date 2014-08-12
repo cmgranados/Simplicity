@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Project, ProjectAssociation, RequirementAssociation
+
+admin.site.register(Project)
+admin.site.register(ProjectAssociation)
+admin.site.register(RequirementAssociation)

@@ -1,11 +1,26 @@
+import logging
+
+from django.contrib.formtools.wizard.views import SessionWizardView
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
-from kappa.requirements.models import Requirement
 from haystack.views import SearchView
 
+from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4
+from kappa.requirements.models import Requirement
 
-from .forms import RequirementCreationForm
-from django.shortcuts import render
+FORMS = [
+#("requirement_form_1", RequirementForm1),
+ #        ("requirement_form_2", RequirementForm2),
+  #       ("requirement_form_3", RequirementForm3),
+         ("requirement_form_4", RequirementForm4)]
 
+
+TEMPLATES = {
+#"requirement_form_1": "requirement_form_1.html",
+ #            "requirement_form_2": "requirement_form_2.html",
+  #           "requirement_form_3": "requirement_form_3.html",
+             "requirement_form_4": "requirement_form_4.html"}
 
 # Create your views here.
 class RequirementListView(ListView):
@@ -27,11 +42,10 @@ class FacetedSearchView(SearchView):
 
         return extra
 
-def new_requirement(request):
-    form = RequirementCreationForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
+class RequirementWizard(SessionWizardView):
+    def get_template_names(self):
+        return [TEMPLATES[self.steps.current]]
 
-    return render(request, 'signup.html', {'form': form})
-
+    def done(self, form_list, **kwargs):
+        # do_something_with_the_form_data(form_list)
+        return HttpResponseRedirect('done.html')

@@ -9,7 +9,7 @@ class Precondition(models.Model):
     def __unicode__(self):
         return self.precondition_id
     class Meta:
-        db_table = "pco_pre_condition"
+        db_table = "kp_pco_precondition"
 
 
 class PreconditionRequirement(models.Model):
@@ -22,7 +22,7 @@ class PreconditionRequirement(models.Model):
 
     class Meta:
         unique_together = (("requirement", "precondition"),)
-        db_table = "pco_pre_condition_requirement"
+        db_table = "kp_pco_precondition_requirement"
 
 
 class PreconditionDescription(models.Model):
@@ -33,4 +33,4 @@ class PreconditionDescription(models.Model):
     def __unicode__(self):
         return self.precondition
     class Meta:
-        db_table = "pco_pre_condition_description"
+        db_table = "kp_pco_precondition_description"
