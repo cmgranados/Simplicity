@@ -15,7 +15,8 @@
         {{ form.as_table }}
     {% endfor %}
 {% else %}
-    {{ wizard.form }}
+    	{% block form_requirement %}
+		{% endblock %}
 {% endif %}
 </table>
 {% if wizard.steps.prev %}

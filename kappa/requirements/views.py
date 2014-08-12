@@ -6,9 +6,17 @@ from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
 from haystack.views import SearchView
 
-from kappa.requirements.forms import RequirementForm1, RequirementForm2
+from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3
 from kappa.requirements.models import Requirement
 
+FORMS = [("requirementform1", RequirementForm1),
+         ("requirementform2", RequirementForm2),
+         ("requirementform3", RequirementForm3)]
+
+
+TEMPLATES = {"requirementform1": "requirementform1.html",
+             "requirementform2": "requirementform2.html",
+             "requirementform3": "requirementform3.html"}
 
 # Create your views here.
 class RequirementListView(ListView):
@@ -31,20 +39,9 @@ class FacetedSearchView(SearchView):
         return extra
 
 class RequirementWizard(SessionWizardView):
-    template_name = "requirement_form.html"
+    def get_template_names(self):
+        return [TEMPLATES[self.steps.current]]
 
     def done(self, form_list, **kwargs):
-        form_data = process_form_data(form_list)
-        
-        return render_to_response("done.html", {'form_data': form_data})
-    
-def process_form_data(form_list):
-    form_data = [form.cleaned for form in form_list]
-    
-    logging.debug(form_data[0]['subject'])
-    logging.debug(form_data[1]['sender'])
-    logging.debug(form_data[2]['message'])
-    
-    return form_data
-    
-    
+        # do_something_with_the_form_data(form_list)
+        return HttpResponseRedirect('done.html')
