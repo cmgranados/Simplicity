@@ -27,9 +27,9 @@ class ProjectAssociation(models.Model):
     association_id = models.AutoField(primary_key=True)
     project_id = models.ForeignKey(Project, related_name='projectassociation_projectid')
     association_project = models.ForeignKey(Project, related_name='projectassociation_associationproject')
-
+    
     def __unicode__(self):
-        return self.association_id
+        return unicode(self.association_id)
 
     class Meta:
         unique_together = (("project_id", "association_project"),)

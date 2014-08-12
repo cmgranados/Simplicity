@@ -1,5 +1,12 @@
-{% extends "requirement_form_base.html" %}
-
-{% block form_requirement %}
-	    {{ wizard.form }}
+{% extends "requirement_form_base.html" %} {% block form_requirement %}
+<table class="table table-striped">
+	<th>
+	<td>Precondici&#243n</td>
+	<td>Descripci&#243n</td>
+	<td>Tipo</td>
+	</th>
+</table>
+<button>Agregar</button>
+<button>Eliminar</button>
+<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
 {% endblock %}
