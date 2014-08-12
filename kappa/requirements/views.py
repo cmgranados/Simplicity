@@ -16,8 +16,7 @@ FORMS = [
          ("requirement_form_4", RequirementForm4)]
 
 
-TEMPLATES = {
-             "requirement_form_1": "requirement_form_1.html",
+TEMPLATES = {"requirement_form_1": "requirement_form_1.html",
              "requirement_form_2": "requirement_form_2.html",
              "requirement_form_3": "requirement_form_3.html",
              "requirement_form_4": "requirement_form_4.html"}
