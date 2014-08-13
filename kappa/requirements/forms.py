@@ -5,11 +5,9 @@ from django import forms
 from django.conf import settings
 from django.forms.extras.widgets import SelectDateWidget
 from haystack.forms import SearchForm
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
-
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
 
@@ -50,15 +48,8 @@ class RequirementForm1(forms.Form):
 	date_created = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, 
 								widget=SelectDateWidget(years=range(datetime.date.today().year, 1989, -1)))
 	
- 	#==========================================================================
- 	# type = forms.ModelChoiceField(queryset=Type.objects.get(type_classification=TypeClassification.objects.get(code=MyConstants.TYPE_CLASSIFICATION_CODE.get("REQUIREMENT"))),
-  #                                       widget=forms.Select(attrs={'class':'selector'}))
-  #==========================================================================
-
-	#===========================================================================
-	# type = forms.ModelChoiceField(queryset=Type.objects.all(), 
-	# 							widget=forms.Select(attrs={'class':'selector'}))
-	#===========================================================================
+	type = forms.ModelChoiceField(queryset=Type.objects.filter(type_classification_id=TypeClassification.objects.filter(code='REQ')), 
+								widget=forms.Select(attrs={'class':'selector'}))
 	
 	description = forms.CharField(widget=forms.Textarea)
 	
@@ -67,7 +58,7 @@ class RequirementForm1(forms.Form):
 		self.fields['title'].label = "Nombre"
 		self.fields['code'].label = "Código"
 		self.fields['date_created'].label = "Fecha de creación"
-# 		self.fields['type'].label = "Tipo de Requisito"
+ 		self.fields['type'].label = "Tipo de Requisito"
 		self.fields['description'].label = "Definición de Requisito"
 
 class RequirementForm2(forms.Form):
