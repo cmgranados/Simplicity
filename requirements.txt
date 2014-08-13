@@ -16,3 +16,4 @@ requests==2.3.0
 requests-oauthlib==0.4.1
 six==1.7.3
 mysql-python==1.2.5
+django-autofixture

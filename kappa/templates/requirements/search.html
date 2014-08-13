@@ -10,16 +10,19 @@
 {%endblock%}
 {% block content %}
 <form method="get" action="." class="form-horizontal" role="form">
-
+	<div class="col-md-10">
+		{% csrf_token %}
       	{{ form|crispy }}
-      	<div class="form-actions">
-      	</div>
-      	
-      	
-				        
+    </div>
+   	<div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
 </form>
+
 <div class="margin-containers">
+	
 {% if query %}
+		<p>Encontro {{ page.start_index }} - {{ page.end_index }} de {{ page.paginator.count }}</p>
 		<table class="table table-bordered table-hover">
 			<th>Requisitos</th>
 			<th>Estado</th>

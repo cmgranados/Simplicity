@@ -7,6 +7,7 @@ from kappa.businessrules.views import BusinessRuleView
 from kappa.requirements.forms import RequirementSearchForm, RequirementForm1, RequirementForm2, RequirementForm3
 from kappa.requirements.views import FacetedSearchView, RequirementWizard, FORMS
 from simplicity_main.views import logout
+from haystack.views import SearchView, search_view_factory
 
 
 sqs = SearchQuerySet().facet('text')

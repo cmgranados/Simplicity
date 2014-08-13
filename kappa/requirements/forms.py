@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Submit, Fieldset, ButtonHolder
 from django import forms
 from django.conf import settings
 from django.forms.extras.widgets import SelectDateWidget
 from haystack.forms import SearchForm
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from django.core.urlresolvers import reverse
 
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
+from django.contrib.admin import helpers
+import logging
+from kappa.requirements.models import Requirement
+from haystack.query import SearchQuerySet
+from haystack.backends import SQ
 
+# Get an instance of a logger
+logger = logging.getLogger('simplicity_main.kappa.requirements.forms')
 
 class RequirementSearchForm(SearchForm):
 	NEWER = 'desc'
@@ -22,27 +28,57 @@ class RequirementSearchForm(SearchForm):
 				(OLDER , 'Más viejo')
 	)
 	q = forms.CharField(label="", max_length=255, required=False,)
-	sort = forms.ChoiceField(label='Ordenar por',required=False, choices = SORT_OPTIONS)
+	start_date = forms.DateField(label='Fecha inicio', required=False)
+	end_date = forms.DateField(label='Fecha fin', required=False)
 	
+	type = forms.ModelChoiceField(label="Tipo", required=False, queryset=Type.objects.filter(type_id__in=Requirement.objects.values_list('type_id').distinct()), 
+								widget=forms.Select(attrs={'class':'selector'}), empty_label="Seleccione una opción ...")
+	sort = forms.ChoiceField(label='Ordenar por', required=False, choices = SORT_OPTIONS)
+	
+	@property
+	def helper(self):
+	    logger.debug('Something went wrong!')
+	    helper = FormHelper(self)
+	    helper.form_action = reverse('search')
+	    helper.form_method = 'GET'
+	    return helper
+
+
 	def search(self):
 		sqs = super(RequirementSearchForm, self).search()
-		sqs = sqs.order_by('pub_created')
+		sort_value = "pub_created"
+		
+		if not self.is_valid():
+			return self.no_query_found()
+		
+		if not self.cleaned_data['q']:
+			logger.debug('empty q value')
+			return self.no_query_found()
+		
+		 # Check to see if a start_date was chosen.
+		if self.cleaned_data['type']:
+			sqs = sqs.filter(type_id__gte=self.cleaned_data.get('type').type_id)
+			
+		 # Check to see if a start_date was chosen.
+		if self.cleaned_data['start_date']:
+			sqs = sqs.filter(pub_created__gte=self.cleaned_data['start_date'])
+		
+		# Check to see if an end_date was chosen.
+		if self.cleaned_data['end_date']:
+			sqs = sqs.filter(pub_created__lte=self.cleaned_data['end_date'])
+		
+		if self.cleaned_data['sort']:
+			if str(self.cleaned_data.get('sort')) == 'desc':
+				sort_value = "-pub_created"
+            
+		sqs = sqs.order_by(sort_value)
+			
 		return sqs
 	
-	# Uni-form
-	helper = FormHelper()
-	helper.form_class = 'form-inline'
-	helper.labels_uppercase = True
-	helper.layout = Layout(
-		Field('q', css_class='input-xlarge'),
-		Field('sort', css_class='pull-right'),
-		FormActions(
-				Submit('save_changes', 'Save changes', css_class="btn-primary"),
-				Submit('cancel', 'Cancel'),
-		)
-		
-	)
-
+	def no_query_found(self):
+		logger.debug('load all!')
+		return self.searchqueryset.all()
+	
 # Requirements Wizard
 class RequirementForm1(forms.Form):
 	title = forms.CharField()
