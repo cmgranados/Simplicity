@@ -1,18 +1,15 @@
 $(document).ready(function(){
 
-	var idInput = 0;
-
 	$("#addRowInput").click(function(){
-	  $('#tableInput > tbody:last').append("<tr id='row"+idInput+"'><td><input type='checkbox' value=''></td><td><input type='text' class='form-control'></td><td><input type='text' class='form-control'></td></tr>");
-
-	  idInput+=1;
-
+	  $('#tableInput > tbody:last').append("<tr id='row1'><td><input type='checkbox' value=''></td><td><input type='text' class='form-control'></td><td><input type='text' class='form-control'></td></tr>");
 	});
 
 	$("#deleteRowInput").click(function(){
 		
-	
+	  $('#row1').remove();
 	});
+
+
 
 	$("#addRowOutput").click(function(){
 	  //alert("The paragraph was clicked.");
