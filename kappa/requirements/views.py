@@ -10,13 +10,14 @@ from kappa.requirements.forms import RequirementForm1, RequirementForm2, Require
 from kappa.requirements.models import Requirement
 
 FORMS = [
-         ("requirement_form_1", RequirementForm1),
+#          ("requirement_form_1", RequirementForm1),
          ("requirement_form_2", RequirementForm2),
          ("requirement_form_3", RequirementForm3),
          ("requirement_form_4", RequirementForm4)]
 
 
-TEMPLATES = {"requirement_form_1": "requirement_form_1.html",
+TEMPLATES = {
+#               "requirement_form_1": "requirement_form_1.html",
              "requirement_form_2": "requirement_form_2.html",
              "requirement_form_3": "requirement_form_3.html",
              "requirement_form_4": "requirement_form_4.html"}

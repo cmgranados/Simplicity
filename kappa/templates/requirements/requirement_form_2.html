@@ -1,17 +1,21 @@
 {% extends "requirement_form_base.html" %} {% block form_requirement %}
-<table class="table table-striped">
-	<th>
-	<td>Precondici&#243n</td>
-	<td>Descripci&#243n</td>
-	<td>Tipo</td>
-	</th>
+
+{% block javascript %}
+<script src="requirements/js/preconditions.js"></script>
+{% endblock %}
+<table class="table table-striped" id="precondition_table"
+	cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Precondici&#243n</th>
+			<th>Descripci&#243n</th>
+			<th>Tipo</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
 </table>
-<button class="btn btn-default" type="button" data-toggle="modal"
-	data-target="#myModal">Agregar</button>
-<button class="btn btn-default">Eliminar</button>
-
-
-<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -26,26 +30,39 @@
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active"><a href="#home" role="tab"
 						data-toggle="tab">Agregar descripci&#243n</a></li>
-					<li><a href="#profile" role="tab" data-toggle="tab">Asociar requisito</a></li>
+					<li><a href="#profile" role="tab" data-toggle="tab">Asociar
+							requisito</a></li>
 				</ul>
 
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
-						<textarea class="form-control" rows="3">
-						</textarea>
+						<p>Descripci&#243n de las precondiciones</p>
+						<textarea class="form-control" rows="3"></textarea>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								id="add_DescriptionRow">Registar Descripci&#243n</button>
+						</div>
 					</div>
 					<div class="tab-pane" id="profile">
+						<select multiple class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								id="add_RequirementRow">Registar Requisito</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Registar
-					precondici&#243n</button>
 			</div>
 		</div>
 	</div>
 </div>
-
+<button class="btn btn-default" type="button" data-toggle="modal"
+	data-target="#myModal">Agregar</button>
+<button class="btn btn-default">Eliminar</button>
 {% endblock %}

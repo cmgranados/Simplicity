@@ -22,7 +22,8 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
 )
 
-STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'), )
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'),
+                     os.path.join(BASE_DIR, 'kappa/static'), )
 
 
 # Quick-start development settings - unsuitable for production
