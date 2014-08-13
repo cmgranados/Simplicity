@@ -1,38 +1,37 @@
 {% extends "requirement_form_base.html" %} {% block form_requirement %}
 
-	{% block javascript %}
-		<script src="requirements/js/preconditions.js"></script>	
-    {% endblock %}
-
-
-<table class="table table-striped" id="preconditions_table">
-	<th>
-		<td>Precondici&#243n</td>
-		<td>Descripci&#243n</td>
-		<td>Tipo</td>
-	</th>
+{% block javascript %}
+<script src="requirements/js/preconditions.js"></script>
+{% endblock %}
+<table class="table table-striped" id="precondition_table"
+	cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Precondici&#243n</th>
+			<th>Descripci&#243n</th>
+			<th>Tipo</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
 </table>
-<button class="btn btn-default" type="button" data-toggle="modal"
-data-target="#myModal">Agregar</button>
-<button class="btn btn-default">Eliminar</button>
-
-
-<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">
-				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-			</button>
-			<h4 class="modal-title" id="myModalLabel">Precondici&#243n</h4>
-		</div>
-		<div class="modal-body">
-			<ul class="nav nav-tabs" role="tablist">
-				<li class="active"><a href="#home" role="tab"
-					data-toggle="tab">Agregar descripci&#243n</a></li>
-					<li><a href="#profile" role="tab" data-toggle="tab">Asociar requisito</a></li>
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Precondici&#243n</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active"><a href="#home" role="tab"
+						data-toggle="tab">Agregar descripci&#243n</a></li>
+					<li><a href="#profile" role="tab" data-toggle="tab">Asociar
+							requisito</a></li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -42,7 +41,7 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 						<textarea class="form-control" rows="3"></textarea>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
-								id="precondition_description">Registar Descripci&#243n</button>
+								id="add_DescriptionRow">Registar Descripci&#243n</button>
 						</div>
 					</div>
 					<div class="tab-pane" id="profile">
@@ -55,12 +54,15 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 						</select>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
-								id="precondition_requirement">Registar Requisito</button>
+								id="add_RequirementRow">Registar Requisito</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	{% endblock %}
+</div>
+<button class="btn btn-default" type="button" data-toggle="modal"
+	data-target="#myModal">Agregar</button>
+<button class="btn btn-default">Eliminar</button>
+{% endblock %}
