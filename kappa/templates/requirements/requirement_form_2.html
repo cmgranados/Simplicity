@@ -1,5 +1,9 @@
 {% extends "requirement_form_base.html" %} {% block form_requirement %}
 
+	{% block javascript %}
+		<script src="requirements/js/preconditions.js"></script>	
+    {% endblock %}
+
 
 <table class="table table-striped" id="preconditions_table">
 	<th>
