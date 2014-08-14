@@ -3,14 +3,14 @@
 {% block javascript %}
 <script src="requirements/js/preconditions.js"></script>
 {% endblock %}
-<table class="table table-striped" id="precondition_table"
+<table class="table table-bordered table-striped" id="precondition_table"
 	cellspacing="0" cellpadding="0">
 	<thead>
 		<tr>
+			<th></th>
 			<th>Precondici&#243n</th>
 			<th>Descripci&#243n</th>
 			<th>Tipo</th>
-			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,7 +38,7 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
 						<p>Descripci&#243n de las precondiciones</p>
-						<textarea class="form-control" rows="3"></textarea>
+						<textarea class="form-control" rows="3" id="description_textarea"></textarea>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								id="add_DescriptionRow">Registar Descripci&#243n</button>
@@ -64,5 +64,5 @@
 </div>
 <button class="btn btn-default" type="button" data-toggle="modal"
 	data-target="#myModal">Agregar</button>
-<button class="btn btn-default">Eliminar</button>
+<button class="btn btn-default" type="button" id="delete_PreconditionRow">Eliminar</button>
 {% endblock %}

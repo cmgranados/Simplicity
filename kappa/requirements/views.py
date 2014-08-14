@@ -10,19 +10,21 @@ from kappa.requirements.forms import RequirementForm1, RequirementForm2, Require
 from kappa.requirements.models import Requirement
 
 FORMS = [
-#          ("requirement_form_1", RequirementForm1),
-         ("requirement_form_2", RequirementForm2),
-         ("requirement_form_3", RequirementForm3),
-         ("requirement_form_4", RequirementForm4)]
+    # ("requirement_form_1", RequirementForm1),
+    ("requirement_form_2", RequirementForm2),
+    ("requirement_form_3", RequirementForm3),
+    ("requirement_form_4", RequirementForm4)]
 
 
 TEMPLATES = {
-#               "requirement_form_1": "requirement_form_1.html",
-             "requirement_form_2": "requirement_form_2.html",
-             "requirement_form_3": "requirement_form_3.html",
-             "requirement_form_4": "requirement_form_4.html"}
+    #  "requirement_form_1": "requirement_form_1.html",
+    "requirement_form_2": "requirement_form_2.html",
+    "requirement_form_3": "requirement_form_3.html",
+    "requirement_form_4": "requirement_form_4.html"}
 
 # Create your views here.
+
+
 class RequirementListView(ListView):
     model = Requirement
 
@@ -32,6 +34,7 @@ class RequirementListView(ListView):
 
 
 class FacetedSearchView(SearchView):
+
     def extra_context(self):
         extra = super(FacetedSearchView, self).extra_context()
 
@@ -42,7 +45,9 @@ class FacetedSearchView(SearchView):
 
         return extra
 
+
 class RequirementWizard(SessionWizardView):
+
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 
