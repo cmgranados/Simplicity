@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'django.contrib.formtools',
     'autofixture',
+    'debug_toolbar',
 )
 
 
@@ -73,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'simplicity_main.urls'
@@ -242,3 +244,5 @@ LOGGING = {
         },
     },
 }
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False

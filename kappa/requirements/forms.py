@@ -103,7 +103,8 @@ class RequirementForm1(forms.Form):
 
 class RequirementForm2(forms.Form):
 	# precondition table
-	requirementform2 = forms.CharField()
+	def validate(self):
+		return True
 	
 class RequirementForm3(forms.Form):
 	# business rules table

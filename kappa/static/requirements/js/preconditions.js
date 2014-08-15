@@ -12,7 +12,9 @@ $( document ).ready(function() {
 	            <td><span name='precondition_description_01' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
 	            <td><span name='precondition_type_01' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
 	        </tr>"
-			$('#precondition_table tbody').append($firstRow)			
+			$('#precondition_table tbody').append($firstRow)
+			$firstRowHidden = "<input type='hidden' id='precondition_id_01_hidden' value='"+$lastChar+"'></input> {{ previous_fields|safe }}"
+			$('body').append($firstRowHidden)
 	    } else {
 	    	$get_lastID();
 			$('#precondition_table > tbody:last').append($newRow);
