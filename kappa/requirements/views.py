@@ -6,21 +6,23 @@ from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
 from haystack.views import SearchView
 
-from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4
+from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
 from kappa.requirements.models import Requirement
 
 FORMS = [
     ("requirement_form_1", RequirementForm1),
     ("requirement_form_2", RequirementForm2),
     ("requirement_form_3", RequirementForm3),
-    ("requirement_form_4", RequirementForm4)]
+    ("requirement_form_4", RequirementForm4),
+    ("requirement_form_5", RequirementForm5)]
 
 
 TEMPLATES = {
     "requirement_form_1": "requirement_form_1.html",
     "requirement_form_2": "requirement_form_2.html",
     "requirement_form_3": "requirement_form_3.html",
-    "requirement_form_4": "requirement_form_4.html"}
+    "requirement_form_4": "requirement_form_4.html",
+    "requirement_form_5": "requirement_form_5.html"}
 
 # Create your views here.
 
