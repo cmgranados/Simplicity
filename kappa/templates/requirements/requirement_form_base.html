@@ -6,7 +6,7 @@
 <p>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
 
 
-<form action="new_requirement" method="post">{% csrf_token %}
+<form action="new_requirement" method="post" id="form_requirements">{% csrf_token %}
 
 {{ wizard.management_form }}
 {% if wizard.form.forms %}

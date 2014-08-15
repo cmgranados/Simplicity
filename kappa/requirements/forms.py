@@ -103,8 +103,7 @@ class RequirementForm1(forms.Form):
 
 class RequirementForm2(forms.Form):
 	# precondition table
-	def validate(self):
-		return True
+	hidden = forms.CharField(required=False, max_length=50, widget=forms.HiddenInput())
 	
 class RequirementForm3(forms.Form):
 	# business rules table
