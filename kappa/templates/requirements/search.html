@@ -1,11 +1,14 @@
 {% extends "shared/base_generic.html" %}
 {% load crispy_forms_tags %}
+
 {% block title_section %}
 	<h1>Requisitos</h1>
 {%endblock%}
 {% block section_option %}
 	<div>
-		<a href="new_requirement"> <input type="button" name="new_requirement" class="btn btn-default" value="Registrar requisito" /> </a> 
+        <button id="new-requirement-btn" class="btn btn-primary">
+           Registrar requisito
+        </button>
 	</div>
 {%endblock%}
 {% block content %}
@@ -39,4 +42,6 @@
     {# Show some example queries to run, maybe query syntax, something else? #}
 {% endif %}
 </div>
+{% include "requirement_wizard.html" %}
+
 {% endblock %}

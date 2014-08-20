@@ -1,0 +1,27 @@
+	<div class="wizard" id="satellite-wizard" data-title="Creación de Requisito">
+	            <div class="wizard-card wizard-card-overlay" data-cardname="definition">
+	                <h3>Definici&#243n</h3>
+
+	                {% include "requirement_form_1.html" %}
+		
+	            </div>
+	            <div class="wizard-card" data-cardname="precondition">
+	                <h3>Precondici&#243n</h3>
+
+	                {% include "requirement_form_2.html" %}
+	            </div>
+	            <div class="wizard-card" data-cardname="business-rules">
+	                <h3>Reglas de Negocio</h3>
+
+	            </div>
+	            <div class="wizard-card" data-cardname="information-flows">
+	                <h3>Flujos de Informaci&#243n</h3>
+
+	                {% include "requirement_form_4.html" %}
+	            </div>
+	            <div class="wizard-card" data-cardname="acceptance-criterias">
+	                <h3>Criterios de Aceptaci&#243n</h3>
+
+	                {% include "requirement_form_5.html" %}
+	            </div>
+	        </div>

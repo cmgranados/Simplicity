@@ -1,5 +1,22 @@
-{% extends "requirement_form_base.html" %}
+<div class="form-group">
+    <label for="requirement_title">Nombre</label>
+    <input type="text" class="form-control" id="requirement_title"
+           placeholder="Introduce el titulo del requisito">
 
-{% block form_requirement %}
-    {{ wizard.form }}
-{% endblock %}
+    <label for="requirement_code">Código</label>
+    <input type="text" class="form-control" id="requirement_code"
+           placeholder="Introduce el código del requisito">
+
+    <label for="requirement_date_created">Fecha de creación</label>
+    <input type="date" class="form-control" id="requirement_date_created"
+           placeholder="Introduce la fecha de creación">
+
+    <label for="requirement_type">Tipo de Requisito</label>
+    <input type="text" class="form-control" id="requirement_type"
+           placeholder="Introduce el tipo de requisito">
+
+<!-- 	<label for="requirement_description">Definición de Requisito</label>
+	<textarea class="form-control" rows="3" id="requirement_description"
+	           placeholder="Introduce una descripción para tu requisito"></textarea> -->
+ </div>
+
