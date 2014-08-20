@@ -1,22 +1,47 @@
-<div class="form-group">
-    <label for="requirement_title">Nombre</label>
-    <input type="text" class="form-control" id="requirement_title"
-           placeholder="Introduce el titulo del requisito">
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="requirement_title">Nombre</label>
+      <input type="text" class="form-control" id="requirement_title" name="requirement_title" placeholder="Introduce el título del requisito" data-validate="validateName">
+    </div>
+  </div>
+</div>
 
-    <label for="requirement_code">Código</label>
-    <input type="text" class="form-control" id="requirement_code"
-           placeholder="Introduce el código del requisito">
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="requirement_code">Código</label>
+      <input type="text" class="form-control" id="requirement_code" name="requirement_code" placeholder="Introduce el código del requisito" data-validate="">
+    </div>
+  </div>
+</div>
 
-    <label for="requirement_date_created">Fecha de creación</label>
-    <input type="date" class="form-control" id="requirement_date_created"
-           placeholder="Introduce la fecha de creación">
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="requirement_date_created">Fecha de creación</label>
+      <input type="date" class="form-control" id="requirement_date_created" name="requirement_date_created"
+      placeholder="Introduce la fecha de creación" validate="">
+    </div>
+  </div>
+</div>
 
-    <label for="requirement_type">Tipo de Requisito</label>
-    <input type="text" class="form-control" id="requirement_type"
-           placeholder="Introduce el tipo de requisito">
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="requirement_type">Tipo de Requisito</label>
+      <input type="text" class="form-control" id="requirement_type" name="requirement_type"
+      placeholder="Introduce el tipo de requisito" validate="">
+    </div>
+  </div>
+</div>
 
-<!-- 	<label for="requirement_description">Definición de Requisito</label>
-	<textarea class="form-control" rows="3" id="requirement_description"
-	           placeholder="Introduce una descripción para tu requisito"></textarea> -->
- </div>
-
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="requirement_description">Definición de Requisito</label>
+      <textarea class="form-control" rows="3" id="requirement_description" name="requirement_description"
+      placeholder="Introduce una descripción para tu requisito" validate=""></textarea>
+    </div>
+  </div>
+</div>

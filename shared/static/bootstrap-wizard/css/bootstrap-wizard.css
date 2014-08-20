@@ -112,6 +112,8 @@ li.wizard-nav-item {
 
 .wizard-card-container {
 	margin-left: 28%;
+	height: 300px;
+    overflow-y: scroll;
 }
 
 /* WIZARD CARDS */
