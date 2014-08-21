@@ -7,15 +7,15 @@ $( document ).ready(function() {
 			var $lastChar =1;
 			var $description = $('#description_textarea').val();
 			$firstRow = "<tr> \
-	            <td><input type='checkbox' name='precondition_checkbox_01' value=''></td> \
-	            <td><span name='precondition_id_01' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
-	            <td><span name='precondition_description_01' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
-	            <td><span name='precondition_type_01' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
+	            <td><input type='checkbox' name='precondition_checkbox_1' value=''></td> \
+	            <td><span name='precondition_id_1' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+	            <td><span name='precondition_description_1' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
+	            <td><span name='precondition_type_1' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
 	        </tr>"
 			$('#precondition_table tbody').append($firstRow)
-			$firstRowHiddenId = "<input type='hidden' id='precondition_id_01_hidden' name='precondition_id_01_hidden' value='"+$lastChar+"'></input>"
-			$firstRowHiddenDesc = "<input type='hidden' id='precondition_description_01_hidden' name='precondition_description_01_hidden' value='"+$description+"'></input>"
-			$firstRowHiddenType = "<input type='hidden' id='precondition_id_01_hidden' name='precondition_id_01_hidden' value='"+$lastChar+"'></input>"
+			$firstRowHiddenId = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
+			$firstRowHiddenDesc = "<input type='hidden' id='precondition_description_1_hidden' name='precondition_description_1_hidden' value='"+$description+"'></input>"
+			$firstRowHiddenType = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
 			$('#form_requirements').append($firstRowHiddenDesc)
 			$('#form_requirements').append($firstRowHiddenId)
 			$('#form_requirements').append($firstRowHiddenDesc)
@@ -28,15 +28,15 @@ $( document ).ready(function() {
 	});
 	
 	$get_lastID = function(){
-	    var $id = $('#precondition_table tr:last-child td:first-child input').attr("name");
-	    $lastChar = parseInt($id.substr($id.length - 2), 10);
+	    var id = $('#precondition_table tr:last-child td:first-child input').attr("name");
+	    $lastChar = parseInt(id.substr(id.lastIndexOf("_") + 1, id.length));
 	    var  $description = $('#description_textarea').val();
 	    $lastChar = $lastChar + 1;
 	    $newRow = "<tr> \
-            <td><input type='checkbox' name='precondition_checkbox_0"+$lastChar+"' value=''></td> \
-            <td><span name='precondition_id_0"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
-            <td><span name='precondition_description_0"+$lastChar+"' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
-            <td><span name='precondition_type_0"+$lastChar+"' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
+            <td><input type='checkbox' name='precondition_checkbox_"+$lastChar+"' value=''></td> \
+            <td><span name='precondition_id_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+            <td><span name='precondition_description_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
+            <td><span name='precondition_type_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
         </tr>"
      return $newRow;
 	}

@@ -32,18 +32,4 @@ function validateName(el) {
 				}
 
 				return retValue;
-			};
-
-function validateName(el) {
-				var name = el.val();
-				var retValue = {};
-
-				if (name == "") {
-					retValue.status = false;
-					retValue.msg = "Por favor ingrese un nombre";
-				} else {
-					retValue.status = true;
-				}
-
-				return retValue;
-			};
+};
