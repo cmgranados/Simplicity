@@ -30,7 +30,9 @@ urlpatterns = patterns('',
                        url('', include('django.contrib.auth.urls', namespace='auth')),
                        url(r'^logout_auth/$', logout, name='logout_auth'),
                        url(r'^kappa/requirements/$', FacetedSearchView(form_class=RequirementSearchForm, searchqueryset=sqs, template="requirements/search.html"), name='haystack_search',),
+                       url(r'^kappa/requirements/basic_search', FacetedSearchView(form_class=RequirementSearchForm, searchqueryset=sqs, template="requirements/requirement_form_2.html"), name='haystack_search',),
                        # wizard ejemplo
                        url(r'^kappa/requirements/new_requirement', RequirementWizard.as_view(FORMS)),
-                       url(r'^__debug__/', include(debug_toolbar.urls)),                                   
+                       url(r'^__debug__/', include(debug_toolbar.urls)),
+                       url(r'^search/$', 'kappa.requirements.views.searchRequirements'),
 )

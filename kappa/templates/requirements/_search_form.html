@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+<form method="get" action="." class="form-horizontal" role="form" id="myReqForm">
+	<div class="col-md-10">
+		{% csrf_token %}
+      	{{ form|crispy }}
+    </div>
+   	<div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+</form>

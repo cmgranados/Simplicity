@@ -1,0 +1,18 @@
+{% load crispy_forms_tags %}
+{% if query %}
+		<p>Encontro {{ page.start_index }} - {{ page.end_index }} de {{ page.paginator.count }}</p>
+		<table class="table table-bordered table-hover">
+			<th>Requisitos</th>
+			<th>Estado</th>
+			{% include 'requirements/_requirement_result.html'%}	
+        </table>
+        {% if page.has_previous or page.has_next %}
+            <div>
+                {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                |
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
+        {% endif %}
+{% else %}
+    {# Show some example queries to run, maybe query syntax, something else? #}
+{% endif %}

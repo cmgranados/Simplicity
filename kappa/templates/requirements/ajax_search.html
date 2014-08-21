@@ -1,0 +1,7 @@
+{% if requirements.count > 0 %}
+{% for requirement in requirements %}
+<li>{{ requirement.object.title }}</li>   
+{% endfor %}
+{% else %}
+<li>No hay resultados</li>
+{% endif %}

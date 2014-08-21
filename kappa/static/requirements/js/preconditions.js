@@ -2,6 +2,20 @@ $( document ).ready(function() {
 	var $lastChar =1, $newRow;
 	var $descriptionType = 'Descripción';
 	
+	$( "#searchPreconditions" ).click(function() {
+		$.ajax({
+	        type: "POST",
+	        url: "/search/",
+	        data: { 
+	            'q' : $('#q').val(),
+	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+	        },
+	        success: searchSuccess,
+	        dataType: 'html'
+	    });
+	});
+	
+	
 	$( "#add_DescriptionRow" ).click(function() {
 		if($('#precondition_table tbody tr').length == 0){
 			var $lastChar =1;
@@ -55,5 +69,12 @@ $( document ).ready(function() {
 			});
 		}
 	});
+	
+	
 });
 
+
+function searchSuccess(data, textStatus, jqXHR)
+{
+$('#search-results').html(data);
+}   

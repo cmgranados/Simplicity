@@ -4,6 +4,7 @@ from django.contrib.formtools.wizard.views import SessionWizardView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
+from haystack.query import SearchQuerySet
 from haystack.views import SearchView
 
 from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
@@ -57,3 +58,13 @@ class RequirementWizard(SessionWizardView):
     def done(self, form_list, **kwargs):
         # do_something_with_the_form_data(form_list)
         return HttpResponseRedirect('done.html')
+
+
+def searchRequirements(request):
+    if not request.POST.get('q', '') :
+        content_auto_v = "descripcion"
+    else:
+        content_auto_v=request.POST.get('q', '')
+        
+    requirements = SearchQuerySet().filter(text=content_auto_v)
+    return render_to_response('ajax_search.html', {'requirements': requirements})
