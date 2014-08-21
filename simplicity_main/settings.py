@@ -246,3 +246,5 @@ LOGGING = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

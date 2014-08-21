@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 from kappa.businessrules.views import BusinessRuleView
 from kappa.requirements.forms import RequirementSearchForm, RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
-from kappa.requirements.views import FacetedSearchView, RequirementWizard, FORMS
+from kappa.requirements.views import FacetedSearchView
 from simplicity_main.views import logout
 
 
@@ -32,7 +32,6 @@ urlpatterns = patterns('',
                        url(r'^kappa/requirements/$', FacetedSearchView(form_class=RequirementSearchForm, searchqueryset=sqs, template="requirements/search.html"), name='haystack_search',),
                        url(r'^kappa/requirements/basic_search', FacetedSearchView(form_class=RequirementSearchForm, searchqueryset=sqs, template="requirements/requirement_form_2.html"), name='haystack_search',),
                        # wizard ejemplo
-                       url(r'^kappa/requirements/new_requirement', RequirementWizard.as_view(FORMS)),
                        url(r'^__debug__/', include(debug_toolbar.urls)),
                        url(r'^search/$', 'kappa.requirements.views.searchRequirements'),
 )

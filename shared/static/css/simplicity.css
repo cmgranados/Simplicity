@@ -36,3 +36,14 @@
 .nav-pills li {
    height: 32px;  
 }
+
+.pr-search-results  {
+  height: 100px;
+  overflow-y: scroll; 
+}
+
+.wizard-card-container {
+	margin-left: 28%;
+	height: 300px;
+    overflow-y: scroll;
+}

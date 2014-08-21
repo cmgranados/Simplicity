@@ -76,5 +76,5 @@ $( document ).ready(function() {
 
 function searchSuccess(data, textStatus, jqXHR)
 {
-$('#search-results').html(data);
+$('#precondition-result tbody').append(data);
 }   

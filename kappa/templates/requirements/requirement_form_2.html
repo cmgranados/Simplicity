@@ -1,5 +1,5 @@
-<table class="table table-bordered table-striped" id="precondition_table"
-	cellspacing="0" cellpadding="0">
+<table class="table table-bordered table-striped"
+	id="precondition_table" cellspacing="0" cellpadding="0">
 	<thead>
 		<tr>
 			<th></th>
@@ -16,7 +16,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close"  id="close-precondition-modal-btn">
+				<button type="button" class="close"
+					id="close-precondition-modal-btn">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Precondici&#243n</h4>
@@ -40,9 +41,43 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="profile">
-						<input type="text" id="q">
-						<input type="button" id="searchPreconditions"/>
-						<div id="search-results"></div>
+						<div class="container">
+							<div >
+								<div id="search-results" class="col-md-3">
+									<input type="text" id="q"> <input type="button"
+							id="searchPreconditions" value="Buscar requisito" />
+									<table id="precondition-result"
+										class="table table-bordered table-striped pr-search-results">
+										<thead>
+											<tr>
+												<th></th>
+												<th>C&#243digo</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+								<div id="add-results" class="col-sm-1">
+									<button type="button" class="btn btn-primary"
+								id="add_RightTable">--></button>
+								</div>
+								<div id="add-results" class="col-md-3">
+									<table id="preconditions-selected"
+										class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th></th>
+												<th>C&#243digo</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+
+									</table>
+								</div>
+							</div>
+						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								id="add_RequirementRow">Registar Requisito</button>
@@ -55,4 +90,5 @@
 </div>
 <button class="btn btn-default" type="button" data-toggle="modal"
 	data-target="#myModal">Agregar</button>
-<button class="btn btn-default" type="button" id="delete_PreconditionRow">Eliminar</button>
+<button class="btn btn-default" type="button"
+	id="delete_PreconditionRow">Eliminar</button>

@@ -1,7 +1,14 @@
 {% if requirements.count > 0 %}
+
 {% for requirement in requirements %}
-<li>{{ requirement.object.title }}</li>   
+<tr>
+<td><input type='checkbox' name='precondition_checkbox' value=''></td>   
+<td>{{ requirement.object.title }}</td>   
+</tr>
 {% endfor %}
+
 {% else %}
-<li>No hay resultados</li>
+<tr>
+<td>No hay resultados</td>
+</tr>
 {% endif %}
