@@ -48,6 +48,8 @@ class RequirementSearchForm(SearchForm):
 
 	def search(self):
 		sqs = super(RequirementSearchForm, self).search()
+		sqs = sqs.models(Requirement)
+		
 		sort_value = "pub_created"
 		
 		if not self.is_valid():
@@ -72,7 +74,7 @@ class RequirementSearchForm(SearchForm):
 		if self.cleaned_data['sort']:
 			if str(self.cleaned_data.get('sort')) == 'desc':
 				sort_value = "-pub_created"
-            
+		
 		sqs = sqs.order_by(sort_value)
 			
 		return sqs

@@ -1,0 +1,5 @@
+{{ object.name|safe }}
+{{ object.description|safe }}
+{{ object.type|safe }}
+{{ object.state|safe }}
+{{ object.code|safe }}

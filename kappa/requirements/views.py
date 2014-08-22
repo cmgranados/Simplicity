@@ -40,7 +40,7 @@ def searchRequirements(request):
     else:
         content_auto_v=request.POST.get('q', '')
         
-    requirements = SearchQuerySet().filter(text=content_auto_v)
+    requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
     return render_to_response('ajax_search.html', {'requirements': requirements})
 
 
