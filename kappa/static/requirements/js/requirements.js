@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$('.datepicker').datepicker({
 	    language: 'ES'
 	});
@@ -29,10 +30,11 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 });
 
+
 function validateName(el) {
+	
 	var name = el.val();
 	var retValue = {};
 
