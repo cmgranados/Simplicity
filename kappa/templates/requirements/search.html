@@ -6,9 +6,7 @@
 {%endblock%}
 {% block section_option %}
 	<div>
-        <button id="new-requirement-btn" class="btn btn-primary">
-           Registrar requisito
-        </button>
+        <a href="new_requirement"> <input type="button" name="new_requirement" class="btn btn-default" value="Registrar requisito" /> </a>
 	</div>
 {%endblock%}
 {% block content %}
@@ -19,6 +17,5 @@
 	
 {% include "_search_results.html" %}
 </div>
-{% include "requirement_wizard.html" %}
 
 {% endblock %}

@@ -1,35 +1,47 @@
-$( document ).ready(function() {
-		$.fn.wizard.logging = true;
-			var wizard = $('#satellite-wizard').wizard({
-				keyboard : false,
-							contentHeight : 400,
-							contentWidth : 1000,
-							backdrop: 'static'
-			});
-						
-		$('#new-requirement-btn').click(function(e) {
-								e.preventDefault();
-								wizard.show();
-							});
+$(document).ready(function() {
+	$('.datepicker').datepicker({
+	    language: 'ES'
+	});
+	
+	$(document).ready(function() {
+		$('#rootwizard').bootstrapWizard({
+			onNext : function(tab, navigation, index) {
+				if (index == 1) {
+					// Make sure we entered the name
+					if (!$('#requirement_title').val()) {
+						alert('Debes ingresar un título');
+						$('#name').focus();
+						return false;
+					}
+				}
 
-		$('#close-precondition-modal-btn').click(function(e) {
-								$('#myModal').modal('hide')
-							});
+				// Set the name for the next tab
+				$('#tab3').html('Hello, ' + $('#name').val());
 
-		
+			},
+			onTabShow : function(tab, navigation, index) {
+				var $total = navigation.find('li').length;
+				var $current = index + 1;
+				var $percent = ($current / $total) * 100;
+				$('#rootwizard').find('.bar').css({
+					width : $percent + '%'
+				});
+			}
+		});
+	});
 
 });
 
 function validateName(el) {
-				var name = el.val();
-				var retValue = {};
+	var name = el.val();
+	var retValue = {};
 
-				if (name == "") {
-					retValue.status = false;
-					retValue.msg = "Por favor ingrese un nombre";
-				} else {
-					retValue.status = true;
-				}
+	if (name == "") {
+		retValue.status = false;
+		retValue.msg = "Por favor ingrese un nombre";
+	} else {
+		retValue.status = true;
+	}
 
-				return retValue;
+	return retValue;
 };

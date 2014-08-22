@@ -3,7 +3,7 @@ import logging
 from django.contrib.formtools.wizard.views import SessionWizardView
 from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.views.generic.list import ListView
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
@@ -43,5 +43,6 @@ def searchRequirements(request):
     requirements = SearchQuerySet().filter(text=content_auto_v)
     return render_to_response('ajax_search.html', {'requirements': requirements})
 
-def create_requirement(request):
-    return HttpResponse('requirement_form_base.html')
+
+def new_requirement(request):
+    return render(request, 'requirement_form_base.html')

@@ -71,6 +71,9 @@ $( document ).ready(function() {
 	});
 	
 	
+	$('#close-precondition-modal-btn').click(function(e) {
+		$('#myModal').modal('hide')
+	});
 });
 
 

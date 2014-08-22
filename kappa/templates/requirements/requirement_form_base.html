@@ -1,0 +1,8 @@
+{% extends "shared/base_generic.html" %}
+
+{% block content %}
+<form method="get" action="." class="form-horizontal" role="form" id="myReqForm">
+		{% csrf_token %}
+</form>
+{% include "requirement_wizard.html" %}
+{% endblock %}
