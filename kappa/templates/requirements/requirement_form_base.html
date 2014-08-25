@@ -1,5 +1,8 @@
 {% extends "shared/base_generic.html" %}
-
+{% load static %}
+{% block javascript %}
+<script src="{% static 'requirements/js/requirements.js' %}"></script>
+{% endblock %}
 {% block content %}
 <form method="get" action="." class="form-horizontal" role="form" id="myReqForm">
 		{% csrf_token %}

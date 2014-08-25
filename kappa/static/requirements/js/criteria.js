@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	var $lastChar =1, $newRow;
 
-	$get_lastID_inputTable = function(){
+	$get_lastID_criteriaTable = function(){
 		var $id = $('#tableCriteria tr:last-child td:first-child input').attr("name");
 	    $lastChar = parseInt($id.substr($id.length - 2), 10);
 	    $lastChar = $lastChar + 1;
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	        </tr>"
 			$('#tableCriteria > tbody:last').append($firstRow)			
 	    } else {
-	    	$get_lastID_inputTable();
+	    	$get_lastID_criteriaTable();
 			$('#tableCriteria > tbody:last').append($newRow);
 	    };
 		  
