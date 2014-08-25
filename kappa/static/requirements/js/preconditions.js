@@ -54,9 +54,9 @@ $( document ).ready(function() {
 		        </tr>"
 		            
 		            $('#precondition_table tbody').append($firstRow)
-					$firstRowHiddenId = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
+					$firstRowHiddenId = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$(this).find('input:hidden[name=requirement_id]').val()+"'></input>"
 					$firstRowHiddenDesc = "<input type='hidden' id='precondition_description_1_hidden' name='precondition_description_1_hidden' value='"+$(this).find('input:hidden[name=requirement_code]').val()+"-"+$(this).find('input:hidden[name=requirement_title]').val()+"'></input>"
-					$firstRowHiddenType = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
+					$firstRowHiddenType = "<input type='hidden' id='precondition_type_1_hidden' name='precondition_type_1_hidden' value='"+$requirementType+"'></input>"
 					$('#form_requirements').append($firstRowHiddenDesc)
 					$('#form_requirements').append($firstRowHiddenId)
 					$('#form_requirements').append($firstRowHiddenDesc)
@@ -104,7 +104,6 @@ $( document ).ready(function() {
 		if($('#precondition_table tbody tr').length > 0){
 			$('#precondition_table > tbody  > tr').each(function(index) {
 				var $currentPosition = index+1;
-				$( "input[id][name$='man']" ).val( "only this one" );
 				$("input[type='checkbox'][name^='precondition_checkbox_']").attr( "name", "precondition_checkbox_"+$currentPosition);
 				$( "span[name^='precondition_id_']", this).attr( "name", "precondition_id_"+$currentPosition);
 				$( "span[name^='precondition_description_']", this).attr( "name", "precondition_description_"+$currentPosition);

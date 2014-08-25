@@ -1,11 +1,13 @@
-{% if requirements.count > 0 %}
+{% if businessrules.count > 0 %}
 
 {% for businessrule in businessrules %}
 <tr>
 <td><input type='checkbox' name='businessrule_checkbox' value=''></td>   
-<td>{{ requirement.object.name }}</td>   
-<td>{{ requirement.object.description }}</td> 
+<td>{{ businessrule.object.name }}</td>   
+<td>{{ businessrule.object.description }}</td> 
 <input type='hidden' name="businessrule_id" value='{{ businessrule.object.business_rule_id }}'></input>
+<input type='hidden' name="businessrule_name" value='{{ businessrule.object.name }}'></input>
+<input type='hidden' name="businessrule_description" value='{{ businessrule.object.description }}'></input>
 </tr>
 {% endfor %}
 
