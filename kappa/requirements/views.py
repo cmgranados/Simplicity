@@ -57,3 +57,6 @@ def searchBusinessRules(request):
 
 def new_requirement(request):
     return render(request, 'requirement_form_base.html')
+
+def save_requirement_definition(request):
+    return render_to_response('done.html')

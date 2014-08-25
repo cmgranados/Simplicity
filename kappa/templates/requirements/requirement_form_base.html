@@ -4,8 +4,8 @@
 <script src="{% static 'requirements/js/requirements.js' %}"></script>
 {% endblock %}
 {% block content %}
-<form method="get" action="." class="form-horizontal" role="form" id="myReqForm">
+<form method="post" class="form-horizontal" role="form" id="myReqForm" action="/save_requirement_definition/">
 		{% csrf_token %}
-</form>
 {% include "requirement_wizard.html" %}
+</form>
 {% endblock %}
