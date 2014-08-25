@@ -36,4 +36,5 @@ urlpatterns = patterns('',
                        url(r'^search/$', 'kappa.requirements.views.searchRequirements'),
                        url(r'^kappa/businessrules/$', 'kappa.requirements.views.searchBusinessRules'),
                        url(r'^kappa/requirements/new_requirement', 'kappa.requirements.views.new_requirement', name='new_requirement'),
+                       url(r'^kappa/$', 'kappa.views.kappa_home'),
 )

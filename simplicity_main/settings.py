@@ -19,6 +19,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates"), 
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
+    os.path.join(BASE_DIR, "kappa/templates/home"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
 )
 
