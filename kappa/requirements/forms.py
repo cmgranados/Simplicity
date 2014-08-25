@@ -1,23 +1,26 @@
 # -*- coding: utf-8 -*-
 import datetime
+import logging
 
+from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from crispy_forms.helper import FormHelper
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Submit
 from crispy_forms.layout import Layout, Field, Submit, Fieldset, ButtonHolder
 from django import forms
 from django.conf import settings
-from django.forms.extras.widgets import SelectDateWidget
-from haystack.forms import SearchForm
+from django.contrib.admin import helpers
 from django.core.urlresolvers import reverse
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from django.forms.extras.widgets import SelectDateWidget
+from haystack.backends import SQ
+from haystack.forms import SearchForm
+from haystack.query import SearchQuerySet
+
+from kappa.businessrules.models import BusinessRule
+from kappa.requirements.models import Requirement
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
-from django.contrib.admin import helpers
-import logging
-from kappa.requirements.models import Requirement
-from haystack.query import SearchQuerySet
-from haystack.backends import SQ
+
 
 # Get an instance of a logger
 logger = logging.getLogger('simplicity_main.kappa.requirements.forms')
@@ -48,7 +51,7 @@ class RequirementSearchForm(SearchForm):
 
 	def search(self):
 		sqs = super(RequirementSearchForm, self).search()
-		sqs = sqs.models(Requirement)
+		sqs = sqs.models(BusinessRule)
 		
 		sort_value = "pub_created"
 		

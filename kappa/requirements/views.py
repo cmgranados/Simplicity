@@ -10,6 +10,7 @@ from haystack.views import SearchView
 
 from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
 from kappa.requirements.models import Requirement
+from kappa.businessrules.models import BusinessRule
 
 
 # Create your views here.
@@ -42,6 +43,16 @@ def searchRequirements(request):
         
     requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
     return render_to_response('ajax_search.html', {'requirements': requirements})
+
+
+def searchBusinessRules(request):
+    if not request.POST.get('br', '') :
+        content_auto_v = ""
+    else:
+        content_auto_v=request.POST.get('br', '')
+         
+    businessrules = SearchQuerySet().models(BusinessRule).filter(text=content_auto_v)
+    return render_to_response('ajax_businessrule_search.html', {'businessrules': businessrules})
 
 
 def new_requirement(request):
