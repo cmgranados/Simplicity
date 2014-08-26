@@ -140,7 +140,7 @@ HAYSTACK_CONNECTIONS = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -249,3 +249,13 @@ LOGGING = {
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+# States for requirements
+STATE_REGISTERED = 1
+
+# States for active/inactive
+INACTIVE = 0
+ACTIVE = 1
+
+# Precondition types: requirement or description
+PRECONDITION_TYPE_REQ_ES = "Requisito"

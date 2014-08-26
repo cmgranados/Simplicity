@@ -4,9 +4,9 @@
 <tr>
 <td><input type='checkbox' name='precondition_checkbox' value=''></td>   
 <td>{{ requirement.object.title }}</td>   
-<input type='hidden' name="requirement_id" value='{{ requirement.object.requirement_id }}'></input>
-<input type='hidden' name="requirement_code" value='{{ requirement.object.code }}'></input>
-<input type='hidden' name="requirement_title" value='{{ requirement.object.title }}'></input>    
+<input type='hidden' id="requirement_id" value='{{ requirement.object.requirement_id }}'></input>
+<input type='hidden' id="requirement_code" value='{{ requirement.object.code }}'></input>
+<input type='hidden' id="requirement_title" value='{{ requirement.object.title }}'></input>    
 </tr>
 {% endfor %}
 

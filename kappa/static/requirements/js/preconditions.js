@@ -23,17 +23,14 @@ $( document ).ready(function() {
 			var $description = $('#description_textarea').val();
 			$firstRow = "<tr> \
 	            <td><input type='checkbox' name='precondition_checkbox_1' value=''></td> \
-	            <td><span name='precondition_id_1' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+	            <td><span name='precondition_position_1' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
 	            <td><span name='precondition_description_1' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
 	            <td><span name='precondition_type_1' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
-	        </tr>"
+	            <input type='hidden' name='position_1' value='"+$lastChar+"'></input> \
+	            <input type='hidden' name='description_1' value='"+$description+"'></input> \
+	            <input type='hidden' name='type_1' value='"+$descriptionType+"'></input> \
+	            </tr>"
 			$('#precondition_table tbody').append($firstRow)
-			$firstRowHiddenId = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
-			$firstRowHiddenDesc = "<input type='hidden' id='precondition_description_1_hidden' name='precondition_description_1_hidden' value='"+$description+"'></input>"
-			$firstRowHiddenType = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$lastChar+"'></input>"
-			$('#form_requirements').append($firstRowHiddenDesc)
-			$('#form_requirements').append($firstRowHiddenId)
-			$('#form_requirements').append($firstRowHiddenDesc)
 	    } else {
 	    	$get_lastID();
 			$('#precondition_table > tbody:last').append($newRow);
@@ -48,20 +45,15 @@ $( document ).ready(function() {
 				var $lastChar =1;
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='precondition_checkbox_1' value=''></td> \
-		            <td><span name='precondition_id_1' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
-		            <td><span name='precondition_description_1' maxlength='11' readonly='readonly'>"+$(this).find('input:hidden[name=requirement_code]').val()+"-"+$(this).find('input:hidden[name=requirement_title]').val()+"</span></td> \
+		            <td><span name='precondition_position_1' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+		            <td><span name='precondition_description_1' maxlength='11' readonly='readonly'>"+$(this).find('input:hidden[id=requirement_code]').val()+"-"+$(this).find('input:hidden[id=requirement_title]').val()+"</span></td> \
 		            <td><span name='precondition_type_1' maxlength='11' readonly='readonly'>"+$requirementType+"</span></td> \
+		            <input type='hidden' name='position_1' value='"+$(this).find('input:hidden[id=requirement_id]').val()+"'></input> \
+		            <input type='hidden' name='description_1' value='"+$(this).find('input:hidden[id=requirement_code]').val()+"-"+$(this).find('input:hidden[id=requirement_title]').val()+"'></input> \
+		            <input type='hidden' name='type_1' value='"+$requirementType+"'></input> \
+		            <input type='hidden' name='requirement_id_1' value='"+$(this).find('input:hidden[id=requirement_id]').val()+"'></input> \
 		        </tr>"
-		            
-		            $('#precondition_table tbody').append($firstRow)
-					$firstRowHiddenId = "<input type='hidden' id='precondition_id_1_hidden' name='precondition_id_1_hidden' value='"+$(this).find('input:hidden[name=requirement_id]').val()+"'></input>"
-					$firstRowHiddenDesc = "<input type='hidden' id='precondition_description_1_hidden' name='precondition_description_1_hidden' value='"+$(this).find('input:hidden[name=requirement_code]').val()+"-"+$(this).find('input:hidden[name=requirement_title]').val()+"'></input>"
-					$firstRowHiddenType = "<input type='hidden' id='precondition_type_1_hidden' name='precondition_type_1_hidden' value='"+$requirementType+"'></input>"
-					$('#form_requirements').append($firstRowHiddenDesc)
-					$('#form_requirements').append($firstRowHiddenId)
-					$('#form_requirements').append($firstRowHiddenDesc)
-					
-					
+		        $('#precondition_table tbody').append($firstRow)
 			} else {
 				$get_lastID_req($(this));
 				$('#precondition_table > tbody:last').append($newRow);
@@ -75,12 +67,15 @@ $( document ).ready(function() {
 	    var id = $('#precondition_table tr:last-child td:first-child input').attr("name");
 	    $lastChar = parseInt(id.substr(id.lastIndexOf("_") + 1, id.length));
 	    var  $description = $('#description_textarea').val();
-	    $lastChar = $lastChar + 1;
+	    $lastChar++;
 	    $newRow = "<tr> \
             <td><input type='checkbox' name='precondition_checkbox_"+$lastChar+"' value=''></td> \
-            <td><span name='precondition_id_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+            <td><span name='precondition_position_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
             <td><span name='precondition_description_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$description+"</span></td> \
             <td><span name='precondition_type_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$requirementType+"</span></td> \
+            <input type='hidden' name='position_"+$lastChar+"' value='"+$lastChar+"'></input> \
+		    <input type='hidden' name='description_"+$lastChar+"' value='"+$description+"'></input> \
+		    <input type='hidden' name='type_"+$lastChar+"' value='"+$requirementType+"'></input> \
         </tr>"
      return $newRow;
 	}
@@ -88,13 +83,16 @@ $( document ).ready(function() {
 	$get_lastID_req = function(obj){
 	    var id = $('#precondition_table tr:last-child td:first-child input').attr("name");
 	    $lastChar = parseInt(id.substr(id.lastIndexOf("_") + 1, id.length));
-	    var  $description = $('#description_textarea').val();
-	    $lastChar = $lastChar + 1;
+	    $lastChar++;
 	    $newRow = "<tr> \
             <td><input type='checkbox' name='precondition_checkbox_"+$lastChar+"' value=''></td> \
-            <td><span name='precondition_id_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
-            <td><span name='precondition_description_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$(obj).find('input:hidden[name=requirement_code]').val()+"-"+$(obj).find('input:hidden[name=requirement_title]').val()+"</span></td> \
+            <td><span name='precondition_position_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$lastChar+"</span></td> \
+            <td><span name='precondition_description_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$(obj).find('input:hidden[id=requirement_code]').val()+"-"+$(obj).find('input:hidden[id=requirement_title]').val()+"</span></td> \
             <td><span name='precondition_type_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$requirementType+"</span></td> \
+            <input type='hidden' name='position_"+$lastChar+"' value='"+$lastChar+"'></input> \
+		    <input type='hidden' name='description_"+$lastChar+"' value='"+$(obj).find('input:hidden[id=requirement_code]').val()+"-"+$(obj).find('input:hidden[id=requirement_title]').val()+"'></input> \
+		    <input type='hidden' name='type_"+$lastChar+"' value='"+$requirementType+"'></input> \
+		    <input type='hidden' name='requirement_id_"+$lastChar+"' value='"+$(obj).find('input:hidden[id=requirement_id]').val()+"'></input> \
         </tr>"
      return $newRow;
 	}
@@ -104,11 +102,16 @@ $( document ).ready(function() {
 		if($('#precondition_table tbody tr').length > 0){
 			$('#precondition_table > tbody  > tr').each(function(index) {
 				var $currentPosition = index+1;
-				$("input[type='checkbox'][name^='precondition_checkbox_']").attr( "name", "precondition_checkbox_"+$currentPosition);
-				$( "span[name^='precondition_id_']", this).attr( "name", "precondition_id_"+$currentPosition);
+				$( "input[type='checkbox'][name^='precondition_checkbox_']").attr( "name", "precondition_checkbox_"+$currentPosition);
+				$( "span[name^='precondition_position_']", this).attr( "name", "precondition_position_"+$currentPosition);
 				$( "span[name^='precondition_description_']", this).attr( "name", "precondition_description_"+$currentPosition);
 				$( "span[name^='precondition_type_']", this).attr( "name", "precondition_type_"+$currentPosition);
-				$( "span[name^='precondition_id_']", this).text($currentPosition);
+				$( "input[type='hidden'][name^='position_']", this).attr( "name", "position_"+$currentPosition);
+				$( "input[type='hidden'][name^='description_']", this).attr( "name", "description_"+$currentPosition);
+				$( "input[type='hidden'][name^='type_']", this).attr( "name", "type_"+$currentPosition);
+				$( "input[type='hidden'][name^='requirement_id_']", this).attr( "name", "requirement_id_"+$currentPosition);
+				$( "span[name^='precondition_position_']", this).text($currentPosition);
+				
 			});
 		}
 	});
