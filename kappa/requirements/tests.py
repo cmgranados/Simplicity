@@ -23,3 +23,4 @@ class RequirementTestCase(TestCase):
         requirement_instance = self.create_requirement()
         self.assertTrue(isinstance(requirement_instance, Requirement))
         self.assertEqual(requirement_instance.__unicode__(), requirement_instance.title)
+        self.assertEqual(requirement_instance._meta.db_table,  'kp_req_requirement')
