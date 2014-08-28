@@ -1,11 +1,11 @@
 {% load static %}
 {% block javascript %}
-<script src="{% static 'requirements/js/addrows.js' %}" type="text/javascript"></script>
+<script src="{% static 'requirements/js/req_information_flow.js' %}" type="text/javascript"></script>
 {% endblock %}
 <div class="container">
 		<div class="row">
 	    	<div class="col-md-6">
-				<table id="tableInput" class="table table-bordered table-striped">
+				<table id="inputTable" class="table table-bordered table-striped">
 				    <thead>
 				        <tr>
 				        	<th></th>
@@ -18,14 +18,14 @@
 				</table>
 			</div>
 			<div class="col-md-6">
-				<button id="addRowInput" class="btn btn-default" type="button">Agregar</button>
-				<button id="deleteRowInput" class="btn btn-default" type="button">Eliminar</button>
+				<button id="add-row-input-btn" class="btn btn-default" type="button">Agregar</button>
+				<button id="delete-row-input-btn" class="btn btn-default" type="button">Eliminar</button>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-6">
-			    <table id="tableOutput" class="table table-bordered table-striped">
+			    <table id="outputTable" class="table table-bordered table-striped">
 				    <thead>
 				        <tr>
 				        	<th></th>
@@ -38,8 +38,8 @@
 				</table>
 			</div>
 			<div class="col-md-6">
-				<button id="addRowOutput" class="btn btn-default" type="button">Agregar</button>
-				<button id="deleteRowOutput" class="btn btn-default" type="button">Eliminar</button>
+				<button id="add-row-output-btn" class="btn btn-default" type="button">Agregar</button>
+				<button id="delete-row-output-btn" class="btn btn-default" type="button">Eliminar</button>
 			</div>
 		</div>
 	</div>

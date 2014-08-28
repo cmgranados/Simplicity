@@ -1,13 +1,13 @@
 {% load static %} {% block javascript %}
-<script src="{% static 'requirements/js/businessrules.js' %}"></script>
+<script src="{% static 'requirements/js/req_business_rule.js' %}"></script>
 {% endblock %}
 <div class="tab-pane">
 	<div class="container">
 		<div>
 			<div id="search-results" class="pr-search-results">
 				<label for="br">B&#250squeda:</label> <input type="text" id="br">
-				<input type="button" id="searchBusinessRules" value="Buscar" />
-				<table id="businessrule-result"
+				<input type="button" id="search-business-rules-btn" value="Buscar" />
+				<table id="businessruleResultTable"
 					class="table table-bordered table-striped ">
 					<thead>
 						<tr>
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-primary" id="addBusinessRuleRow">Asociar
+		<button type="button" class="btn btn-primary" id="add-business-rule-row-btn">Asociar
 			Reglas de Negocio</button>
 	</div>
 </div>
@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<table class="table table-bordered table-striped"
-				id="businessrules_table" cellspacing="0" cellpadding="0">
+				id="businessrulesTable" cellspacing="0" cellpadding="0">
 				<thead>
 					<tr>
 						<th></th>
@@ -47,7 +47,7 @@
 			</table>
 		</div>
 		<div class="col-md-6">
-			<button id="deleteBusinessRuleRow" class="btn btn-default" type="button">Eliminar</button>
+			<button id="delete-busines-rule-row-add" class="btn btn-default" type="button">Eliminar</button>
 		</div>
 	</div>
 </div>

@@ -44,7 +44,7 @@ def searchRequirements(request):
         content_auto_v = request.POST.get('q', '')
         
     requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
-    return render_to_response('ajax_search.html', {'requirements': requirements})
+    return render_to_response('ajax_requirements_search.html', {'requirements': requirements})
 
 
 def searchBusinessRules(request):
@@ -64,20 +64,20 @@ def save_requirement_definition(request):
     if request.method == "POST": 
         new_requirement = Requirement()
         
-        requirement_title = request.POST.get('requirement_title', None)
+        requirement_title = request.POST.get('requirementTitle', None)
         new_requirement.title = requirement_title
         
-        requirement_code = request.POST.get('requirement_code', None)
+        requirement_code = request.POST.get('requirementCode', None)
         new_requirement.code = requirement_code
         
         requirement_date_created = datetime.now()
         new_requirement.date_created = requirement_date_created
         
-        requirement_type = request.POST.get('requirement_type', None)
+        requirement_type = request.POST.get('requirementType', None)
         type_retrieved = Type.objects.get(type_id=requirement_type) 
         new_requirement.type = type_retrieved
         
-        requirement_description = request.POST.get('requirement_description', None)
+        requirement_description = request.POST.get('requirementDescription', None)
         new_requirement.description = requirement_description
         
         state = State.objects.get(state_id=STATE_REGISTERED) 
@@ -85,7 +85,7 @@ def save_requirement_definition(request):
         new_requirement.date_modified = requirement_date_created
         new_requirement.is_active = ACTIVE
         
-        requirement_keywords = request.POST.get('requirement_keywords', None)
+        requirement_keywords = request.POST.get('requirementKeywords', None)
         new_requirement.keywords = requirement_keywords
         
         new_requirement.save()

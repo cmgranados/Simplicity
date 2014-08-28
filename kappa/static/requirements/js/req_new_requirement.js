@@ -8,7 +8,7 @@ $(document).ready(function() {
 		onNext : function(tab, navigation, index) {
 			if (index == 1) {
 				// Make sure we entered the name
-				if (!$('#requirement_title').val()) {
+				if (!$('#requirementTitle').val()) {
 					alert('Debes ingresar un título');
 					$('#name').focus();
 					return false;
@@ -29,17 +29,3 @@ $(document).ready(function() {
 		}
 	});
 });
-
-function validateName(el) {
-	var name = el.val();
-	var retValue = {};
-
-	if (name == "") {
-		retValue.status = false;
-		retValue.msg = "Por favor ingrese un nombre";
-	} else {
-		retValue.status = true;
-	}
-
-	return retValue;
-};
