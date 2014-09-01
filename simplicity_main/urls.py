@@ -2,11 +2,9 @@ import debug_toolbar
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from haystack.query import SearchQuerySet
-from haystack.views import SearchView, search_view_factory
 from rest_framework.routers import DefaultRouter
-
 from kappa.businessrules.views import BusinessRuleView
-from kappa.requirements.forms import RequirementSearchForm, RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
+from kappa.requirements.forms import RequirementSearchForm
 from kappa.requirements.views import FacetedSearchView
 from simplicity_main.views import logout
 

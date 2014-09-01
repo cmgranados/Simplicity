@@ -259,3 +259,8 @@ ACTIVE = 1
 
 # Precondition types: requirement or description
 PRECONDITION_TYPE_REQ_ES = "Requisito"
+
+AUTHENTICATION_BACKENDS = (
+    'shared.userprofiles.backends.EmailBackend',
+)
+
