@@ -267,3 +267,5 @@ PRECONDITION_TYPE_REQ_ES = "Requisito"
 AUTHENTICATION_BACKENDS = (
     'shared.userprofiles.backends.EmailBackend',
 )
+
+LOGIN_URL = '/signin'

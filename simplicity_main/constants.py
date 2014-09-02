@@ -1,5 +1,6 @@
 
 class MyConstants:
+    GROUP_REQUIREMENT_ANALYST_NAME = 'Requirement Analyst'
     
     REQUIREMENT_DELETED_STATE_ID = '2'
     

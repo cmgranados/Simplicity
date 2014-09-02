@@ -117,9 +117,10 @@ def delete_requirement(request):
     if request.POST.get('id', '') :
         id_requirement = request.POST.get('id', '')
         requirement =  Requirement.objects.get(requirement_id = id_requirement)
-        requirement.is_active = '0'
         deleted_state = State.objects.get(state_id = MyConstants.REQUIREMENT_DELETED_STATE_ID)
+        requirement.is_active = '0'
         requirement.state = deleted_state
+        requirement.date_modified = datetime.now()
         success =  requirement.save()
     else:
         success = False
