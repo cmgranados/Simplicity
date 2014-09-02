@@ -36,4 +36,5 @@ urlpatterns = patterns('',
                        url(r'^kappa/requirements/new_requirement', 'kappa.requirements.views.new_requirement', name='new_requirement'),
                        url(r'^kappa/$', 'kappa.views.kappa_home'),
                        url(r'^save_requirement_definition/$', 'kappa.requirements.views.save_requirement_definition'),
+                       url(r'^kappa/requirements/delete_requirement_ajax', 'kappa.requirements.views.delete_requirement'),
 )

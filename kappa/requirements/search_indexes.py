@@ -6,9 +6,10 @@ from kappa.requirements.models import Requirement
 class RequirementIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True,)
     description = indexes.CharField(model_attr='description', faceted=True, default=True)
-    type_id = indexes.CharField(model_attr='type_id', faceted=True, default=True)
-    requirement_id = indexes.CharField(model_attr='requirement_id', faceted=True, default=True)
+    type_id = indexes.CharField(model_attr='type_id', faceted=False, default=True)
+    requirement_id = indexes.CharField(model_attr='requirement_id', faceted=False, default=True)
     pub_created = indexes.DateTimeField(model_attr='date_created', faceted=True)
+    state_id = indexes.CharField(model_attr='state_id', faceted=False)
 
     def get_model(self):
         return Requirement

@@ -6,7 +6,22 @@ $(document).ready(function(){
 				if(result){
 					$('#requirementsTable input:checkbox:checked').each(function () {
 						
-				           
+						var id = $( this ).parents("tr").find("#requirement_id").val();
+						
+						$.ajax({
+							type: "POST",
+							url: '/kappa/requirements/delete_requirement_ajax',
+							data: { 
+					            'id': id,
+					            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+					        },
+							success: function(data) {
+					            // update results
+					        },
+					        error: function(xhr, textStatus, errorThrown) {
+					            alert("Error al eliminar requisitos.");
+					        }
+							});
 					});
 				}
 			});

@@ -51,7 +51,7 @@ class RequirementSearchForm(SearchForm):
 
 	def search(self):
 		sqs = super(RequirementSearchForm, self).search()
-		sqs = sqs.models(BusinessRule)
+		sqs = sqs.models(Requirement)
 		
 		sort_value = "pub_created"
 		

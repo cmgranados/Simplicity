@@ -1,4 +1,4 @@
-{{ object.requirement_id|safe }}
+{{ object.requirement_id|safe }} 
 {{ object.title|safe }}
 {{ object.description|safe }}
 {{ object.type|safe }}

@@ -106,10 +106,22 @@ def save_requirement_definition(request):
                 if value is PRECONDITION_TYPE_REQ_ES:
                     var = value
                 
-                
-                
-                
             
             # loop through keys and values
                 
         return HttpResponseRedirect("/kappa/requirements")
+    
+    
+def delete_requirement(request):
+    success = True
+    if request.POST.get('id', '') :
+        id_requirement = request.POST.get('id', '')
+        requirement =  Requirement.objects.get(requirement_id = id_requirement)
+        requirement.is_active = '0'
+        deleted_state = State.objects.get(state_id = MyConstants.REQUIREMENT_DELETED_STATE_ID)
+        requirement.state = deleted_state
+        success =  requirement.save()
+    else:
+        success = False
+         
+    return render(request, 'requirements/search.html', {'success': success})
