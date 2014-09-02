@@ -20,8 +20,14 @@
   <div class="form-group">
     <div class="col-sm-6">
       <label for="requirementType">Tipo de Requisito</label>
-      <input type="text" class="form-control" id="requirementType" name="requirementType"
-      placeholder="Introduce el tipo de requisito">
+      <select class="form-control" id="requirementType" name="requirementType">
+        <option>Seleccione tipo de requisito</option>
+        {% for type in requirement_type_list %}
+          <option value='{{ type.type_id }}'>
+              {{ type.name }}
+          </option>
+		{% endfor %}
+      </select>
     </div>
   </div>
 </div>

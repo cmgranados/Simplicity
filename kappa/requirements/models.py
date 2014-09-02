@@ -41,7 +41,8 @@ class RequirementInput(models.Model):
     requirement_input_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     input = models.CharField(max_length=50, blank=True)
-    value = models.CharField(max_length=50, blank=True)
+    description = models.CharField(max_length=50, blank=True)
+    data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
         return self.requirement_input_id
@@ -54,7 +55,8 @@ class RequirementOutput(models.Model):
     requirement_output_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     output = models.CharField(max_length=50, blank=True)
-    value = models.CharField(max_length=50, blank=True)
+    description = models.CharField(max_length=50, blank=True)
+    data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
         return self.requirement_output_id

@@ -1,6 +1,9 @@
 {% for result in page.object_list %}
     <tr>
     	<td>
+    		<input type='checkbox'>
+    	</td>
+    	<td>
         	<a href="{{ result.object.get_absolute_url }}">{{ result.object.code }} - {{ result.object.title }}</a>
         	<br/>
         	<p>{{result.object.description}}</p>
@@ -8,6 +11,7 @@
         <td>
         	<p>{{result.object.state}}</p>
         </td>
+        <input type='hidden' id='requirement_id' value='{{result.object.requirement_id}}'/>
     </tr>
 {% empty %}
 	<tr>

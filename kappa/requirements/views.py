@@ -10,7 +10,8 @@ from haystack.views import SearchView
 from kappa.businessrules.models import BusinessRule
 from kappa.requirements.models import Requirement
 from shared.states_simplicity.models import State
-from shared.types_simplicity.models import Type
+from shared.types_simplicity.models import Type, TypeClassification
+from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE, \
     PRECONDITION_TYPE_REQ_ES
 
@@ -58,7 +59,14 @@ def searchBusinessRules(request):
 
 
 def new_requirement(request):
-    return render(request, 'requirement_form_base.html')
+    constants = MyConstants()
+    requirement_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.REQUIREMENT_TYPE_CLASSIFICATION_KEY)
+    type_classification_req = TypeClassification.objects.filter(code = requirement_type_code)[:1].get()
+    
+    requirement_type_list = Type.objects.filter(type_classification_id = 
+                                                                type_classification_req.type_classification_id)
+     
+    return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list})
 
 def save_requirement_definition(request):
     if request.method == "POST": 

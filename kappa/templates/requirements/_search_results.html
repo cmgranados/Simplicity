@@ -1,7 +1,8 @@
 {% load crispy_forms_tags %}
 {% if query %}
 		<p>Encontro {{ page.start_index }} - {{ page.end_index }} de {{ page.paginator.count }}</p>
-		<table class="table table-bordered table-hover">
+		<table class="table table-bordered table-hover" id="requirementsTable" name="requirementsTable">
+			<th></th>
 			<th>Requisitos</th>
 			<th>Estado</th>
 			{% include 'requirements/_requirement_result.html'%}	

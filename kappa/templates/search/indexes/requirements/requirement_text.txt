@@ -1,6 +1,8 @@
+{{ object.requirement_id|safe }}
 {{ object.title|safe }}
 {{ object.description|safe }}
 {{ object.type|safe }}
+{{ object.type_classification|safe }}
 {{ object.state|safe }}
 {{ object.code|safe }}
 {{ object.business_type|safe }}
