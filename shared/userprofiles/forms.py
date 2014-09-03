@@ -10,6 +10,13 @@ class UserCreationEmailForm(UserCreationForm):
 	email = forms.EmailField()
 	first_name = forms.CharField(max_length=30)
 	last_name = forms.CharField(max_length=30)
+	
+	def clean_email(self):
+		data = self.cleaned_data['email']
+		
+		if User.objects.filter(email=data).exists():
+			raise forms.ValidationError("This email already used")
+		return data
 
 	class Meta:
 		model = User
