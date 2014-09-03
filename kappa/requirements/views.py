@@ -17,6 +17,7 @@ from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE, \
     PRECONDITION_TYPE_REQ_ES
 from jira.client import JIRA
+import logging
 
 # Get an instance of a logger
 logger = logging.getLogger('simplicity_main.kappa.requirements.views')
@@ -74,7 +75,6 @@ def new_requirement(request):
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list})
 
 def save_requirement_definition(request):
-    def save_requirement_definition(request):
     if request.method == "POST": 
         new_requirement = Requirement()
         
