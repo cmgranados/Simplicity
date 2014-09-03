@@ -38,4 +38,5 @@ urlpatterns = patterns('',
                        url(r'^kappa/requirements/new_requirement', 'kappa.requirements.views.new_requirement', name='new_requirement'),
                        url(r'^kappa/$', 'kappa.views.kappa_home'),
                        url(r'^save_requirement_definition/$', 'kappa.requirements.views.save_requirement_definition'),
+                       url(r'^jira/projects$', 'kappa.requirements.views.search_jira_projects'),
 )

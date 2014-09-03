@@ -1,0 +1,21 @@
+{% extends "shared/base_generic.html" %}
+{% block content %}
+<div class="title-module">
+	Projectos en Jira 
+</div>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Descripci&oacute;n</th>
+		<th>Titulo</th>
+	</tr>
+	
+	{% for project in projects %}
+		<tr>
+			<td>{{ project.id }}</td>
+	    	<td>{{ project.name }}</td> 
+	    </tr>
+	{% empty %}
+	    <h3>No hay proyectos.</h3>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -11,7 +11,10 @@ from haystack.views import SearchView
 from kappa.requirements.forms import RequirementForm1, RequirementForm2, RequirementForm3, RequirementForm4, RequirementForm5
 from kappa.requirements.models import Requirement
 from kappa.businessrules.models import BusinessRule
+from jira.client import JIRA
 
+# Get an instance of a logger
+logger = logging.getLogger('simplicity_main.kappa.requirements.views')
 
 # Create your views here.
 class RequirementListView(ListView):
@@ -60,3 +63,29 @@ def new_requirement(request):
 
 def save_requirement_definition(request):
     return render_to_response('done.html')
+
+def search_jira_projects(request):
+    key_cert_data = None
+    with open('C:\dev\jira.pem', 'r') as key_cert_file:
+        key_cert_data = key_cert_file.read()
+    logger.debug('key_cert_data' + key_cert_data)
+    oauth_dict = {
+        'access_token': 'srkLiVajV2EtYhHhgi2x8DJjpoqSyXaN',
+        'access_token_secret': 'qkjFBvRxAwAZb4ygpTObr1IhJfPmy0h1',
+        'consumer_key': 'simplicity',
+        'key_cert': key_cert_data
+    }
+    options = {
+        'server': 'https://itcsas.atlassian.net',
+    }
+    
+    jira = JIRA(options=options, oauth=oauth_dict)
+    
+    # Get all projects viewable by anonymous users.
+    projects_main = jira.projects()
+    projects = []
+    
+    for project in projects_main:
+        projects.append(jira.project(project.id))
+    logger.debug("Cantidad: " + str(projects))
+    return render_to_response('jira_projects_list.html', {'projects': projects})
