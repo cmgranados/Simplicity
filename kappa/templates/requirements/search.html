@@ -1,11 +1,17 @@
 {% extends "shared/base_generic.html" %}
+{% load static %}
+{% block javascript %}
+<script src="{% static 'requirements/js/req_requirement_inbox.js' %}" type="text/javascript"></script>
+{% endblock %}
+
 {% load crispy_forms_tags %}
 
 {% block title_section %}
 	<h3>Requisitos</h3>
 {%endblock%}
 {% block section_statistics %}
-	<a href="new_requirement"> <input type="button" name="new_requirement" class="btn btn-default" value="Registrar requisito" /> </a>
+	<a href="new_requirement"> <input type="button" name="new-requirement-btn" class="btn btn-default" value="Registrar requisito" /> </a>
+    <input type="button" name="delete-requirement-btn" id="delete-requirement-btn" class="btn btn-default" value="Eliminar" />
 {%endblock%}
 {% block content %}
 

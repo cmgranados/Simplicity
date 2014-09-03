@@ -5,9 +5,9 @@
 <td><input type='checkbox' name='businessrule_checkbox' value=''></td>   
 <td>{{ businessrule.object.name }}</td>   
 <td>{{ businessrule.object.description }}</td> 
-<input type='hidden' name="businessrule_id" value='{{ businessrule.object.business_rule_id }}'></input>
-<input type='hidden' name="businessrule_name" value='{{ businessrule.object.name }}'></input>
-<input type='hidden' name="businessrule_description" value='{{ businessrule.object.description }}'></input>
+<input type='hidden' name="businessRuleIdRetrieved" value='{{ businessrule.object.business_rule_id }}'></input>
+<input type='hidden' name="businessRuleNameRetrieved" value='{{ businessrule.object.name }}'></input>
+<input type='hidden' name="businessRuleDescriptionRetrieved" value='{{ businessrule.object.description }}'></input>
 </tr>
 {% endfor %}
 

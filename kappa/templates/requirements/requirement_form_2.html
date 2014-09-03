@@ -1,9 +1,9 @@
 {% load static %}
 {% block javascript %}
-<script src="{% static 'requirements/js/preconditions.js' %}"></script>
+<script src="{% static 'requirements/js/req_precondition.js' %}"></script>
 {% endblock %}
 <table class="table table-bordered table-striped"
-	id="precondition_table" cellspacing="0" cellpadding="0">
+	id="preconditionTable" cellspacing="0" cellpadding="0">
 	<thead>
 		<tr>
 			<th></th>
@@ -41,7 +41,7 @@
 						<textarea class="form-control" rows="3" id="description_textarea"></textarea>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
-								id="add_DescriptionRow">Registar Descripci&#243n</button>
+								id="add-description-row-btn">Registar Descripci&#243n</button>
 						</div>
 					</div>
 					<div class="tab-pane" id="profile">
@@ -52,8 +52,8 @@
 									<label for="q">B&#250squeda requisito:</label>
 									<input type="text" id="q"> 
 									<input type="button"
-										id="searchPreconditions" value="Buscar" />
-									<table id="precondition-result"
+										id="search-preconditions-btn" value="Buscar" />
+									<table id="preconditionResultTable"
 										class="table table-bordered table-striped ">
 										<thead>
 											<tr>
@@ -69,7 +69,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
-								id="add_RequirementRow">Registar Requisito</button>
+								id="add-requirement-row-btn">Registar Requisito</button>
 						</div>
 					</div>
 				</div>
@@ -80,4 +80,4 @@
 <button class="btn btn-default" type="button" data-toggle="modal"
 	data-target="#myModal">Agregar</button>
 <button class="btn btn-default" type="button"
-	id="delete_PreconditionRow">Eliminar</button>
+	id="delete-precondition-row-btn">Eliminar</button>

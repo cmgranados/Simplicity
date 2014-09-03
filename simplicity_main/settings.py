@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+from django.conf.global_settings import gettext_noop
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = True
@@ -138,9 +142,9 @@ HAYSTACK_CONNECTIONS = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -249,3 +253,30 @@ LOGGING = {
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+# States for requirements
+STATE_REGISTERED = 1
+
+# States for active/inactive
+INACTIVE = 0
+ACTIVE = 1
+
+# Precondition types: requirement or description
+PRECONDITION_TYPE_REQ_ES = "Requisito"
+
+AUTHENTICATION_BACKENDS = (
+    'shared.userprofiles.backends.EmailBackend',
+)
+
+LOGIN_URL = '/signin'
+
+
+# Set up for sending emails
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'simplicity@itc.com.co'
+EMAIL_HOST_PASSWORD = ''
+ 
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER

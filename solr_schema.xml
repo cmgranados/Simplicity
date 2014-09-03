@@ -162,6 +162,8 @@
     <field name="type_id_exact" type="string" indexed="true" stored="true" multiValued="false" />
 
     <field name="requirement_id_exact" type="string" indexed="true" stored="true" multiValued="false" />
+	
+	<field name="state_id" type="text_en" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 

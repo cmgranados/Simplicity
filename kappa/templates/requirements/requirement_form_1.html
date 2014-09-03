@@ -1,8 +1,18 @@
 <div class="wizard-input-section">
   <div class="form-group">
     <div class="col-sm-6">
-      <label for="requirement_title">Nombre</label>
-      <input type="text" class="form-control" id="requirement_title" name="requirement_title" placeholder="Introduce el título del requisito" data-validate="validateName">
+      <label for="requirementTitle">Nombre</label>
+      <input type="text" class="form-control" id="requirementTitle" name="requirementTitle" placeholder="Introduce el título del requisito">
+    </div>
+  </div>
+</div>
+
+      <label>C&#243digo</label>
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6 input-group">
+      <div class="input-group-addon">REQ - </div>
+      <input type="text" class="form-control" id="requirementCode" name="requirementCode" placeholder="Introduce el código del requisito">
     </div>
   </div>
 </div>
@@ -10,8 +20,15 @@
 <div class="wizard-input-section">
   <div class="form-group">
     <div class="col-sm-6">
-      <label for="requirement_code">Código</label>
-      <input type="text" class="form-control" id="requirement_code" name="requirement_code" placeholder="Introduce el código del requisito" data-validate="">
+      <label for="requirementType">Tipo de Requisito</label>
+      <select class="form-control" id="requirementType" name="requirementType">
+        <option>Seleccione tipo de requisito</option>
+        {% for type in requirement_type_list %}
+          <option value='{{ type.type_id }}'>
+              {{ type.name }}
+          </option>
+		{% endfor %}
+      </select>
     </div>
   </div>
 </div>
@@ -19,9 +36,9 @@
 <div class="wizard-input-section">
   <div class="form-group">
     <div class="col-sm-6">
-      <label for="requirement_date_created">Fecha de creación</label>
-      <input data-provide="datepicker" class="form-control" id="requirement_date_created" name="requirement_date_created"
-      placeholder="Introduce la fecha de creación">
+      <label for="requirementDescription">Definici&#243n de Requisito</label>
+      <textarea class="form-control" rows="3" id="requirementDescription" name="requirementDescription"
+      placeholder="Introduce una descripción para tu requisito"></textarea>
     </div>
   </div>
 </div>
@@ -29,20 +46,9 @@
 <div class="wizard-input-section">
   <div class="form-group">
     <div class="col-sm-6">
-      <label for="requirement_type">Tipo de Requisito</label>
-      <input type="text" class="form-control" id="requirement_type" name="requirement_type"
-      placeholder="Introduce el tipo de requisito" validate="">
+      <label for="requirementKeywords">Palabras Clave</label>
+      <textarea class="form-control" rows="3" id="requirementKeywords" name="requirementKeywords"
+      placeholder="Introduce palabras clave separadas por coma (,)"></textarea>
     </div>
   </div>
 </div>
-
-<div class="wizard-input-section">
-  <div class="form-group">
-    <div class="col-sm-6">
-      <label for="requirement_description">Definición de Requisito</label>
-      <textarea class="form-control" rows="3" id="requirement_description" name="requirement_description"
-      placeholder="Introduce una descripción para tu requisito" validate=""></textarea>
-    </div>
-  </div>
-</div>
-<input type="submit" value="Send requirement definition!">

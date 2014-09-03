@@ -1,6 +1,5 @@
 from django.db import models
 from shared.types_simplicity.models import Type
-from shared.states_simplicity.models import State
 from django.contrib.auth.models import User 
 from kappa.requirements.models import Requirement
 

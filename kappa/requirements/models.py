@@ -2,6 +2,7 @@ from django.db import models
 from shared.types_simplicity.models import Type
 from shared.states_simplicity.models import State
 from kappa.businessrules.models import BusinessRule
+from django.contrib.auth.models import User
 
 
 class Requirement(models.Model):
@@ -39,7 +40,9 @@ class RequirementBusinessRule(models.Model):
 class RequirementInput(models.Model):
     requirement_input_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
-    value = models.CharField(max_length=50, blank=True)
+    input = models.CharField(max_length=50, blank=True)
+    description = models.CharField(max_length=50, blank=True)
+    data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
         return self.requirement_input_id
@@ -51,7 +54,9 @@ class RequirementInput(models.Model):
 class RequirementOutput(models.Model):
     requirement_output_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
-    value = models.CharField(max_length=50, blank=True)
+    output = models.CharField(max_length=50, blank=True)
+    description = models.CharField(max_length=50, blank=True)
+    data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
         return self.requirement_output_id
@@ -74,3 +79,15 @@ class AcceptanceCriteria(models.Model):
 
     class Meta:
         db_table = "kp_req_acceptance_criteria"
+    
+    
+class RequirementAuthor(models.Model):
+    requirement_author_id = models.AutoField(primary_key=True)
+    requirement = models.ForeignKey(Requirement)
+    author = models.ForeignKey(User)
+    
+    def __unicode__(self):
+        return self.requirement_author_id
+
+    class Meta:
+        db_table = "kp_req_requirement_author"
