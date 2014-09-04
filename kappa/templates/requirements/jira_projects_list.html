@@ -1,17 +1,18 @@
 {% extends "shared/base_generic.html" %}
+{% block section_statistics %}
+	<a href="sync"> <input type="button" name="sync-projects" class="btn btn-default" value="Sincronizar" /> </a>
+{% endblock %}
 {% block content %}
 <div class="title-module">
 	Projectos en Jira 
 </div>
 <table class="table table-bordered table-hover">
 	<tr>
-		<th>Descripci&oacute;n</th>
 		<th>Titulo</th>
 	</tr>
 	
 	{% for project in projects %}
 		<tr>
-			<td>{{ project.id }}</td>
 	    	<td>{{ project.name }}</td> 
 	    </tr>
 	{% empty %}

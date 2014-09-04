@@ -1,0 +1,6 @@
+{{ object.project_id|safe }} 
+{{ object.name|safe }}
+{{ object.description|safe }}
+{{ object.jira_id|safe }}
+{{ object.code|safe }}
+{{ object.is_active|safe }}

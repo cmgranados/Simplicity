@@ -6,14 +6,15 @@ from kappa.requirements.models import Requirement
 class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, blank=False)
-    type = models.ForeignKey(Type, related_name='project_projecttype')
-    business_type = models.ForeignKey(Type, related_name='project_businesstype')
-    client_type = models.ForeignKey(Type, related_name='project_clienttype')
-    date_started = models.DateTimeField(blank=False)
+    #type = models.ForeignKey(Type, related_name='project_projecttype')
+    #business_type = models.ForeignKey(Type, related_name='project_businesstype')
+    #client_type = models.ForeignKey(Type, related_name='project_clienttype')
+    date_started = models.DateTimeField(blank=False, null=True)
     date_created = models.DateTimeField(blank=False)
     date_modified = models.DateTimeField(blank=False)
     description = models.TextField(null=True)
-    partaker = models.ForeignKey(User)
+    partaker = models.ForeignKey(User, null=True)
+    jira_id = models.CharField(max_length=128, blank=False)
     keywords=models.CharField(max_length=512, null=True)
     
     

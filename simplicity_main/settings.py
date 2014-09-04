@@ -280,3 +280,13 @@ EMAIL_HOST_PASSWORD = ''
  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
+
+#JIRA CONFIGURATION
+OPTIONS = {
+    'server': 'https://itcsas.atlassian.net',
+}
+
+JIRA_ACCESS_TOKEN = 'srkLiVajV2EtYhHhgi2x8DJjpoqSyXaN'
+JIRA_ACCESS_TOKEN_SECRET = 'qkjFBvRxAwAZb4ygpTObr1IhJfPmy0h1'
+JIRA_CONSUMER_KEY = 'simplicity'
+JIRA_PEM_PATH = 'C:\dev\jira.pem'

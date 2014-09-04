@@ -37,5 +37,6 @@ urlpatterns = patterns('',
                        url(r'^kappa/$', 'kappa.views.kappa_home'),
                        url(r'^save_requirement_definition/$', 'kappa.requirements.views.save_requirement_definition'),
                        url(r'^kappa/requirements/delete_requirement_ajax', 'kappa.requirements.views.delete_requirement'),
-                       url(r'^jira/projects$', 'kappa.requirements.views.search_jira_projects'),
+                       url(r'^alfa/projects$', 'alfa.projects.views.search_projects'),
+                       url(r'^alfa/sync', 'alfa.projects.views.sync', name='sync'),
 )

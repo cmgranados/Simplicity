@@ -156,6 +156,9 @@ def search_jira_projects(request):
     projects = []
     
     for project in projects_main:
+        print project.name
         projects.append(jira.project(project.id))
-    logger.debug("Cantidad: " + str(projects))
+        roles = jira.project_components(project.id)
+        users = jira.search_assignable_users_for_projects('ajardila',project.key)
+        logger.debug("Cantidad: " + str(users))
     return render_to_response('jira_projects_list.html', {'projects': projects})
