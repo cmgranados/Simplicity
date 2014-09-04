@@ -177,6 +177,7 @@ AUTHENTICATION_BACKENDS = (
    'social.backends.google.GoogleOAuth2',
    'social.backends.twitter.TwitterOAuth',
    'django.contrib.auth.backends.ModelBackend',
+   'shared.userprofiles.backends.EmailBackend',
 )
 
 LOGIN_REDIRECT_URL = '/'
@@ -263,10 +264,6 @@ ACTIVE = 1
 
 # Precondition types: requirement or description
 PRECONDITION_TYPE_REQ_ES = "Requisito"
-
-AUTHENTICATION_BACKENDS = (
-    'shared.userprofiles.backends.EmailBackend',
-)
 
 LOGIN_URL = '/signin'
 
