@@ -56,7 +56,7 @@ def sync(request):
             
             new_project.is_active = ACTIVE
             
-            #new_project.save()
+            new_project.save()
             
     projects = SearchQuerySet().models(Project).load_all()
             
