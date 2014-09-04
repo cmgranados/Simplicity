@@ -1,0 +1,26 @@
+{% extends "shared/base_generic.html" %}
+{% load static %}
+{% block javascript %}
+	<script src="{% static 'projects/js/pro_sync.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block section_statistics %}
+	<input type="button" id="sync-projects-btn" class="btn btn-default" value="Sincronizar" />
+	{% csrf_token %}
+{% endblock %}
+{% block content %}
+
+<div class="title-module">
+	Projectos en Jira 
+</div>
+
+<div id="messages" class="div-hidden">
+</div>
+
+<table class="table table-bordered table-hover" id="project-tbl">
+	{% include "_project_result.html" %}
+</table>
+
+{% include "_search_form.html" %}
+
+
+{% endblock %}

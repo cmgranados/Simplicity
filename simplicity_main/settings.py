@@ -24,11 +24,13 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
-    os.path.join(BASE_DIR, "shared/templates/userprofiles"), 
+    os.path.join(BASE_DIR, "shared/templates/userprofiles"),
+    os.path.join(BASE_DIR, "alfa/templates/projects"),  
 )
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'),
-                     os.path.join(BASE_DIR, 'kappa/static'), )
+                     os.path.join(BASE_DIR, 'kappa/static'),
+                     os.path.join(BASE_DIR, 'alfa/static'), )
 
 
 # Quick-start development settings - unsuitable for production

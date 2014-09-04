@@ -21,7 +21,7 @@ def search_projects(request):
         content_auto_v = request.POST.get('q', '')
         projects = SearchQuerySet().models(Project).filter(text=content_auto_v)
         
-    return render_to_response('jira_projects_list.html', {'projects': projects})
+    return render_to_response('projects_list.html', {'projects': projects})
 
 # Create your views here.
 def sync(request):
@@ -56,8 +56,8 @@ def sync(request):
             
             new_project.is_active = ACTIVE
             
-            new_project.save()
+            #new_project.save()
             
     projects = SearchQuerySet().models(Project).load_all()
             
-    return render_to_response('jira_projects_list.html', {'projects': projects})
+    return render_to_response('_project_result.html', {'projects': projects})

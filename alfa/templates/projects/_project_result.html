@@ -1,0 +1,15 @@
+<tr>
+	<th>Nombre</th>
+</tr>
+{% for project in projects %}
+	<tr>
+    	<td>{{ project.name }}</td> 
+    </tr>
+{% empty %}
+	<tr>
+    	<td>
+        	<p>No encontro resultados.</p>
+        </td>
+    </tr>
+{% endfor %}
+
