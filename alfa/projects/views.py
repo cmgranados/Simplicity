@@ -13,6 +13,7 @@ from kappa.requirements.models import Requirement
 logger = logging.getLogger('simplicity_main.alfa.projects.views')
 
 def search_projects(request):
+    projects = []
     if not request.POST.get('q', '') :
         content_auto_v = "*:*"
         projects = SearchQuerySet().models(Project).load_all()
