@@ -50,7 +50,7 @@ class EmailAuthenticationForm(forms.Form):
 		self.user_cache = authenticate(email=email, password=password)
 
 		if self.user_cache is None:
-			raise forms.ValidationError("Usuario incorrecto")
+			raise forms.ValidationError("Correo y/o contraseña incorrectos")
 		elif not self.user_cache.is_active:
 			raise forms.ValidationError("Usuario inactivo")
 
