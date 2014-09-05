@@ -1,9 +1,9 @@
 .form-group-large {
-    width:100% !important;
+	width: 100% !important;
 }
 
 .form-control-large {
-    width:88% !important;
+	width: 88% !important;
 }
 
 .title-module {
@@ -25,7 +25,7 @@
 	margin-top: -20px;
 }
 
-.page-title h1{
+.page-title h1 {
 	display: block;
 	font-size: 16px;
 	font-weight: 400;
@@ -34,18 +34,18 @@
 }
 
 .nav-pills li {
-   height: 32px;  
+	height: 32px;
 }
 
-.pr-search-results  {
-  height: 200px;
-  overflow-y: scroll; 
+.pr-search-results {
+	height: 200px;
+	overflow-y: scroll;
 }
 
 .wizard-card-container {
 	margin-left: 28%;
 	height: 300px;
-    overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 .td-hidden {
@@ -66,5 +66,7 @@
 }
 
 .div-center div {
+	margin-top: 7%;
 	display: inline-block;
 }
+
