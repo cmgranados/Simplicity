@@ -17,7 +17,6 @@ class Project(models.Model):
     jira_id = models.CharField(max_length=128, blank=False)
     keywords=models.CharField(max_length=512, null=True)
     
-    
     def __unicode__(self):
         return self.name
     class Meta:

@@ -1,24 +1,5 @@
 $(document).ready(function() {
 	
-	$( "#sync-projects-btn" ).click(function() {
-		
-		showMessage('message','info', 'Un momento por favor, está sincronizando los proyectos');
-		$('#message').attr("class", getClassByType('info'));
-		$request = $.ajax({
-	        type: "GET",
-	        url: "/alfa/sync",
-	        data: { 
-	        	csrfmiddlewaretoken: '{{ csrf_token }}'
-	        },
-	        success : syncSuccess,
-            error : function(xhr,errmsg,err) {
-                showMessage('message','error', '<strong>Ocurrio un error</strong>: ' + errmsg);
-                $('#message').attr("class", getClassByType('error'));
-            },
-	        dataType: 'html'
-	    });
-	});
-	
 	function showMessage(divId, type, message) {
 		divClass = getClassByType(type);
 		divHtml = '';
@@ -50,12 +31,31 @@ $(document).ready(function() {
 		return divClass;
 	}
 
-	function syncSuccess(data, textStatus, jqXHR) {
-		
+	function searchSuccess(data, textStatus, jqXHR) {
 		$('#project-tbl tbody').html(data);
-		showMessage('message','success', 'Los proyectos se sincronizaron correctamente');
-		$('#message').attr("class", getClassByType('success'));
 	}  
+	
+	$( "#searchProjectsForm" ).submit(function(event) {
+		
+		event.preventDefault();
+		
+		$request = $.ajax({
+	        type: "POST",
+	        url: "/alfa/projects/search",
+	        data: { 
+	        	q: $('#q').val(),
+	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+	        },
+	        success : searchSuccess,
+            error : function(xhr,errmsg,err) {
+                showMessage('message','error', '<strong>Ocurrio un error</strong>: ' + errmsg);
+                $('#message').attr("class", getClassByType('error'));
+            },
+	        dataType: 'html'
+	    });
+	});
+	
+
 });
 
  

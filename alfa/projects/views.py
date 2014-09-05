@@ -12,16 +12,23 @@ from kappa.requirements.models import Requirement
 # Get an instance of a logger
 logger = logging.getLogger('simplicity_main.alfa.projects.views')
 
+def home_projects(request):
+    projects = []
+    projects = SearchQuerySet().models(Project).load_all()
+    return render(request, 'projects_list.html', {'projects': projects})
+
 def search_projects(request):
     projects = []
+    logger.debug("searching projects: ")
     if not request.POST.get('q', '') :
         content_auto_v = "*:*"
         projects = SearchQuerySet().models(Project).load_all()
     else:
         content_auto_v = request.POST.get('q', '')
+        logger.debug("searching projects by: " + content_auto_v)
         projects = SearchQuerySet().models(Project).filter(text=content_auto_v)
         
-    return render_to_response('projects_list.html', {'projects': projects})
+    return render_to_response('_project_result.html', {'projects': projects})
 
 # Create your views here.
 def sync(request):

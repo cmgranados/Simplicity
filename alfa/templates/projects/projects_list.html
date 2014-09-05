@@ -2,6 +2,7 @@
 {% load static %}
 {% block javascript %}
 	<script src="{% static 'projects/js/pro_sync.js' %}" type="text/javascript"></script>
+	<script src="{% static 'projects/js/pro_search.js' %}" type="text/javascript"></script>
 {% endblock %}
 {% block section_statistics %}
 	<input type="button" id="sync-projects-btn" class="btn btn-default" value="Sincronizar" />
@@ -12,15 +13,27 @@
 <div class="title-module">
 	Projectos en Jira 
 </div>
-
+<form method="get" action="projects" class="form-horizontal" role="form" id="searchProjectsForm">
+	<div class="col-md-4 col-md-offset-4">
+		<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+		<div id="div_id_q" class="form-group">
+			<div class="controls ">
+				<input class="textinput textInput form-control" id="q" maxlength="255" name="q" type="text"> 
+			</div>
+		</div>
+    </div>
+   	<div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="search-projects-btn">
+            	 <span class="glyphicon glyphicon-search"></span>
+            </button>
+    </div>
+</form>
 <div id="messages" class="div-hidden">
 </div>
 
 <table class="table table-bordered table-hover" id="project-tbl">
 	{% include "_project_result.html" %}
 </table>
-
-{% include "_search_form.html" %}
 
 
 {% endblock %}
