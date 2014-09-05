@@ -59,3 +59,12 @@
 .div-visible {
 	visibility: visible;
 }
+
+.div-center {
+	display: block;
+	text-align: center;
+}
+
+.div-center div {
+	display: inline-block;
+}

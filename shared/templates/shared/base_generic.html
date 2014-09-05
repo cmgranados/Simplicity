@@ -42,7 +42,6 @@
 		          </ul>
 		        </li>
 	        {% else %}
-	        	<li><a href="{% url 'signin' %}">Iniciar sesi&oacute;n</a></li>
 	        	<li><a href="{% url 'signup' %}">Registrarse</a></li>
 	        {% endif %}
 	      </ul>
@@ -63,10 +62,16 @@
 	  </div>
 	</div>
 	<div class="row">
+	{% if user and not user.is_anonymous %}
 	  <div class="col-md-10">
+	{% else %}
+	  <div class="col-md-12">
+	{% endif %}
 		  {% block content %}
 		  {% endblock %}
 	  </div>
+	  
+	{% if user and not user.is_anonymous %}
 	  <div class="col-md-2">
 	  	  {% block section_statistics %}
 		  {% endblock %}
@@ -78,6 +83,7 @@
 	    	<div class="panel-body">Panel content</div>
 		</div>
 	  </div>
+	{% endif %}
 	</div>
 	</div>
 				

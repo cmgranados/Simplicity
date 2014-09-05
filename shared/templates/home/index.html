@@ -1,16 +1,18 @@
-{% extends "shared/base_generic.html" %}
-{% load static %}
+{% extends "shared/base_generic.html" %} 
+{% load static %} 
 {% block javascript %}
 <script src="{% static 'js/home/index.js' %}" type="text/javascript"></script>
-{% endblock %}
+{% endblock %} 
 
-{% block section_option%}
+{% block section_option%} 
+{% if user and not user.is_anonymous%}
 <div class="title-module">
-	{% if user and not user.is_anonymous%}
-
 	<div class="row">
 		<div class="col-md-12 col-md-offset-4">
-			<h4><small>Bienvenido</small> {{user.get_full_name}}  <small>a Simplicity</small></h4>
+			<h4>
+				<small>Bienvenido</small> {{user.get_full_name}} <small>a
+					Simplicity</small>
+			</h4>
 		</div>
 	</div>
 
@@ -19,110 +21,121 @@
 		<div class="col-md-5 col-xs-2">
 
 			<ul class="nav nav-pills-sm nav-justified">
-			  <li class="active"><a href="#">Archivo</a></li>
-			  <li><a href="#">Editar</a></li>
-			  <li><a href="#">Vista</a></li>
-			  <li><a href="#">Administraci&oacute;n</a></li>
+				<li class="active"><a href="#">Archivo</a></li>
+				<li><a href="#">Editar</a></li>
+				<li><a href="#">Vista</a></li>
+				<li><a href="#">Administraci&oacute;n</a></li>
 			</ul>
 		</div>
 	</div>
-	{% else %}
-		
-	{% endif %}
 </div>
-{% endblock %}
+{% endif %} 
+{% endblock %} 
 
-{% block content %}
+{% block content %} 
+{% if user and not user.is_anonymous%}
 <div class="row">
-  <div class="col-md-5">
-	<div class="panel panel-primary" >
-		<div class="panel-heading">
-        	 <h3 class="panel-title">Sistemas Core</h3>
-    	</div>
-    	<div class="panel-body">
-    		<div class="row">
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Alpha.png" %}" alt="..."
-					data-toggle="popover" data-content="Sistema para la Gesti&oacute;n de Proyectos de Software" data-trigger="hover">
-			    </a>
-			  </div>
-			  <div class="col-xs-3 col-md-6">
-			    <a href="kappa" class="thumbnail">
-			      <img src="{% static "img/Kappa.png" %}"  alt="..."
-			      data-toggle="popover" data-content="Sistema para la Gesti&oacute;n de Requisitos" data-trigger="hover">
-			    </a>
-			  </div>
+	<div class="col-md-5">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Sistemas Core</h3>
 			</div>
-			<div class="row">
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Omicron.png" %}" alt="..."
-			      data-toggle="popover" data-content="Sistema para la Gesti&oacute;n Integral de Pruebas" data-trigger="hover">
-			    </a>
-			  </div>
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Epsilon.png" %}" alt="..."
-			      data-toggle="popover" data-content="Sistema para la Metrificaci&oacute;n, Predicci&oacute;n y Consultas" data-trigger="hover">
-			    </a>
-			  </div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Alpha.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Gesti&oacute;n de Proyectos de Software"
+							data-trigger="hover">
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-6">
+						<a href="kappa" class="thumbnail"> <img src="{% static "img/Kappa.png" %}"  alt="..." data-toggle="popover"
+							data-content="Sistema para la Gesti&oacute;n de Requisitos"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Omicron.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Gesti&oacute;n Integral de Pruebas"
+							data-trigger="hover">
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Epsilon.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Metrificaci&oacute;n, Predicci&oacute;n y Consultas"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
 			</div>
-    	</div>
-	</div>
+		</div>
 	</div>
 	<div class="col-md-5">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-        	 <h3 class="panel-title">Sistemas UlTra</h3>
-    	</div>
-    	<div class="panel-body">
-    		<div class="row">
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Phi.png" %}" alt="..."
-			      data-toggle="popover" data-content="Sistema para la Gesti&oacute;n en el Mantenimiento del Producto" data-trigger="hover">
-			    </a>
-			  </div>
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Rho.png" %}"  alt="..."
-			      data-toggle="popover" data-content="Sistema para la Gesti&oacute;n de Procesos de Consultor&iacute;a - BPO" data-trigger="hover">
-			    </a>
-			  </div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Sistemas UlTra</h3>
 			</div>
-			<div class="row">
-			  <div class="col-xs-3 col-md-6">
-			    <a href="#" class="thumbnail">
-			      <img src="{% static "img/Omega.png" %}" alt="..."
-			      data-toggle="popover" data-content="Sistema para la Implantaci&oacute;n de Software o Procesos" data-trigger="hover">
-			    </a>
-			  </div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Phi.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Gesti&oacute;n en el Mantenimiento del Producto"
+							data-trigger="hover">
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Rho.png" %}"  alt="..." data-toggle="popover"
+							data-content="Sistema para la Gesti&oacute;n de Procesos de Consultor&iacute;a - BPO"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 col-md-6">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Omega.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Implantaci&oacute;n de Software o Procesos"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
 			</div>
-    	</div>
-	</div>
+		</div>
 	</div>
 	<div class="col-md-2">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-        	 <h3 class="panel-title">GRIeGO</h3>
-    	</div>
-    	<div class="panel-body">
-    		<div class="row">
-			  <div class="col-xs-3 col-md-12">
-			    <a href="#" class="thumbnail" >
-			      <img src="{% static "img/Alpha.png" %}" alt="..."
-			      data-toggle="popover" data-content="Sistema para la Comunicaci&oacute;n de Procesos" data-trigger="hover">
-			    </a>
-			  </div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">GRIeGO</h3>
 			</div>
-    	</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-3 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Alpha.png" %}" alt="..." data-toggle="popover"
+							data-content="Sistema para la Comunicaci&oacute;n de Procesos"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+{% else %}
+<div class="div-center">
+	<h1>Bienvenido a Simplicity</h1>
+	<div>
+		<form action="" method="post">
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit" value="Enviar" class="btn btn-default">
+		     		<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-default">Login con Google</a>
+		</form>
 	</div>
-	</div>
-	
-{% endblock %}
+</div>
 
-{% block section_statistics %}
-	
+{% endif %} 
+{% endblock %}
+ 
+{% block section_statistics %} 
 {% endblock %}
