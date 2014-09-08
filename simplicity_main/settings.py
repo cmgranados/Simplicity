@@ -21,11 +21,12 @@ TEMPLATE_DEBUG = DEBUG
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates"), 
+    os.path.join(BASE_DIR, "shared/templates/home"), 
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"),
-    os.path.join(BASE_DIR, "alfa/templates/projects"),  
+    os.path.join(BASE_DIR, "alfa/templates/projects"),
 )
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'),
@@ -70,7 +71,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'django.contrib.formtools',
     'autofixture',
-    'debug_toolbar',
+    # 'debug_toolbar',
 )
 
 
@@ -93,11 +94,11 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-             
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'simplicity',
-        'USER': 'simplicity', 
+        'USER': 'simplicity',
         'PASSWORD': 'porteaW1',
         'HOST': 'mysql1.itc.com.co',
      }
@@ -105,7 +106,7 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'simplicity',
-#         'USER': 'root', 
+#         'USER': 'root',
 #         'PASSWORD': 'root',
 #         'HOST': 'localhost',
 #     }
@@ -184,8 +185,9 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "1010561460797-pm4j7r96sh0v7sjies2smkgcek3ukmpj.apps.googleusercontent.com"
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "i11C6rb2Ry_zQABMzHkVsqYL"
+# aplicaciones@itc.com.co
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ="363982401495-roer8bb6sterf8uk8ana8v154fgrji3c.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "U587jEnWMoXwP1xZ0T3_KuI4"
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
 
 SOCIAL_AUTH_PIPELINE = (
@@ -228,7 +230,7 @@ LOGGING = {
         # Log to a text file that can be rotated by logrotate
         'logfile': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': 'C:\dev\SIMPLICITY.log'
+            'filename': 'SIMPLICITY.log'
         },
     },
     'loggers': {
@@ -267,7 +269,7 @@ ACTIVE = 1
 # Precondition types: requirement or description
 PRECONDITION_TYPE_REQ_ES = "Requisito"
 
-LOGIN_URL = '/signin'
+LOGIN_URL = '/'
 
 
 # Set up for sending emails
@@ -276,7 +278,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'simplicity@itc.com.co'
 EMAIL_HOST_PASSWORD = ''
- 
+
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -288,4 +290,4 @@ OPTIONS = {
 JIRA_ACCESS_TOKEN = 'srkLiVajV2EtYhHhgi2x8DJjpoqSyXaN'
 JIRA_ACCESS_TOKEN_SECRET = 'qkjFBvRxAwAZb4ygpTObr1IhJfPmy0h1'
 JIRA_CONSUMER_KEY = 'simplicity'
-JIRA_PEM_PATH = 'C:\dev\jira.pem'
+JIRA_PEM_PATH = os.path.join(BASE_DIR, "shared/jira/jira.pem")
