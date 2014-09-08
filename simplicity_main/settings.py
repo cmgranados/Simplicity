@@ -289,4 +289,4 @@ OPTIONS = {
 JIRA_ACCESS_TOKEN = 'srkLiVajV2EtYhHhgi2x8DJjpoqSyXaN'
 JIRA_ACCESS_TOKEN_SECRET = 'qkjFBvRxAwAZb4ygpTObr1IhJfPmy0h1'
 JIRA_CONSUMER_KEY = 'simplicity'
-JIRA_PEM_PATH = 'C:\dev\jira.pem'
+JIRA_PEM_PATH = os.path.join(BASE_DIR, "shared/jira/jira.pem")

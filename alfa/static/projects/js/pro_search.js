@@ -1,5 +1,25 @@
 $(document).ready(function() {
 	
+	$( "#searchProjectsForm" ).submit(function(event) {
+		
+		event.preventDefault();
+		
+		$request = $.ajax({
+	        type: "POST",
+	        url: "/alfa/projects/search",
+	        data: { 
+	        	q: $('#q').val(),
+	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+	        },
+	        success : searchSuccess,
+            error : function(xhr,errmsg,err) {
+                showMessage('message','error', '<strong>Ocurrio un error</strong>: ' + errmsg);
+                $('#message').attr("class", getClassByType('error'));
+            },
+	        dataType: 'html'
+	    });
+	});
+	
 	function showMessage(divId, type, message) {
 		divClass = getClassByType(type);
 		divHtml = '';
@@ -35,27 +55,6 @@ $(document).ready(function() {
 		$('#project-tbl tbody').html(data);
 	}  
 	
-	$( "#searchProjectsForm" ).submit(function(event) {
-		
-		event.preventDefault();
-		
-		$request = $.ajax({
-	        type: "POST",
-	        url: "/alfa/projects/search",
-	        data: { 
-	        	q: $('#q').val(),
-	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-	        },
-	        success : searchSuccess,
-            error : function(xhr,errmsg,err) {
-                showMessage('message','error', '<strong>Ocurrio un error</strong>: ' + errmsg);
-                $('#message').attr("class", getClassByType('error'));
-            },
-	        dataType: 'html'
-	    });
-	});
-	
-
 });
 
  
