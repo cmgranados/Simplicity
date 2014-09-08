@@ -268,7 +268,7 @@ ACTIVE = 1
 # Precondition types: requirement or description
 PRECONDITION_TYPE_REQ_ES = "Requisito"
 
-LOGIN_URL = '/signin'
+LOGIN_URL = '/'
 
 
 # Set up for sending emails
