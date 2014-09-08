@@ -183,7 +183,7 @@ def save_requirement_ajax(request):
             message = "success "
             requirement = Requirement()
             requirement.title = requirement_dict[u'name']
-            requirement.code = requirement_dict[u'code']
+            #requirement.code = requirement_dict[u'code']
             requirement.requirement_date_created = datetime.now()
             requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
             requirement.description = requirement_dict[u'description']
@@ -193,6 +193,8 @@ def save_requirement_ajax(request):
             requirement.date_created = datetime.now()
             requirement.is_active =ACTIVE
             requirement.keywords = requirement_dict[u'keywords']
+            requirement.save()
+            requirement.code = "RE_" + str(requirement.requirement_id)
             requirement.save()
             save_preconditions(requirement_dict, requirement)
             save_business_rules(requirement_dict, requirement)

@@ -53,7 +53,7 @@ $(document).ready(function() {
 	function buildRequirementDefinion() {
 		var requirement = new Object();
 		requirement.name = $('#requirementTitle').val();
-		requirement.code = $('#requirementCode').val();
+		//requirement.code = $('#requirementCode').val();
 		requirement.type = $('#requirementType').val();
 		requirement.description = $('#requirementDescription').val();
 		requirement.keywords = $('#requirementKeywords').val();
