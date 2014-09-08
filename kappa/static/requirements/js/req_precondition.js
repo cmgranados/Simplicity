@@ -3,7 +3,7 @@ $( document ).ready(function() {
 	var $descriptionType = 'Descripción';
 	var $requirementType = 'Requisito';
 	
-	$( "#search-preconditions-btn" ).click(function() {
+	$( "#myModal #search-preconditions-btn" ).click(function() {
 		$.ajax({
 	        type: "POST",
 	        url: "/kappa/preconditions_ajax_search/",

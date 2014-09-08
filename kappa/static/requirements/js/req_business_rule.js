@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+	
+	$('#brModal  #close-precondition-modal-btn').click(function(e) {
+		$('#brModal').modal('hide')
+	});
+	
+	
 	var $lastChar =1, $newRow;
 	
 	$( "#search-business-rules-btn" ).click(function() {

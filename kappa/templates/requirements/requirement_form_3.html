@@ -1,34 +1,53 @@
 {% load static %} {% block javascript %}
 <script src="{% static 'requirements/js/req_business_rule.js' %}"></script>
 {% endblock %}
-<div class="tab-pane">
-	<div class="container">
-		<div>
-			<div id="search-results" class="pr-search-results">
-				<label for="br">B&#250squeda:</label> <input type="text" id="br">
-				<input type="button" id="search-business-rules-btn" value="Buscar" />
-				<table id="businessruleResultTable"
-					class="table table-bordered table-striped ">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Nombre</th>
-							<th>Descripci&#243n</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+
+<div class="modal fade" id="brModal" tabindex="-1" role="dialog"
+	aria-labelledby="brModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"
+					id="close-precondition-modal-btn">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="brModalLabel">Regla de Negocio</h4>
+			</div>
+			<div class="modal-body">
+				<div class="tab-pane active" id="home">
+					<div class="tab-pane" id="profile">
+						<div class="container">
+							<div>
+								<div id="search-results" class="search-results-scroll col-sm-5">
+									<label for="br">B&#250squeda:</label> <input type="text"
+										id="br"> <input type="button"
+										id="search-business-rules-btn" value="Buscar" />
+									<table id="businessruleResultTable"
+										class="table table-bordered table-striped ">
+										<thead>
+											<tr>
+												<th></th>
+												<th>Nombre</th>
+												<th>Descripci&#243n</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								id="add-business-rule-row-btn">Asociar Reglas de
+								Negocio</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-primary" id="add-business-rule-row-btn">Asociar
-			Reglas de Negocio</button>
-	</div>
 </div>
-
-
 
 <div class="container">
 	<div class="row">
@@ -46,8 +65,12 @@
 				</tbody>
 			</table>
 		</div>
+
 		<div class="col-md-6">
-			<button id="delete-busines-rule-row-add" class="btn btn-default" type="button">Eliminar</button>
+			<button class="btn btn-default" type="button" data-toggle="modal"
+				data-target="#brModal">Agregar</button>
+			<button id="delete-busines-rule-row-add" class="btn btn-default"
+				type="button">Eliminar</button>
 		</div>
 	</div>
 </div>
