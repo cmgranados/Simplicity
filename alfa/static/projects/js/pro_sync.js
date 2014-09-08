@@ -8,7 +8,7 @@ $(document).ready(function() {
 	        type: "GET",
 	        url: "/alfa/sync",
 	        data: { 
-	        	csrfmiddlewaretoken: '{{ csrf_token }}'
+	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
 	        },
 	        success : syncSuccess,
             error : function(xhr,errmsg,err) {

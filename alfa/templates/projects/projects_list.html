@@ -15,6 +15,7 @@
 </div>
 <form method="get" action="projects" class="form-horizontal" role="form" id="searchProjectsForm">
 	<div class="col-md-4 col-md-offset-4">
+		{% csrf_token %}
 		<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
 		<div id="div_id_q" class="form-group">
 			<div class="controls ">
