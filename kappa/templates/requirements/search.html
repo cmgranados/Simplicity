@@ -12,14 +12,18 @@
 {% block section_statistics %}
 	<a href="new_requirement"> <input type="button" name="new-requirement-btn" class="btn btn-default" value="Registrar requisito" /> </a>
     <input type="button" name="delete-requirement-btn" id="delete-requirement-btn" class="btn btn-default" value="Eliminar" />
+
+    
 {%endblock%}
 {% block content %}
 
 {% include "_search_form.html" %}
 
-<div class="margin-containers">
+<div class="row">
+  <div class="col-md-12">
 	
-{% include "_search_results.html" %}
+	{% include "_search_results.html" %}
+	</div>
 </div>
 
 {% endblock %}

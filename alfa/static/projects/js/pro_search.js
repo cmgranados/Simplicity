@@ -1,16 +1,17 @@
 $(document).ready(function() {
 	
-	$( "#sync-projects-btn" ).click(function() {
+	$( "#searchProjectsForm" ).submit(function(event) {
 		
-		showMessage('message','info', 'Un momento por favor, está sincronizando los proyectos');
-		$('#message').attr("class", getClassByType('info'));
+		event.preventDefault();
+		
 		$request = $.ajax({
-	        type: "GET",
-	        url: "/alfa/sync",
+	        type: "POST",
+	        url: "/alfa/projects/search",
 	        data: { 
+	        	q: $('#q').val(),
 	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
 	        },
-	        success : syncSuccess,
+	        success : searchSuccess,
             error : function(xhr,errmsg,err) {
                 showMessage('message','error', '<strong>Ocurrio un error</strong>: ' + errmsg);
                 $('#message').attr("class", getClassByType('error'));
@@ -50,12 +51,10 @@ $(document).ready(function() {
 		return divClass;
 	}
 
-	function syncSuccess(data, textStatus, jqXHR) {
-		
+	function searchSuccess(data, textStatus, jqXHR) {
 		$('#project-tbl tbody').html(data);
-		showMessage('message','success', 'Los proyectos se sincronizaron correctamente');
-		$('#message').attr("class", getClassByType('success'));
 	}  
+	
 });
 
  

@@ -2,8 +2,10 @@ $( document ).ready(function() {
 	var $lastChar =1, $newRow;
 	var $descriptionType = 'Descripción';
 	var $requirementType = 'Requisito';
+	var $descriptionTypeID = 'DES';
+	var $requirementTypeID = 'REQ';
 	
-	$( "#search-preconditions-btn" ).click(function() {
+	$( "#myModal #search-preconditions-btn" ).click(function() {
 		$.ajax({
 	        type: "POST",
 	        url: "/kappa/preconditions_ajax_search/",
@@ -27,7 +29,7 @@ $( document ).ready(function() {
 	            <td><span name='preconditionType_txt_1' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
 	            <input type='hidden' name='preconditionPosition_1' value='"+$lastChar+"'></input> \
 	            <input type='hidden' name='preconditionDescription_1' value='"+$description+"'></input> \
-	            <input type='hidden' name='preconditionType_1' value='"+$descriptionType+"'></input> \
+	            <input type='hidden' name='preconditionType_1' value='"+$descriptionTypeID+"'></input> \
 	            </tr>"
 			$('#preconditionTable tbody').append($firstRow)
 	    } else {
@@ -49,7 +51,7 @@ $( document ).ready(function() {
 		            <td><span name='preconditionType_txt_1' maxlength='11' readonly='readonly'>"+$requirementType+"</span></td> \
 		            <input type='hidden' name='preconditionPosition_1' value='"+$(this).find('input:hidden[id=requirementIdRetrieved]').val()+"'></input> \
 		            <input type='hidden' name='preconditionDescription_1' value='"+$(this).find('input:hidden[id=requirementCodeRetrieved]').val()+"-"+$(this).find('input:hidden[id=requirementTitleRetrieved]').val()+"'></input> \
-		            <input type='hidden' name='preconditionType_1' value='"+$requirementType+"'></input> \
+		            <input type='hidden' name='preconditionType_1' value='"+$requirementTypeID+"'></input> \
 		            <input type='hidden' name='preconditionRequirement_id_1' value='"+$(this).find('input:hidden[id=requirementIdRetrieved]').val()+"'></input> \
 		        </tr>"
 		        $('#preconditionTable tbody').append($firstRow)
@@ -74,7 +76,7 @@ $( document ).ready(function() {
             <td><span name='preconditionType_txt_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$descriptionType+"</span></td> \
             <input type='hidden' name='preconditionPosition_"+$lastChar+"' value='"+$lastChar+"'></input> \
 		    <input type='hidden' name='preconditionDescription_"+$lastChar+"' value='"+$description+"'></input> \
-		    <input type='hidden' name='preconditionType_"+$lastChar+"' value='"+$descriptionType+"'></input> \
+		    <input type='hidden' name='preconditionType_"+$lastChar+"' value='"+$descriptionTypeID+"'></input> \
         </tr>"
      return $newRow;
 	}
@@ -92,7 +94,7 @@ $( document ).ready(function() {
             <td><span name='preconditionType_txt_"+$lastChar+"' maxlength='11' readonly='readonly'>"+$requirementType+"</span></td> \
             <input type='hidden' name='preconditionPosition_"+$lastChar+"' value='"+$lastChar+"'></input> \
 		    <input type='hidden' name='preconditionDescription_"+$lastChar+"' value='"+$(obj).find('input:hidden[id=requirementCodeRetrieved]').val()+"-"+$(obj).find('input:hidden[id=requirementTitleRetrieved]').val()+"'></input> \
-		    <input type='hidden' name='preconditionType_"+$lastChar+"' value='"+$requirementType+"'></input> \
+		    <input type='hidden' name='preconditionType_"+$lastChar+"' value='"+$requirementTypeID+"'></input> \
 		    <input type='hidden' name='preconditionRequirement_id_"+$lastChar+"' value='"+$(obj).find('input:hidden[id=requirementIdRetrieved]').val()+"'></input> \
         </tr>"
      return $newRow;
