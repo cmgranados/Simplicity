@@ -20,8 +20,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "shared/templates"), 
-    os.path.join(BASE_DIR, "shared/templates/home"), 
+    os.path.join(BASE_DIR, "shared/templates"),
+    os.path.join(BASE_DIR, "shared/templates/home"),
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
@@ -185,7 +185,7 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/'
 
-# aplicaciones@itc.com.co
+# aplicaciones@itc.com.co, ver manual de instalación
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ="363982401495-roer8bb6sterf8uk8ana8v154fgrji3c.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "U587jEnWMoXwP1xZ0T3_KuI4"
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
