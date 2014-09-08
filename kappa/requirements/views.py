@@ -16,7 +16,8 @@ from jira.client import JIRA
 from kappa.businessrules.models import BusinessRule
 from kappa.preconditions.models import Precondition, PreconditionRequirement, \
     PreconditionDescription
-from kappa.requirements.models import Requirement
+from kappa.requirements.models import Requirement, RequirementBusinessRule,\
+    RequirementInput, RequirementOutput, AcceptanceCriteria
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
@@ -194,10 +195,12 @@ def save_requirement_ajax(request):
             requirement.keywords = requirement_dict[u'keywords']
             requirement.save()
             save_preconditions(requirement_dict, requirement)
+            save_business_rules(requirement_dict, requirement)
+            save_information_flow(requirement_dict, requirement)
+            save_acceptance_criteria(requirement_dict, requirement)
             return render_to_response('done.html', {'message': message})
             #return HttpResponseRedirect("done.html")
-
-
+            
 def save_preconditions(requirement_dict, requirement):    
     preconditions = requirement_dict[u'preconditions']
     for precondition in preconditions:
@@ -217,4 +220,47 @@ def save_preconditions(requirement_dict, requirement):
             precondition_req_tmp.precondition = precondition_tmp
             precondition_req_tmp.save();
 
+def save_business_rules(requirement_dict, requirement):
+    business_rules_dict = requirement_dict[u'businessRules']
+    
+    for business_rule in business_rules_dict:
+        br = BusinessRule.objects.get(business_rule_id = business_rule[u'id'])
+        requirement_business_rule = RequirementBusinessRule()
+        requirement_business_rule.requirement = requirement
+        requirement_business_rule.business_rule = br
+        requirement_business_rule.save()
+        
+def save_information_flow(requirement_dict, requirement):
+    output_dict = requirement_dict[u'outputInformation']
+    input_dict = requirement_dict[u'inputInformation']
+    
+    for ou in output_dict:
+        req_output = RequirementOutput()
+        req_output.requirement = requirement
+        req_output.output = ou[u'value']
+        req_output.description = ou[u'description']
+        req_output.data_type = ou[u'dataType']
+        req_output.save()
+        
+    for inp in input_dict:
+        req_input = RequirementInput()
+        req_input.requirement = requirement
+        req_input.input = inp[u'value']
+        req_input.description = inp[u'description']
+        req_input.data_type = inp[u'dataType']
+        req_input.save()
+        
+def save_acceptance_criteria(requirement_dict, requirement):
+    acceptance_criteria_dict = requirement_dict[u'acceptanceCriteria']
+    
+    for crit in acceptance_criteria_dict:
+        acceptance_criteria = AcceptanceCriteria()
+        acceptance_criteria.requirement = requirement
+        acceptance_criteria.name = crit[u'value']
+        acceptance_criteria.description = crit[u'description']
+        acceptance_criteria.date_modified = datetime.now()
+        acceptance_criteria.date_created = datetime.now()
+        acceptance_criteria.save()
+        acceptance_criteria.code = "CA_" + str(acceptance_criteria.acceptance_criteria_id)
+        acceptance_criteria.save()
     
