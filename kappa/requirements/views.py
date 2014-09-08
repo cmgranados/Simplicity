@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import json
 import logging
 import time
 
@@ -13,6 +14,8 @@ from haystack.views import SearchView
 from jira.client import JIRA
 
 from kappa.businessrules.models import BusinessRule
+from kappa.preconditions.models import Precondition, PreconditionRequirement, \
+    PreconditionDescription
 from kappa.requirements.models import Requirement
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type, TypeClassification
@@ -165,3 +168,53 @@ def search_jira_projects(request):
         users = jira.search_assignable_users_for_projects('ajardila',project.key)
         logger.debug("Cantidad: " + str(users))
     return render_to_response('jira_projects_list.html', {'projects': projects})
+
+
+def save_requirement_ajax(request):
+    if request.method == "POST":
+        requirement_str = request.POST.get('requirement', None)
+        requirement_dict = json.loads(requirement_str)
+        if not requirement_dict:
+            message = "error"
+            return render_to_response('error.html', {'message': message})
+            #return HttpResponseRedirect("error.html")
+        else:
+            message = "success "
+            requirement = Requirement()
+            requirement.title = requirement_dict[u'name']
+            requirement.code = requirement_dict[u'code']
+            requirement.requirement_date_created = datetime.now()
+            requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
+            requirement.description = requirement_dict[u'description']
+            state = State.objects.get(state_id=STATE_REGISTERED) 
+            requirement.state = state
+            requirement.date_modified = datetime.now()
+            requirement.date_created = datetime.now()
+            requirement.is_active =ACTIVE
+            requirement.keywords = requirement_dict[u'keywords']
+            requirement.save()
+            save_preconditions(requirement_dict, requirement)
+            return render_to_response('done.html', {'message': message})
+            #return HttpResponseRedirect("done.html")
+
+
+def save_preconditions(requirement_dict, requirement):    
+    preconditions = requirement_dict[u'preconditions']
+    for precondition in preconditions:
+        print(precondition[u'type'])
+        precondition_tmp = Precondition()
+        precondition_tmp.requirement = requirement
+        precondition_tmp.save()
+        
+        if MyConstants.PRECONDITION_TYPE_DESCRIPTION == precondition[u'type']:
+            precondition_desc_tmp = PreconditionDescription()
+            precondition_desc_tmp.description =  precondition[u'description']
+            precondition_desc_tmp.precondition = precondition_tmp
+            precondition_desc_tmp.save();
+        else:
+            precondition_req_tmp = PreconditionRequirement()
+            precondition_req_tmp.requirement = requirement
+            precondition_req_tmp.precondition = precondition_tmp
+            precondition_req_tmp.save();
+
+    

@@ -55,6 +55,7 @@ $( document ).ready(function() {
 				$('#businessrulesTable > tbody:last').append($newRow);
 			}
 		});
+		 $('#brModal').modal('hide');
 	});
 	
 	$( "#delete-busines-rule-row-add" ).click(function() {

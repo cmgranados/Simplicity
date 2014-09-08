@@ -4,8 +4,10 @@
 <script src="{% static 'requirements/js/req_new_requirement.js' %}"></script>
 {% endblock %}
 {% block content %}
+<div id="messages"></div>
 <form method="post" class="form-horizontal" role="form" id="myReqForm" action="/save_requirement_definition/">
 		{% csrf_token %}
 {% include "requirement_wizard.html" %}
+<button class="btn btn-default" type="button" id="save-requirement-btn">Guardar</button>
 </form>
 {% endblock %}
