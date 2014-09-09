@@ -67,10 +67,55 @@
 		</div>
 
 		<div class="col-md-6">
+			
 			<button class="btn btn-default" type="button" data-toggle="modal"
 				data-target="#brModal">Agregar</button>
+			
 			<button id="delete-busines-rule-row-add" class="btn btn-default"
 				type="button">Eliminar</button>
+			
+			<button class="btn btn-default" type="button" data-toggle="modal"
+				data-target="#newRequirementModal">Crear Regla de Negocio</button>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="newRequirementModal" tabindex="-1" role="dialog"
+	aria-labelledby="newRequirementModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"
+					id="close-precondition-modal-btn">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="newRequirementModalLabel">Creaci&#243n Regla de Negocio</h4>
+			</div>
+			<div class="modal-body">
+				<div class="tab-pane active" id="home">
+						<label for="newBusinessRuleTitle">Nombre</label>
+						<input type="text" class="form-control" id="newBusinessRuleTitle" 
+							name="newBusinessRuleTitle" placeholder="Introduce el título de la regla de negocio">
+						<label for="newBusinessRuleCode">C&#243digo</label>
+						<input type="text" class="form-control" id="newBusinessRuleCode" 
+							name="newBusinessRuleCode" placeholder="Introduce el código del requisito"> 
+						<label for="businessRulesType">Tipo</label>
+						<select class="form-control" id="businessRulesType"
+							name="businessRulesType">
+							<option>Seleccione tipo de regla de negocio</option> 
+							{% for type in br_type_list %}
+							<option value='{{ type.type_id }}'>{{ type.name }}</option> 
+							{% endfor %}
+						</select>
+						<label for="newBusinessRuleDescription">Descripci&#243n</label>
+						<textarea class="form-control" rows="3" id="newBusinessRuleDescription" name="newBusinessRuleDescription"
+      						placeholder="Introduce una descripción para tu regla de negocio"></textarea>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								id="add-br-row-btn">Registar</button>
+						</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
