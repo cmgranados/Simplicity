@@ -32,7 +32,7 @@ $(document).ready(function() {
 			if (index == 1) {
 				// Make sure we entered the name
 				if (!$('#requirementTitle').val()) {
-					alert('Debes ingresar un título');
+					//alert('Debes ingresar un título');
 					$('#name').focus();
 					return false;
 				}
