@@ -201,6 +201,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
+    'shared.userprofiles.login_pipeline.user_group',
 )
 
 SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
