@@ -270,3 +270,22 @@ def save_acceptance_criteria(requirement_dict, requirement):
         acceptance_criteria.code = "CA_" + str(acceptance_criteria.acceptance_criteria_id)
         acceptance_criteria.save()
     
+def new_businessrule_ajax(request):
+    if request.method == "POST":
+        business_rule = BusinessRule()
+        newBusinessRuleTitle = request.POST.get('newBusinessRuleTitle', None)
+        newBusinessRuleCode = request.POST.get('newBusinessRuleCode', None)
+        businessRulesType = request.POST.get('businessRulesType', None)
+        newBusinessRuleDescription = request.POST.get('newBusinessRuleDescription', None)
+        business_rule.name = newBusinessRuleTitle
+        business_rule.code = newBusinessRuleCode
+        br_type = Type.objects.get(type_id = businessRulesType)
+        business_rule.type = br_type
+        business_rule.description = newBusinessRuleDescription
+        business_rule.date_created = datetime.now()
+        business_rule.date_modified = datetime.now()
+        business_rule.state = State.objects.get(state_id=STATE_REGISTERED) 
+        business_rule.save()
+    return render_to_response('done.html')
+        #return HttpResponseRedirect("done.html")
+    

@@ -8,7 +8,7 @@ class BusinessRule(models.Model):
     name = models.CharField(max_length=256, blank=False)
     description = models.TextField(blank=True, null=True)
     type = models.ForeignKey(Type)
-    state_type = models.ForeignKey(State)
+    state = models.ForeignKey(State)
     date_created = models.DateTimeField(blank=False)
     date_modified = models.DateTimeField(blank=False)
     code = models.CharField(max_length=45, blank=False)

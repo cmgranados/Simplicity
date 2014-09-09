@@ -4,6 +4,9 @@ $( document ).ready(function() {
 		$('#brModal').modal('hide')
 	});
 	
+	$('#newRequirementModal  #close-precondition-modal-btn').click(function(e) {
+		$('#brModal').modal('hide')
+	});
 	
 	var $lastChar =1, $newRow;
 	
@@ -70,4 +73,25 @@ $( document ).ready(function() {
 			});
 		}
 	});
+	
+	$( "#add-br-row-btn" ).click(function() {
+		$.ajax({
+	        type: "POST",
+	        url: "/kappa/new_businessrule_ajax/",
+	        data: { 
+	            'newBusinessRuleTitle' : $('#newBusinessRuleTitle').val(),
+	            'newBusinessRuleCode' : $('#newBusinessRuleCode').val(),
+	            'businessRulesType' : $('#businessRulesType').val(),
+	            'newBusinessRuleDescription' : $('#newBusinessRuleDescription').val(),
+	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+	        },
+	        success: saveSuccessBr,
+	        dataType: 'html'
+	    });
+	});
+	
+	function saveSuccessBr(data, textStatus, jqXHR)
+	{
+	alert("done");
+	} 
 });
