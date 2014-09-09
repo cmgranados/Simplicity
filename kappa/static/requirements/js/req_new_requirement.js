@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	
-	$("#save-requirement-btn").click(function(){
+	$("#myReqForm").submit(function(event){
+		event.preventDefault();
+		
 		var requirement = buildRequirementDefinion();
 		buildRequirementPreconditions(requirement);
 		buildRequirementBusinessRules(requirement);
