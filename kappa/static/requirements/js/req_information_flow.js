@@ -2,36 +2,43 @@ $(document).ready(function(){
 
 	var $lastChar =1, $newRow;
 	var $lastCharOutput =1, $newRowOutput;
+	
+	$('#inputs-form').validate();
+	$('#outputs-form').validate();
 
-	$("#add-row-input-btn").click(function(){
-	 	if($('#input_table_body tr').length==0){
-			$firstRow = "<tr> \
-				<td><input type='checkbox' name='infFlowInput_checkbox_1' value=''></td>\
-	            <td><input type='text' name='infFlowInput_1' maxlength='50' required /></td> \
-	            <td><input type='text' name='infFlowInput_description_1' maxlength='50' required /></td> \
-	            <td><input type='text' name='infFlowInput_datatype_1' maxlength='50' required /></td> \
-	        </tr>"
-			$('#inputTable > tbody:last').append($firstRow)			
-	    } else {
-	    	$get_lastID_inputTable();
-			$('#inputTable > tbody:last').append($newRow);
-	    };
+	$("#add-row-input-btn").click(function() {
+		if($('#inputs-form').valid()) {
+		 	if($('#input_table_body tr').length==0) {
+				$firstRow = "<tr> \
+					<td><input type='checkbox' name='infFlowInput_checkbox_1' value=''></td>\
+		            <td><input type='text' name='infFlowInput_1' maxlength='50' required /></td> \
+		            <td><input type='text' name='infFlowInput_description_1' maxlength='50' required /></td> \
+		            <td><input type='text' name='infFlowInput_datatype_1' maxlength='50' required /></td> \
+		        </tr>"
+				$('#inputTable > tbody:last').append($firstRow)			
+		    } else {
+		    	$get_lastID_inputTable();
+				$('#inputTable > tbody:last').append($newRow);
+		    };
+		}
 		  
 	});
 
-	$("#add-row-output-btn").click(function(){
-	  	if($('#output_table_body tr').length==0){
-			$firstRow = "<tr> \
-				<td><input type='checkbox' name='infFlowOutput_checkbox_1' value=''></td>\
-	            <td><input type='text' name='infFlowOutput_1' maxlength='50' required /></td> \
-	            <td><input type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
-	            <td><input type='text' name='infFlowOutput_datatype_1' maxlength='50' required /></td> \
-	        </tr>"
-			$('#outputTable > tbody:last').append($firstRow)			
-	    } else {
-	    	$get_lastID_outputTable();
-			$('#outputTable > tbody:last').append($newRowOutput);
-	    };
+	$("#add-row-output-btn").click(function() {
+		if($('#outputs-form').valid()) {
+		  	if($('#output_table_body tr').length==0) {
+				$firstRow = "<tr> \
+					<td><input type='checkbox' name='infFlowOutput_checkbox_1' value=''></td>\
+		            <td><input type='text' name='infFlowOutput_1' maxlength='50' required /></td> \
+		            <td><input type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
+		            <td><input type='text' name='infFlowOutput_datatype_1' maxlength='50' required /></td> \
+		        </tr>"
+				$('#outputTable > tbody:last').append($firstRow)			
+		    } else {
+		    	$get_lastID_outputTable();
+				$('#outputTable > tbody:last').append($newRowOutput);
+		    };
+		}
 	});
 	
 	$get_lastID_inputTable = function(){
