@@ -52,17 +52,16 @@ class FacetedSearchView(SearchView):
 @login_required
 def searchRequirements(request):
     if not request.POST.get('q', '') :
-        content_auto_v = "descripcion"
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('q', '')
-        
     requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
     return render_to_response('ajax_requirements_search.html', {'requirements': requirements})
 
 @login_required
 def searchBusinessRules(request):
     if not request.POST.get('br', '') :
-        content_auto_v = ""
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('br', '')
          

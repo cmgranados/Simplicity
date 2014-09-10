@@ -17,32 +17,36 @@
 			<div class="modal-body">
 				<div class="tab-pane active" id="home">
 					<div class="tab-pane" id="profile">
-						<div class="container">
-							<div>
-								<div id="search-results" class="search-results-scroll col-sm-5">
-									<label for="br">B&#250squeda:</label> <input type="text"
-										id="br"> <input type="button"
-										id="search-business-rules-btn" value="Buscar" />
-									<table id="businessruleResultTable"
-										class="table table-bordered table-striped ">
-										<thead>
-											<tr>
-												<th></th>
-												<th>Nombre</th>
-												<th>Descripci&#243n</th>
-											</tr>
-										</thead>
-										<tbody>
-										</tbody>
-									</table>
+						<form id="br-form" role="form">
+							<div class="container">
+								<div>
+									<div id="search-results" class="search-results-scroll col-sm-5">
+										<label for="br">B&#250squeda:</label> <input type="text"
+											id="br"> <input type="button"
+											id="search-business-rules-btn" value="Buscar" />
+										<table id="businessruleResultTable"
+											class="table table-bordered table-striped ">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Nombre</th>
+													<th>Descripci&#243n</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								id="add-business-rule-row-btn">Asociar Reglas de
-								Negocio</button>
-						</div>
+							<div id="errorsBr">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									id="add-business-rule-row-btn">Asociar Reglas de
+									Negocio</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

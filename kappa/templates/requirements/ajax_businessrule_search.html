@@ -2,7 +2,7 @@
 
 {% for businessrule in businessrules %}
 <tr>
-<td><input type='checkbox' name='businessrule_checkbox' value=''></td>   
+<td><input type='checkbox' name='businessrule_checkbox' value='{{ businessrule.object.business_rule_id }}'></td>   
 <td>{{ businessrule.object.name }}</td>   
 <td>{{ businessrule.object.description }}</td> 
 <input type='hidden' name="businessRuleIdRetrieved" value='{{ businessrule.object.business_rule_id }}'></input>

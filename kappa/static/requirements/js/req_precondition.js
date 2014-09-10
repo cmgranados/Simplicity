@@ -171,7 +171,6 @@ $( document ).ready(function() {
 	});
 });
 
-function searchSuccess(data, textStatus, jqXHR)
-{
-$('#preconditionResultTable tbody').append(data);
+function searchSuccess(data, textStatus, jqXHR) {
+	$('#preconditionResultTable tbody').html(data);
 }   
