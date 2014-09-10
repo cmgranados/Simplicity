@@ -37,40 +37,48 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
-						<p>Descripci&#243n de las precondiciones</p>
-						<textarea class="form-control" rows="3" id="description_textarea"></textarea>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								id="add-description-row-btn">Registar Descripci&#243n</button>
-						</div>
+						<form id="description-form" role="form">
+							<p>Descripci&#243n de las precondiciones</p>
+							<textarea class="form-control" rows="3" id="description_textarea" maxlength="4000" required></textarea>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary"
+									id="add-description-row-btn">Registar Descripci&#243n</button>
+							</div>
+						</form>
 					</div>
 					<div class="tab-pane" id="profile">
-						<div class="container">
-							<div>
-								<div id="search-results" 
-									class="search-results-scroll col-sm-5">
-									<label for="q">B&#250squeda requisito:</label>
-									<input type="text" id="q"> 
-									<input type="button"
-										id="search-preconditions-btn" value="Buscar" />
-									<table id="preconditionResultTable"
-										class="table table-bordered table-striped ">
-										<thead>
-											<tr>
-												<th></th>
-												<th>C&#243digo</th>
-											</tr>
-										</thead>
-										<tbody>
-										</tbody>
-									</table>
+						<form id="requirements-form" role="form">
+							<div class="container">
+								<div>
+									<div id="search-results" 
+										class="search-results-scroll col-sm-5">
+										<label for="q">B&#250squeda requisito:</label>
+										<input type="text" id="q"> 
+										<input type="button"
+											id="search-preconditions-btn" value="Buscar" />
+										
+											<table id="preconditionResultTable"
+												class="table table-bordered table-striped ">
+												<thead>
+													<tr>
+														<th></th>
+														<th>C&#243digo</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								id="add-requirement-row-btn">Registar Requisito</button>
-						</div>
+							<div id="errors">
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary"
+									id="add-requirement-row-btn">Registar Requisito</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

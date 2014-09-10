@@ -8,6 +8,6 @@
 <form method="post" class="form-horizontal" role="form" id="myReqForm" action="/save_requirement_definition/">
 		{% csrf_token %}
 {% include "requirement_wizard.html" %}
-<button class="btn btn-default" type="submit" id="save-requirement-btn">Guardar</button>
+<button class="btn btn-default" type="button" id="save-requirement-btn">Guardar</button>
 </form>
 {% endblock %}

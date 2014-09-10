@@ -52,33 +52,35 @@ class FacetedSearchView(SearchView):
 @login_required
 def searchRequirements(request):
     if not request.POST.get('q', '') :
-        content_auto_v = "descripcion"
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('q', '')
-        
     requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
     return render_to_response('ajax_requirements_search.html', {'requirements': requirements})
 
 @login_required
 def searchBusinessRules(request):
     if not request.POST.get('br', '') :
-        content_auto_v = ""
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('br', '')
          
     businessrules = SearchQuerySet().models(BusinessRule).filter(text=content_auto_v)
     return render_to_response('ajax_businessrule_search.html', {'businessrules': businessrules})
 
-@login_required
 def new_requirement(request):
     constants = MyConstants()
     requirement_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.REQUIREMENT_TYPE_CLASSIFICATION_KEY)
-    type_classification_req = TypeClassification.objects.filter(code = requirement_type_code)[:1].get()
-    
-    requirement_type_list = Type.objects.filter(type_classification_id = 
-                                                                type_classification_req.type_classification_id)
+    br_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.BUSINESS_RULES_TYPE_CLASSIFICATION_KEY)
+    type_classification_req = TypeClassification.objects.get(code = requirement_type_code)
+    type_classification_br = TypeClassification.objects.get(code = br_type_code)
+    requirement_type_list = Type.objects.filter(type_classification_id =
+                                                type_classification_req.type_classification_id)
+    br_type_list = Type.objects.filter(type_classification_id = 
+                                       type_classification_br.type_classification_id)
      
-    return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list})
+    return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
+                                                          'br_type_list' : br_type_list})
 
 @login_required
 def save_requirement_definition(request):
