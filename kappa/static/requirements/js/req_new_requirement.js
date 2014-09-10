@@ -23,7 +23,7 @@ $(document).ready(function() {
 	
 	$("#myReqForm").validate(CONF_VALIDATION);
 	
-	$("#myReqForm").submit(function(event){
+	$("#save-requirement-btn").click(function(event){
 		$("#myReqForm").validate(CONF_VALIDATION);
 		event.preventDefault();
 		

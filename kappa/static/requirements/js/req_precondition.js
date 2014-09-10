@@ -58,6 +58,7 @@ $( document ).ready(function() {
 	});
 	
 	$( "#add-description-row-btn" ).click(function(event) {
+		event.preventDefault();
 		jQuery( '#home' ).wrap( '<form id="description-form" role="form" />' );
 		$("#description-form").validate();
 		if($("#description-form").valid()) {
