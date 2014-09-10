@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	var CONF_VALIDATION = {
 		rules: {
+			requirementTitle: {
+				
+			},
 			requirementType: {
 				required: true,
 				selectcheck: true
@@ -8,7 +11,7 @@ $(document).ready(function() {
 		},
 		messages: {
 			requirementType: {
-				SelectName: "S"
+				
 			}
 		}
 	};
