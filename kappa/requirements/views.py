@@ -72,12 +72,16 @@ def searchBusinessRules(request):
 def new_requirement(request):
     constants = MyConstants()
     requirement_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.REQUIREMENT_TYPE_CLASSIFICATION_KEY)
-    type_classification_req = TypeClassification.objects.filter(code = requirement_type_code)[:1].get()
-    
-    requirement_type_list = Type.objects.filter(type_classification_id = 
-                                                                type_classification_req.type_classification_id)
+    br_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.BUSINESS_RULES_TYPE_CLASSIFICATION_KEY)
+    type_classification_req = TypeClassification.objects.get(code = requirement_type_code)
+    type_classification_br = TypeClassification.objects.get(code = br_type_code)
+    requirement_type_list = Type.objects.filter(type_classification_id =
+                                                type_classification_req.type_classification_id)
+    br_type_list = Type.objects.filter(type_classification_id = 
+                                       type_classification_br.type_classification_id)
      
-    return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list})
+    return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
+                                                          'br_type_list' : br_type_list})
 
 @login_required
 def save_requirement_definition(request):

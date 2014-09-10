@@ -4,7 +4,6 @@ $( document ).ready(function() {
 		$('#brModal').modal('hide')
 	});
 	
-	
 	var $lastChar =1, $newRow;
 	
 	$( "#search-business-rules-btn" ).click(function() {
@@ -16,7 +15,10 @@ $( document ).ready(function() {
 	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 	        },
 	        success: searchSuccessBr,
-	        dataType: 'html'
+	        dataType: 'html',
+	        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Hubo un error al intentar guardar la regla de negocio."); 
+            }    
 	    });
 	});
 	
@@ -70,5 +72,4 @@ $( document ).ready(function() {
 			});
 		}
 	});
-	
 });
