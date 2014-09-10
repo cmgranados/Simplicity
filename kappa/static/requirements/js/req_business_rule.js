@@ -4,10 +4,6 @@ $( document ).ready(function() {
 		$('#brModal').modal('hide')
 	});
 	
-	$('#newRequirementModal  #close-precondition-modal-btn').click(function(e) {
-		$('#brModal').modal('hide')
-	});
-	
 	var $lastChar =1, $newRow;
 	
 	$( "#search-business-rules-btn" ).click(function() {
@@ -19,7 +15,10 @@ $( document ).ready(function() {
 	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 	        },
 	        success: searchSuccessBr,
-	        dataType: 'html'
+	        dataType: 'html',
+	        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Hubo un error al intentar guardar la regla de negocio."); 
+            }    
 	    });
 	});
 	
@@ -73,25 +72,4 @@ $( document ).ready(function() {
 			});
 		}
 	});
-	
-	$( "#add-br-row-btn" ).click(function() {
-		$.ajax({
-	        type: "POST",
-	        url: "/kappa/new_businessrule_ajax/",
-	        data: { 
-	            'newBusinessRuleTitle' : $('#newBusinessRuleTitle').val(),
-	            'newBusinessRuleCode' : $('#newBusinessRuleCode').val(),
-	            'businessRulesType' : $('#businessRulesType').val(),
-	            'newBusinessRuleDescription' : $('#newBusinessRuleDescription').val(),
-	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
-	        },
-	        success: saveSuccessBr,
-	        dataType: 'html'
-	    });
-	});
-	
-	function saveSuccessBr(data, textStatus, jqXHR)
-	{
-	alert("done");
-	} 
 });

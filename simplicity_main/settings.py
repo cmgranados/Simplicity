@@ -24,6 +24,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates/home"),
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
+    os.path.join(BASE_DIR, "kappa/templates/businessrules"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"),
     os.path.join(BASE_DIR, "alfa/templates/projects"),
@@ -71,6 +72,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'django.contrib.formtools',
     'autofixture',
+    'mockups',
     # 'debug_toolbar',
 )
 
