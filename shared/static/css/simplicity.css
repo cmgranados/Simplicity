@@ -70,3 +70,7 @@
 	display: inline-block;
 }
 
+.error {
+	color: #a94442;
+}
+

@@ -69,7 +69,6 @@ def searchBusinessRules(request):
     businessrules = SearchQuerySet().models(BusinessRule).filter(text=content_auto_v)
     return render_to_response('ajax_businessrule_search.html', {'businessrules': businessrules})
 
-@login_required
 def new_requirement(request):
     constants = MyConstants()
     requirement_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.REQUIREMENT_TYPE_CLASSIFICATION_KEY)

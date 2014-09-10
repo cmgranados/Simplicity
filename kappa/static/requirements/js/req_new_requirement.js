@@ -1,25 +1,48 @@
 $(document).ready(function() {
+	var CONF_VALIDATION = {
+		rules: {
+			requirementType: {
+				required: true,
+				selectcheck: true
+			}
+		},
+		messages: {
+			requirementType: {
+				SelectName: "S"
+			}
+		}
+	};
+	
+	jQuery.validator.addMethod('selectcheck', function (value) {
+        return (value != 'default');
+    }, "Este campo es obligatorio");
+	
+	
+	$("#myReqForm").validate(CONF_VALIDATION);
 	
 	$("#myReqForm").submit(function(event){
+		$("#myReqForm").validate(CONF_VALIDATION);
 		event.preventDefault();
 		
-		var requirement = buildRequirementDefinion();
-		buildRequirementPreconditions(requirement);
-		buildRequirementBusinessRules(requirement);
-		buildOutputInformation(requirement);
-		buildInputInformation(requirement);
-		buildAcceptanceCriteria(requirement);
-		console.log('req'+ JSON.stringify(requirement));
-		$.ajax({
-	        type: "POST",
-	        url: "/kappa/save_requirement_ajax/",
-	        data: { 
-	            'requirement' : JSON.stringify(requirement),
-	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
-	        },
-	        success: success,
-	        dataType: 'html'
-	    });
+		if($("#myReqForm").valid()) {
+			var requirement = buildRequirementDefinion();
+			buildRequirementPreconditions(requirement);
+			buildRequirementBusinessRules(requirement);
+			buildOutputInformation(requirement);
+			buildInputInformation(requirement);
+			buildAcceptanceCriteria(requirement);
+			console.log('req'+ JSON.stringify(requirement));
+			$.ajax({
+		        type: "POST",
+		        url: "/kappa/save_requirement_ajax/",
+		        data: { 
+		            'requirement' : JSON.stringify(requirement),
+		            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+		        },
+		        success: success,
+		        dataType: 'html'
+		    });
+		}
 	});
 	
 	
@@ -29,9 +52,10 @@ $(document).ready(function() {
 
 	$('#rootwizard').bootstrapWizard({
 		onNext : function(tab, navigation, index) {
+			$("#myReqForm").validate();
 			if (index == 1) {
 				// Make sure we entered the name
-				if (!$('#requirementTitle').val()) {
+				if (!$('#requirementTitle').valid()) {
 					//alert('Debes ingresar un título');
 					$('#name').focus();
 					return false;
