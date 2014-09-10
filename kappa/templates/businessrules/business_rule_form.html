@@ -1,23 +1,22 @@
-<label for="newBusinessRuleTitle">Nombre</label>
-<input type="text" class="form-control" id="newBusinessRuleTitle"
-	name="newBusinessRuleTitle"
-	placeholder="Introduce el título de la regla de negocio">
-<label for="newBusinessRuleCode">C&#243digo</label>
-<input type="text" class="form-control" id="newBusinessRuleCode"
-	name="newBusinessRuleCode"
-	placeholder="Introduce el código del requisito">
-<label for="businessRulesType">Tipo</label>
-<select class="form-control" id="businessRulesType"
-	name="businessRulesType">
-	<option>Seleccione tipo de regla de negocio</option> {% for type in
-	br_type_list %}
-	<option value='{{ type.type_id }}'>{{ type.name }}</option> {% endfor
-	%}
-</select>
-<label for="newBusinessRuleDescription">Descripci&#243n</label>
-<textarea class="form-control" rows="3" id="newBusinessRuleDescription"
-	name="newBusinessRuleDescription"
-	placeholder="Introduce una descripción para tu regla de negocio"></textarea>
-<div class="modal-footer">
-	<button type="button" class="btn btn-primary" id="add-br-row-btn">Registar</button>
-</div>
+<label for="newBusinessRuleTitle">Nombre</label> <input type="text"
+						class="form-control" id="newBusinessRuleTitle"
+						name="newBusinessRuleTitle"
+						placeholder="Introduce el título de la regla de negocio">
+					<label for="newBusinessRuleCode">C&#243digo</label> <input
+						type="text" class="form-control" id="newBusinessRuleCode"
+						name="newBusinessRuleCode"
+						placeholder="Introduce el código del requisito"> <label
+						for="businessRulesType">Tipo</label> 
+					<select class="form-control"
+						id="businessRulesType" name="businessRulesType">
+						<option>Seleccione tipo de regla de negocio</option> 
+						{% for type in list %}
+						<option value='{{ type.type_id }}'>{{ type.name }}</option> 
+						{% endfor %}
+					</select> <label for="newBusinessRuleDescription">Descripci&#243n</label>
+					<textarea class="form-control" rows="3"
+						id="newBusinessRuleDescription" name="newBusinessRuleDescription"
+						placeholder="Introduce una descripción para tu regla de negocio"></textarea>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="add-br-row-btn">Registar</button>
+					</div>
