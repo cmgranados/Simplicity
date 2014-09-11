@@ -14,10 +14,17 @@ from haystack.views import SearchView
 from jira.client import JIRA
 
 from kappa.businessrules.models import BusinessRule
+from kappa.businessrules.utils import get_businessrules_associated_to_requirement
 from kappa.preconditions.models import Precondition, PreconditionRequirement, \
     PreconditionDescription
-from kappa.requirements.models import Requirement, RequirementBusinessRule,\
+from kappa.preconditions.utils import  \
+    get_preconditions_req_by_req, get_preconditions_desc_by_req
+from kappa.requirements.models import Requirement, RequirementBusinessRule, \
     RequirementInput, RequirementOutput, AcceptanceCriteria
+from kappa.requirements.utils import get_requirement_types, \
+    get_businessrules_types, get_if_inputs_associated_to_requirement, \
+    get_if_outputs_associated_to_requirement, \
+    get_acceptancecriterias_associated_to_requirement
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
@@ -52,17 +59,16 @@ class FacetedSearchView(SearchView):
 @login_required
 def searchRequirements(request):
     if not request.POST.get('q', '') :
-        content_auto_v = "descripcion"
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('q', '')
-        
     requirements = SearchQuerySet().models(Requirement).filter(text=content_auto_v)
     return render_to_response('ajax_requirements_search.html', {'requirements': requirements})
 
 @login_required
 def searchBusinessRules(request):
     if not request.POST.get('br', '') :
-        content_auto_v = ""
+        content_auto_v = "*:*"
     else:
         content_auto_v = request.POST.get('br', '')
          
@@ -70,16 +76,8 @@ def searchBusinessRules(request):
     return render_to_response('ajax_businessrule_search.html', {'businessrules': businessrules})
 
 def new_requirement(request):
-    constants = MyConstants()
-    requirement_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.REQUIREMENT_TYPE_CLASSIFICATION_KEY)
-    br_type_code = constants.TYPE_CLASSIFICATION_CODE.get(constants.BUSINESS_RULES_TYPE_CLASSIFICATION_KEY)
-    type_classification_req = TypeClassification.objects.get(code = requirement_type_code)
-    type_classification_br = TypeClassification.objects.get(code = br_type_code)
-    requirement_type_list = Type.objects.filter(type_classification_id =
-                                                type_classification_req.type_classification_id)
-    br_type_list = Type.objects.filter(type_classification_id = 
-                                       type_classification_br.type_classification_id)
-     
+    requirement_type_list = get_requirement_types();
+    br_type_list = get_businessrules_types();
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
                                                           'br_type_list' : br_type_list})
 
@@ -268,4 +266,27 @@ def save_acceptance_criteria(requirement_dict, requirement):
         acceptance_criteria.save()
         acceptance_criteria.code = "CA_" + str(acceptance_criteria.acceptance_criteria_id)
         acceptance_criteria.save()
-    
+
+def update_requirement(request):
+    if request.method == "GET": 
+        requirement_id = request.GET.get('requirementID', '')
+        requirement = Requirement.objects.get(requirement_id = requirement_id)
+        requirement_type_list = get_requirement_types();
+        br_type_list = get_businessrules_types();
+#         precondition_list = Precondition.objects.filter(requirement_id=requirement.requirement_id)
+#         precondition_req_associated_list = get_preconditions_req_by_req(requirement, precondition_list);
+#         precondition_desc_associated_list = get_preconditions_desc_by_req(requirement, precondition_list);
+#         businessrule_associated_list = get_businessrules_associated_to_requirement(requirement);
+#         if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
+#         if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
+#         acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
+        return render(request, 'requirement_form_base.html', {'requirement': requirement, 
+                                                              'requirement_type_list': requirement_type_list, 
+                                                              'br_type_list' : br_type_list,
+#                                                               'precondition_req_associated_list': precondition_req_associated_list,
+#                                                               'precondition_desc_associated_list': precondition_desc_associated_list,
+#                                                               'businessrule_associated_list': requirement_type_list,
+#                                                               'if_input_associated_list': requirement_type_list,
+#                                                               'if_output_associated_list': requirement_type_list,
+#                                                               'acceptancecriteria_associated_list': requirement_type_list,
+                                                              }) 
