@@ -1,5 +1,8 @@
 {% extends "shared/base_generic.html" %}
 {% load static %}
+{% block javascript %}
+<script src="{% static 'js/home/index.js' %}" type="text/javascript"></script>
+{% endblock %} 
 {% block section_option%}
 <div class="title-module">
 	{% if user and not user.is_anonymous%}
@@ -29,20 +32,126 @@
 {% endblock %}
 
 {% block content %}
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-        	 <h3 class="panel-title">Acceso a m&oacute;dulos</h3>
-    	</div>
-    	<div class="panel-body">
-    		<div class="row">
-			  <div class="col-xs-3 col-md-2">
-			    <a href="requirements" class="thumbnail">
-			      <p>Requisitos</p>
-			    </a>
-			  </div>			  
+
+<div class="row">
+	<div class="col-md-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading" data-content="Funcionalidad que permite la captura de las necesidades del cliente, a&uacute;n sin estar formalizadas en un requisito."
+							data-trigger="hover">
+				<h3 class="panel-title">Elicitaci&oacute;n / Educci&oacute;</h3>
 			</div>
-    	</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Necesidades.png" %}" alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Otro.png" %}"  alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div class="col-md-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading" data-content="Etapa para el an&aacute;lisis de requisitos, en donde se encuentra el Core del sistema Kappa. Se pueden crear requisitos y asociar las reglas de negocio."
+							data-trigger="hover">
+				<h3 class="panel-title">An&aacute;lisis</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="requirements" class="thumbnail"> <img src="{% static "img/Requisitos.png" %}" alt="..." data-toggle="popover"
+							data-content="asdf"
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Otro.png" %}"  alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading"  data-content="El dise&ntilde;o de requisitos es la etapa posterior al an&aacute;lisis. Por el momento, se contempla el manejo de dos metodolog&iacute;as: historias de usuario y casos de uso."
+							data-trigger="hover">
+				<h3 class="panel-title">Dise&ntilde;o</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Historias.png" %}" alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/CasosDeUso.png" %}"  alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+	<img src="{% static "img/Banner.png" %}" alt="..." data-toggle="popover"
+		data-content=""
+		data-trigger="hover">
+	</div>
+	<div class="col-md-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading" data-content="Sistema para Verificaci&oacute;n y Validaci&oacute;n de procesos."
+							data-trigger="hover">
+				<h3 class="panel-title">Sistema AneMo</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Inspeccionar.png" %}" alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Revisar.png" %}"  alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<a href="#" class="thumbnail"> <img src="{% static "img/Administrar.png" %}"  alt="..." data-toggle="popover"
+							data-content=""
+							data-trigger="hover">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block section_statistics %}
