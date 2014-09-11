@@ -18,10 +18,10 @@
 					    <tbody id="input_table_body">
 					    {% for input in if_input_associated_list %}
 							<tr>
-								<td><input type='checkbox' name='infFlowInput_checkbox' value=''></td>
-					            <td><input type='text' name='infFlowInput' maxlength='50' value='{{ input.input }}' required></input></td>
-					            <td><input type='text' name='infFlowInput_description' maxlength='50' value='{{ input.description }}' required></input></td>
-					            <td><input type='text' name='infFlowInput_datatype' maxlength='50' value='{{ input.data_type }}'required></input></td>
+								<td><input type='checkbox' name='infFlowInput_checkbox_{{forloop.counter}}' value=''></td>
+					            <td><input type='text' name='infFlowInput_{{forloop.counter}}' maxlength='50' value='{{ input.input }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_description_{{forloop.counter}}' maxlength='50' value='{{ input.description }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_datatype_{{forloop.counter}}' maxlength='50' value='{{ input.data_type }}' required></input></td>
 					        </tr>
 						{% endfor %}
 					    </tbody>

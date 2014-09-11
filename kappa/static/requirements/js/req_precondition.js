@@ -87,6 +87,7 @@ $( document ).ready(function() {
 	
 	$( "#requirements-form" ).submit(function(event) {
 		event.preventDefault();
+		$("#requirements-form").validate(CONF_VALIDATION);
 		if($("#requirements-form").valid()) {
 			$('#preconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				if($('#preconditionTable tbody tr') != null && $('#preconditionTable tbody tr').length == 0){
