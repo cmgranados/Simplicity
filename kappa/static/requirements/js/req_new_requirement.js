@@ -64,10 +64,6 @@ $(document).ready(function() {
 					return false;
 				}
 			}
-
-			// Set the name for the next tab
-			$('#tab3').html('Hello, ' + $('#name').val());
-
 		},
 		onTabShow : function(tab, navigation, index) {
 			var $total = navigation.find('li').length;

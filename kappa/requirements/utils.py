@@ -24,13 +24,13 @@ def get_businessrules_types():
 
 
 def get_if_inputs_associated_to_requirement(requirement):
-    requirement_input_list = RequirementInput.objects.get(requirement_id=requirement.requirement_id)
+    requirement_input_list = RequirementInput.objects.filter(requirement_id=requirement.requirement_id)
     return requirement_input_list
     
 def get_if_outputs_associated_to_requirement(requirement):
-    requirement_output_list = RequirementOutput.objects.get(requirement_id=requirement.requirement_id)
+    requirement_output_list = RequirementOutput.objects.filter(requirement_id=requirement.requirement_id)
     return requirement_output_list
 
 def get_acceptancecriterias_associated_to_requirement(requirement):
-    acceptance_criteria_list = AcceptanceCriteria.objects.get(requirement_id=requirement.requirement_id)
+    acceptance_criteria_list = AcceptanceCriteria.objects.filter(requirement_id=requirement.requirement_id)
     return acceptance_criteria_list
