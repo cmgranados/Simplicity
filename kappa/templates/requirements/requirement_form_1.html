@@ -2,7 +2,9 @@
   <div class="form-group">
     <div class="col-sm-6">
       <label for="requirementTitle">Nombre</label>
-      <input type="text" class="form-control" id="requirementTitle" name="requirementTitle" placeholder="Introduce el t&iacute;tulo del requisito" required aria-required="true">
+      <input type="text" class="form-control" id="requirementTitle" 
+      name="requirementTitle" placeholder="Introduce el t&iacute;tulo del requisito" 
+      required aria-required="true" value="{{ requirement.title }}" maxlength="512">
     </div>
   </div>
 </div>
@@ -24,7 +26,11 @@
       <select class="form-control" id="requirementType" name="requirementType" required>
         <option value="default">Seleccione tipo de requisito</option>
         {% for type in requirement_type_list %}
-          <option value='{{ type.type_id }}'>
+          <option value='{{ type.type_id }}' 
+          	{% if type.type_id = requirement.type.type_id %}
+          		selected="selected"
+          	{% endif %}
+          >
               {{ type.name }}
           </option>
 		{% endfor %}
@@ -38,7 +44,7 @@
     <div class="col-sm-6">
       <label for="requirementDescription">Definici&#243n de Requisito</label>
       <textarea class="form-control" rows="3" id="requirementDescription" name="requirementDescription"
-      placeholder="Introduce una descripción para tu requisito"></textarea>
+      placeholder="Introduce una descripción para tu requisito">{{ requirement.description }}</textarea>
     </div>
   </div>
 </div>
@@ -48,7 +54,7 @@
     <div class="col-sm-6">
       <label for="requirementKeywords">Palabras Clave</label>
       <textarea class="form-control" rows="3" id="requirementKeywords" name="requirementKeywords"
-      placeholder="Introduce palabras clave separadas por coma (,)"></textarea>
+      placeholder="Introduce palabras clave separadas por coma (,)">{{ requirement.keywords }}</textarea>
     </div>
   </div>
 </div>
