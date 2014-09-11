@@ -12,7 +12,7 @@ $(document).ready(function(){
 				$firstRow = "<tr> \
 					<td><input type='checkbox' name='infFlowInput_checkbox_1' value=''></td>\
 		            <td><input type='text' name='infFlowInput_1' maxlength='50' required /></td> \
-		            <td><input type='text' name='infFlowInput_description_1' maxlength='50' required /></td> \
+		            <td><textArea name='infFlowInput_description_1' maxlength='50' required /></td> \
 		            <td><input type='text' name='infFlowInput_datatype_1' maxlength='50' required /></td> \
 		        </tr>"
 				$('#inputTable > tbody:last').append($firstRow)			
@@ -30,7 +30,7 @@ $(document).ready(function(){
 				$firstRow = "<tr> \
 					<td><input type='checkbox' name='infFlowOutput_checkbox_1' value=''></td>\
 		            <td><input type='text' name='infFlowOutput_1' maxlength='50' required /></td> \
-		            <td><input type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
+		            <td><textArea type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
 		            <td><input type='text' name='infFlowOutput_datatype_1' maxlength='50' required /></td> \
 		        </tr>"
 				$('#outputTable > tbody:last').append($firstRow)			
@@ -47,9 +47,9 @@ $(document).ready(function(){
 	    $lastChar = $lastChar + 1;
 	    $newRow = "<tr> \
 	    	<td><input type='checkbox' name='infFlowInput_checkbox_"+$lastChar+"' value=''></td> \
-            <td><input type='text' name='infFlowInput_"+$lastChar+"' maxlength='50' /></td> \
-            <td><input type='text' name='infFlowInput_description_"+$lastChar+"' maxlength='50' /></td> \
-            <td><input type='text' name='infFlowInput_datatype_"+$lastChar+"' maxlength='50' /></td> \
+            <td><input type='text' name='infFlowInput_"+$lastChar+"' maxlength='50' required/></td> \
+            <td><input type='text' name='infFlowInput_description_"+$lastChar+"' maxlength='50' required/></td> \
+            <td><input type='text' name='infFlowInput_datatype_"+$lastChar+"' maxlength='50' required/></td> \
         </tr>"
     	return $newRow;
 	}
@@ -59,10 +59,10 @@ $(document).ready(function(){
 	    $lastChar = parseInt(id.substr(id.lastIndexOf("_") + 1, id.length));
 	    $lastCharOutput = $lastCharOutput + 1;
 	    $newRowOutput = "<tr> \
-	    	<td><input type='checkbox' name='infFlowOutput_checkbox_"+$lastCharOutput+"' value=''></td> \
-            <td><input type='text' name='infFlowOutput_"+$lastCharOutput+"' maxlength='50' /></td> \
-            <td><input type='text' name='infFlowOutput_description_"+$lastCharOutput+"' maxlength='50' /></td> \
-            <td><input type='text' name='infFlowOutput_datatype_"+$lastCharOutput+"' maxlength='50' /></td> \
+	    	<td><input type='checkbox' name='infFlowOutput_checkbox_"+$lastCharOutput+"' value='' required></td> \
+            <td><input type='text' name='infFlowOutput_"+$lastCharOutput+"' maxlength='50' required/></td> \
+            <td><input type='text' name='infFlowOutput_description_"+$lastCharOutput+"' maxlength='50' required/></td> \
+            <td><input type='text' name='infFlowOutput_datatype_"+$lastCharOutput+"' maxlength='50' required/></td> \
         </tr>"
     	return $newRowOutput;
 	}

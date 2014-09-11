@@ -5,7 +5,7 @@
 
 <div class="container">
 		<div class="row">
-	    	<div class="col-md-6">
+	    	<div class="col-md-9">
 		    	<form id="criteria-form" role="form">
 					<table id="tableCriteria" class="table table-bordered table-striped">
 					    <thead>
@@ -16,16 +16,26 @@
 					        </tr>
 					    </thead>
 					    <tbody id="table_criteria_body">
+					    {% for criteria in acceptancecriteria_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='criteria_checkbox' value=''></td>
+					            <td><input type='text' name='criteria_name' maxlength='255' value='{{ criteria.name }}' required></input></td>
+					            <td><input type='text' name='criteria_description' value='{{ criteria.description }}' maxlength='255' required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>
 			</div>
 			
-			<div class="col-md-6">
-				<button id="addRowCriteria" class="btn btn-default" type="button">Agregar</button>
-				<button id="deleteRowCriteria" class="btn btn-default" type="button">Eliminar</button>
+			<div class="col-md-3">
+				<div>
+					<button id="addRowCriteria" class="btn btn-default" type="button">Agregar</button>
+				</div>
+				<div>
+					<button id="deleteRowCriteria" class="btn btn-default" type="button">Eliminar</button>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<input type="submit" value="Enviar formulario">

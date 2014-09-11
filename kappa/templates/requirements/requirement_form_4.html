@@ -4,7 +4,7 @@
 {% endblock %}
 <div class="container">
 		<div class="row">
-	    	<div class="col-md-6">
+	    	<div class="col-md-9">
 		    	<form id="inputs-form" role="form">
 					<table id="inputTable" class="table table-bordered table-striped">
 					    <thead>
@@ -16,18 +16,30 @@
 					        </tr>
 					    </thead>
 					    <tbody id="input_table_body">
+					    {% for input in if_input_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='infFlowInput_checkbox_{{forloop.counter}}' value=''></td>
+					            <td><input type='text' name='infFlowInput_{{forloop.counter}}' maxlength='50' value='{{ input.input }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_description_{{forloop.counter}}' maxlength='50' value='{{ input.description }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_datatype_{{forloop.counter}}' maxlength='50' value='{{ input.data_type }}' required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>
 			</div>
-			<div class="col-md-6">
-				<button id="add-row-input-btn" class="btn btn-default" type="button">Agregar</button>
-				<button id="delete-row-input-btn" class="btn btn-default" type="button">Eliminar</button>
+			<div class="col-md-3">
+				<div>
+					<button id="add-row-input-btn" class="btn btn-default" type="button">Agregar</button>
+				</div>
+				<div>
+					<button id="delete-row-input-btn" class="btn btn-default" type="button">Eliminar</button>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-9">
 				<form id="outputs-form" role="form">
 				    <table id="outputTable" class="table table-bordered table-striped">
 					    <thead>
@@ -39,13 +51,25 @@
 					        </tr>
 					    </thead>
 					    <tbody id="output_table_body">
+					    {% for output in if_output_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='infFlowOutput_checkbox' value=''></td>
+					            <td><input type='text' name='infFlowOutput' maxlength='50' value='{{ output.output }}' required></input></td>
+					            <td><input type='text' name='infFlowOutput_description' value='{{ output.description }}' maxlength='50' required></input></td>
+					            <td><input type='text' name='infFlowOutput_datatype' value='{{ output.data_type }}' maxlength='50' required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>
 			</div>
-			<div class="col-md-6">
-				<button id="add-row-output-btn" class="btn btn-default" type="button">Agregar</button>
-				<button id="delete-row-output-btn" class="btn btn-default" type="button">Eliminar</button>
+			<div class="col-md-3">
+				<div>
+					<button id="add-row-output-btn" class="btn btn-default" type="button">Agregar</button>
+				</div>
+				<div>
+					<button id="delete-row-output-btn" class="btn btn-default" type="button">Eliminar</button>
+				</div>
 			</div>
 		</div>
 </div>

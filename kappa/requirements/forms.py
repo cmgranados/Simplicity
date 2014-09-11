@@ -20,6 +20,7 @@ from kappa.businessrules.models import BusinessRule
 from kappa.requirements.models import Requirement
 from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
+from shared.states_simplicity.models import State
 
 
 # Get an instance of a logger
@@ -38,6 +39,10 @@ class RequirementSearchForm(SearchForm):
 	
 	type = forms.ModelChoiceField(label="Tipo", required=False, queryset=Type.objects.filter(type_id__in=Requirement.objects.values_list('type_id').distinct()), 
 								widget=forms.Select(attrs={'class':'selector'}), empty_label="Seleccione una opción ...")
+	
+	state = forms.ModelChoiceField(label="Estado", required=False, queryset=State.objects.filter(state_id__in=Requirement.objects.values_list('state_id').distinct()), 
+								widget=forms.Select(attrs={'class':'selector'}), empty_label="Seleccione una opción ...")
+	
 	sort = forms.ChoiceField(label='Ordenar por', required=False, choices = SORT_OPTIONS)
 	
 	@property
@@ -65,6 +70,9 @@ class RequirementSearchForm(SearchForm):
 		 # Check to see if a start_date was chosen.
 		if self.cleaned_data['type']:
 			sqs = sqs.filter(type_id__gte=self.cleaned_data.get('type').type_id)
+			
+		if self.cleaned_data['state']:
+			sqs = sqs.filter(state_id__gte=self.cleaned_data.get('state').state_id)
 			
 		 # Check to see if a start_date was chosen.
 		if self.cleaned_data['start_date']:

@@ -7,7 +7,8 @@ class Precondition(models.Model):
     requirement = models.ForeignKey(Requirement)
 
     def __unicode__(self):
-        return self.precondition_id
+        return str(self.precondition_id)
+    
     class Meta:
         db_table = "kp_pco_precondition"
 
@@ -18,7 +19,7 @@ class PreconditionRequirement(models.Model):
     precondition = models.ForeignKey(Precondition)
 
     def __unicode__(self):
-        return self.precondition
+        return str(self.precondition_requirement_id)
 
     class Meta:
         unique_together = (("requirement", "precondition"),)
@@ -31,6 +32,6 @@ class PreconditionDescription(models.Model):
     precondition = models.ForeignKey(Precondition)
 
     def __unicode__(self):
-        return self.precondition
+        return str(self.precondition_description_id)
     class Meta:
         db_table = "kp_pco_precondition_description"

@@ -269,24 +269,23 @@ def save_acceptance_criteria(requirement_dict, requirement):
 
 def update_requirement(request):
     if request.method == "GET": 
-        requirement_id = request.GET.get('requirementID', '')
-        requirement = Requirement.objects.get(requirement_id = requirement_id)
+        requirement_id_param = request.GET.get('requirementID', '')
+        requirement = Requirement.objects.get(requirement_id = requirement_id_param)
         requirement_type_list = get_requirement_types();
         br_type_list = get_businessrules_types();
-#         precondition_list = Precondition.objects.filter(requirement_id=requirement.requirement_id)
-#         precondition_req_associated_list = get_preconditions_req_by_req(requirement, precondition_list);
-#         precondition_desc_associated_list = get_preconditions_desc_by_req(requirement, precondition_list);
-#         businessrule_associated_list = get_businessrules_associated_to_requirement(requirement);
-#         if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
-#         if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
-#         acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
+        precondition_req_associated_list = get_preconditions_req_by_req(requirement);
+        precondition_desc_associated_list = get_preconditions_desc_by_req(requirement);
+        businessrule_associated_list = get_businessrules_associated_to_requirement(requirement);
+        if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
+        if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
+        acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
         return render(request, 'requirement_form_base.html', {'requirement': requirement, 
                                                               'requirement_type_list': requirement_type_list, 
                                                               'br_type_list' : br_type_list,
-#                                                               'precondition_req_associated_list': precondition_req_associated_list,
-#                                                               'precondition_desc_associated_list': precondition_desc_associated_list,
-#                                                               'businessrule_associated_list': requirement_type_list,
-#                                                               'if_input_associated_list': requirement_type_list,
-#                                                               'if_output_associated_list': requirement_type_list,
-#                                                               'acceptancecriteria_associated_list': requirement_type_list,
+                                                              'precondition_req_associated_list': precondition_req_associated_list,
+                                                              'precondition_desc_associated_list': precondition_desc_associated_list,
+                                                              'businessrule_associated_list': businessrule_associated_list,
+                                                              'if_input_associated_list': if_input_associated_list,
+                                                              'if_output_associated_list': if_output_associated_list,
+                                                              'acceptancecriteria_associated_list': acceptancecriteria_associated_list,
                                                               }) 
