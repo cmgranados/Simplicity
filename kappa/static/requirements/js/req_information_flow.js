@@ -12,7 +12,7 @@ $(document).ready(function(){
 				$firstRow = "<tr> \
 					<td><input type='checkbox' name='infFlowInput_checkbox_1' value=''></td>\
 		            <td><input type='text' name='infFlowInput_1' maxlength='50' required /></td> \
-		            <td><input type='text' name='infFlowInput_description_1' maxlength='50' required /></td> \
+		            <td><textArea name='infFlowInput_description_1' maxlength='50' required /></td> \
 		            <td><input type='text' name='infFlowInput_datatype_1' maxlength='50' required /></td> \
 		        </tr>"
 				$('#inputTable > tbody:last').append($firstRow)			
@@ -30,7 +30,7 @@ $(document).ready(function(){
 				$firstRow = "<tr> \
 					<td><input type='checkbox' name='infFlowOutput_checkbox_1' value=''></td>\
 		            <td><input type='text' name='infFlowOutput_1' maxlength='50' required /></td> \
-		            <td><input type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
+		            <td><textArea type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
 		            <td><input type='text' name='infFlowOutput_datatype_1' maxlength='50' required /></td> \
 		        </tr>"
 				$('#outputTable > tbody:last').append($firstRow)			

@@ -55,14 +55,11 @@ $(document).ready(function() {
 
 	$('#rootwizard').bootstrapWizard({
 		onNext : function(tab, navigation, index) {
-			$("#myReqForm").validate();
-			if (index == 1) {
-				// Make sure we entered the name
-				if (!$('#requirementTitle').valid()) {
-					//alert('Debes ingresar un título');
-					$('#name').focus();
-					return false;
-				}
+			
+			var isValid = validate(index);
+			
+			if(!isValid) {
+				return false;
 			}
 		},
 		onTabShow : function(tab, navigation, index) {
@@ -72,13 +69,39 @@ $(document).ready(function() {
 			$('#rootwizard').find('.bar').css({
 				width : $percent + '%'
 			});
+		},
+		
+		onTabClick: function(tab, navigation, index) {
+			var isValid = validate(index + 1);
+			
+			if(!isValid) {
+				return false;
+			}
 		}
 	});
+	
+	function validate(index) {
+		var isValid = true;
+		if (index == 1) {
+			$("#myReqForm").validate();
+			if (!$('#myReqForm').valid()) {
+				isValid = false;
+			}
+		} else if(index == 4) {
+			if (!$('#inputs-form').valid() || !$('#outputs-form').valid()) {
+				isValid = false;
+			}
+		} else if(index == 5) {
+			if (!$('criteria-form').valid()) {
+				isValid = false;
+			}
+		}
+		return isValid;
+	}
 	
 	function buildRequirementDefinion() {
 		var requirement = new Object();
 		requirement.name = $('#requirementTitle').val();
-		//requirement.code = $('#requirementCode').val();
 		requirement.type = $('#requirementType').val();
 		requirement.description = $('#requirementDescription').val();
 		requirement.keywords = $('#requirementKeywords').val();
@@ -126,7 +149,7 @@ $(document).ready(function() {
 		
 		$('#outputTable > tbody  > tr').each(function(index) {
 			var out = $(this).find("td").eq(1).find("input").val();
-			var description = $(this).find("td").eq(2).find("input").val();
+			var description = $(this).find("td").eq(2).find("textArea").val();
 			var dataType = $(this).find("td").eq(3).find("input").val();
 			
 			var output = new Object();
@@ -148,7 +171,7 @@ $(document).ready(function() {
 		
 		$('#inputTable > tbody  > tr').each(function(index) {
 			var inp = $(this).find("td").eq(1).find("input").val();
-			var description = $(this).find("td").eq(2).find("input").val();
+			var description = $(this).find("td").eq(2).find("textArea").val();
 			var dataType = $(this).find("td").eq(3).find("input").val();
 			
 			var input = new Object();
