@@ -4,7 +4,7 @@
       <label for="requirementTitle">Nombre</label>
       <input type="text" class="form-control" id="requirementTitle" 
       name="requirementTitle" placeholder="Introduce el t&iacute;tulo del requisito" 
-      required aria-required="true" value="{{ requirement.title }}" maxlength="512">
+      required aria-required="true" maxlength="512" value="{{ requirement.title }}">
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
   <div class="form-group">
     <div class="col-sm-6 input-group">
       <div class="input-group-addon">REQ - </div>
-      <input type="text" class="form-control" id="requirementCode" name="requirementCode" placeholder="Introduce el código del requisito">
+      <input type="text" class="form-control" id="requirementCode" name="requirementCode" placeholder="Introduce el c&#243digo del requisito">
     </div>
   </div>
 </div-->
@@ -43,8 +43,8 @@
   <div class="form-group">
     <div class="col-sm-6">
       <label for="requirementDescription">Definici&#243n de Requisito</label>
-      <textarea class="form-control" rows="3" id="requirementDescription" name="requirementDescription"
-      placeholder="Introduce una descripción para tu requisito">{{ requirement.description }}</textarea>
+      <textarea class="form-control" rows="3" id="requirementDescription" name="requirementDescription" maxlength="4000"
+      placeholder="Introduce una descripci&#243n para tu requisito">{{ requirement.description }}</textarea>
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@
   <div class="form-group">
     <div class="col-sm-6">
       <label for="requirementKeywords">Palabras Clave</label>
-      <textarea class="form-control" rows="3" id="requirementKeywords" name="requirementKeywords"
+      <textarea class="form-control" rows="3" id="requirementKeywords" name="requirementKeywords" maxlength="512"
       placeholder="Introduce palabras clave separadas por coma (,)">{{ requirement.keywords }}</textarea>
     </div>
   </div>

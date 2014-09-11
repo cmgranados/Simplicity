@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
 	var $lastChar =1, $newRow;
+	
+	$('#criteria-form').validate();
 
 	$get_lastID_criteriaTable = function(){
 		var id = $('#tableCriteria tr:last-child td:first-child input').attr("name");
@@ -15,17 +17,20 @@ $(document).ready(function(){
 	}
 
 	$("#addRowCriteria").click(function(){
-	 	if($('#table_criteria_body tr').length==0){
-			$firstRow = "<tr> \
+		
+	 	if ($('#criteria-form').valid()) {
+			if ($('#table_criteria_body tr').length == 0) {
+				$firstRow = "<tr> \
 				<td><input type='checkbox' name='criteria_checkbox_1' value=''></td>\
 	            <td><input type='text' name='criteria_name_1' maxlength='255' required /></td> \
 	            <td><input type='text' name='criteria_description_1' maxlength='255' required /></td> \
 	        </tr>"
-			$('#tableCriteria > tbody:last').append($firstRow)			
-	    } else {
-	    	$get_lastID_criteriaTable();
-			$('#tableCriteria > tbody:last').append($newRow);
-	    };
+				$('#tableCriteria > tbody:last').append($firstRow)
+			} else {
+				$get_lastID_criteriaTable();
+				$('#tableCriteria > tbody:last').append($newRow);
+			}
+		}
 		  
 	});
 
