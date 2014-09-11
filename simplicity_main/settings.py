@@ -73,7 +73,7 @@ INSTALLED_APPS = (
     'django.contrib.formtools',
     'autofixture',
     'mockups',
-    # 'debug_toolbar',
+    'debug_toolbar',
 )
 
 
