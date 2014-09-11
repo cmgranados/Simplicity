@@ -16,6 +16,13 @@
 					        </tr>
 					    </thead>
 					    <tbody id="table_criteria_body">
+					    {% for criteria in acceptancecriteria_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='criteria_checkbox' value=''></td>
+					            <td><input type='text' name='criteria_name' maxlength='255' value='{{ criteria.name }}' required></input></td>
+					            <td><input type='text' name='criteria_description' value='{{ criteria.description }}' maxlength='255' required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>

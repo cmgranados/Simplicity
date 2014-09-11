@@ -16,6 +16,14 @@
 					        </tr>
 					    </thead>
 					    <tbody id="input_table_body">
+					    {% for input in if_input_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='infFlowInput_checkbox' value=''></td>
+					            <td><input type='text' name='infFlowInput' maxlength='50' value='{{ input.input }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_description' maxlength='50' value='{{ input.description }}' required></input></td>
+					            <td><input type='text' name='infFlowInput_datatype' maxlength='50' value='{{ input.data_type }}'required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>
@@ -39,6 +47,14 @@
 					        </tr>
 					    </thead>
 					    <tbody id="output_table_body">
+					    {% for output in if_output_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='infFlowOutput_checkbox' value=''></td>
+					            <td><input type='text' name='infFlowOutput' maxlength='50' value='{{ output.output }}' required></input></td>
+					            <td><input type='text' name='infFlowOutput_description' value='{{ output.description }}' maxlength='50' required></input></td>
+					            <td><input type='text' name='infFlowOutput_datatype' value='{{ output.data_type }}' maxlength='50' required></input></td>
+					        </tr>
+						{% endfor %}
 					    </tbody>
 					</table>
 				</form>

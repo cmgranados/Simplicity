@@ -13,6 +13,35 @@
 		</tr>
 	</thead>
 	<tbody>
+		{% for precondition_req in precondition_req_associated_list %}
+		<tr>
+			<th><input type='checkbox' name='preconditionCheckbox' value='' class='require-one'></th>
+			<th><span name='preconditionPosition' maxlength='11' readonly='readonly'>{{forloop.counter}}</span></th>
+			<th><span name='preconditionDescription_txt' maxlength='11' readonly='readonly'>
+				{{ precondition_req.requirement.code }}-{{ precondition_req.requirement.title }}</span></th>
+			<th><span name='preconditionType_txt' maxlength='11' readonly='readonly'>REQ</span></th>
+			<input type='hidden' name='preconditionDescription' value='{{ precondition_req.requirement.code }}-{{ precondition_req.requirement.title }}'>
+				</input>
+		    <input type='hidden' name='preconditionType' value='REQ'>
+		    	</input> 
+		    <input type='hidden' name='preconditionRequirement_id' value='{{ precondition_req.requirement.requirement_id }}'>
+		    	</input>
+		</tr>
+		{% endfor %}
+		
+		{% for precondition_desc in precondition_desc_associated_list %}
+		<tr>
+			<th><input type='checkbox' name='preconditionCheckbox' value='' class='require-one'></th>
+			<th><span name='preconditionPosition' maxlength='11' readonly='readonly'>{{forloop.counter}}</span></th>
+			<th><span name='preconditionDescription_txt' maxlength='11' readonly='readonly'>
+				{{ precondition_desc.description }}</span></th>
+			<th><span name='preconditionType_txt' maxlength='11' readonly='readonly'>DES</span></th>
+			<input type='hidden' name='preconditionDescription' value='{{ precondition_desc.description }}'>
+				</input>
+		    <input type='hidden' name='preconditionType' value='DES'>
+		    	</input> 
+		</tr>
+		{% endfor %}
 	</tbody>
 </table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
