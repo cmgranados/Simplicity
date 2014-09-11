@@ -41,4 +41,5 @@ urlpatterns = patterns('',
                        url(r'^alfa/sync/$', 'alfa.projects.views.sync', name='sync'),
                        url(r'^kappa/save_requirement_ajax/$', 'kappa.requirements.views.save_requirement_ajax'),
                        url(r'^kappa/new_businessrule_ajax/$', 'kappa.businessrules.views.new_businessrule_ajax'),
+                       url(r'^kappa/requirements/update_requirement', 'kappa.requirements.views.update_requirement'),
 )
