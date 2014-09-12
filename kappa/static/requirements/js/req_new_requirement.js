@@ -72,11 +72,12 @@ $(document).ready(function() {
 		},
 		
 		onTabClick: function(tab, navigation, index) {
-			var isValid = validate(index + 1);
+			/*var isValid = validate(index + 1);
 			
 			if(!isValid) {
 				return false;
-			}
+			}*/
+			return false;
 		}
 	});
 	
