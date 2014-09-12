@@ -9,7 +9,7 @@ $( document ).ready(function() {
 			rules: {
 				precondition_checkbox: {
 					onecheck: true,
-					validate_repeat: true
+					validateRepeatElements: true
 				}
 			},
 			messages: {
@@ -19,15 +19,11 @@ $( document ).ready(function() {
             }
 		};
 	
-	$.validator.addMethod('onecheck', function(value, ele) {
-        return $("input:checked").length >= 1;
-    }, 'Debe seleccionar al menos un elemento de la lista')
-    
-    $.validator.addMethod('validate_repeat', function(value, ele) {
+    $.validator.addMethod('validateRepeatElements', function(value, ele) {
     	$valid = true;
     	$('#preconditionTable  > tbody  > tr').each(function (index) {
     		$selectedId = value;
-			$addedId = $("input[type='hidden'][name^='preconditionRequirement_id_']",this).val();
+			$addedId = $("input[type='hidden'][name^='preconditionRequirement_id']",this).val();
     		console.log("added: " + $selectedId + " lista: " + $addedId);
     		
     		if($selectedId == $addedId) {
@@ -39,7 +35,12 @@ $( document ).ready(function() {
     	});
     	
         return $valid;
-    }, 'Alguno de los elementos seleccionados ya fue agregado como precondición')
+    }, 'Alguno de los elementos seleccionados ya fue agregado como precondición');
+    
+	$.validator.addMethod('onecheck', function(value, ele) {
+        return $("input:checked").length >= 1;
+    }, 'Debe seleccionar al menos un elemento de la lista');
+
 	
 	$("#description-form").validate();
 	$("#requirements-form").validate(CONF_VALIDATION);
