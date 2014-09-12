@@ -89,30 +89,42 @@
 						</form>
 					</div>
 					<div class="tab-pane" id="profile">
-						<form id="requirements-form" role="form">
+						<form id="requirements-form" role="form" class="form-horizontal">
 							<div class="container">
-								<div>
-									<div id="search-results" 
-										class="search-results-scroll col-sm-5">
-										<label for="q">B&#250squeda requisito:</label>
-										<input type="text" id="q"> 
-										<input type="button"
-											id="search-preconditions-btn" value="Buscar" />
-										
-											<table id="preconditionResultTable"
-												class="table table-bordered table-striped ">
-												<thead>
-													<tr>
-														<th></th>
-														<th>C&#243digo</th>
-													</tr>
-												</thead>
-												<tbody>
-												</tbody>
-											</table>
-										
+								<div class="row">
+									<div class="padding-20">
+										<div class="col-md-3 col-md-offset-1">
+											{% csrf_token %}
+											<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+											<div id="div_id_q" class="form-group">
+												<div class="controls">
+													<input class="textinput textInput form-control" id="q" maxlength="255" name="q" type="text"> 
+												</div>
+											</div>
+									    </div>
+									   	<div class="form-actions">
+									            <button type="button" class="btn btn-primary" id="search-preconditions-btn">
+									            	 <span class="glyphicon glyphicon-search"></span>
+									            </button>
+									    </div>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-md-5 table-responsive bodycontainer scrollable">
+										<table id="preconditionResultTable"
+											class="table table-bordered table-striped ">
+											<thead>
+												<tr>
+													<th>Selecci&oacute;n</th>
+													<th>Requisito</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
 							</div>
 							<div id="errors">
 							</div>

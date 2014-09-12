@@ -17,9 +17,9 @@
 			<div class="modal-body">
 				<div class="tab-pane active" id="home">
 					<div class="tab-pane" id="profile">
-						<form id="br-form" role="form">
+						<form id="br-form" role="form" class="form-horizontal">
 							<div class="container">
-								<div>
+								<!-- div>
 									<div id="search-results" class="search-results-scroll col-sm-5">
 										<label for="br">B&#250squeda:</label> <input type="text"
 											id="br"> <input type="button"
@@ -37,15 +37,49 @@
 											</tbody>
 										</table>
 									</div>
+								</div-->
+								<div class="row">
+									<div class="padding-20">
+										<div class="col-md-3 col-md-offset-1">
+											{% csrf_token %}
+											<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+											<div id="div_id_q" class="form-group">
+												<div class="controls">
+													<input class="textinput textInput form-control" id="br" maxlength="255" name="q" type="text"> 
+												</div>
+											</div>
+									    </div>
+									   	<div class="form-actions">
+									            <button type="button" class="btn btn-primary" id="search-business-rules-btn">
+									            	 <span class="glyphicon glyphicon-search"></span>
+									            </button>
+									    </div>
+									</div>
 								</div>
-							</div>
-							<div id="errorsBr">
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									id="add-business-rule-row-btn">Asociar Reglas de
-									Negocio</button>
-							</div>
+								<div class="row">
+									<div class="col-md-5 table-responsive bodycontainer scrollable">
+										<table id="businessruleResultTable"
+											class="table table-bordered table-striped ">
+											<thead>
+												<tr>
+													<th>Selecci&oacute;n</th>
+													<th>Nombre</th>
+													<th>Descripci&#243n</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								</div>
+								<div id="errorsBr">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary"
+										id="add-business-rule-row-btn">Asociar Reglas de
+										Negocio</button>
+								</div>
 						</form>
 					</div>
 				</div>
