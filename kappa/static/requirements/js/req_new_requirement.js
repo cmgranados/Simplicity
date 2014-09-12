@@ -66,7 +66,8 @@ $(document).ready(function() {
 			var $total = navigation.find('li').length;
 			var $current = index + 1;
 			var $percent = ($current / $total) * 100;
-			$('#rootwizard').find('.bar').css({
+			$( "#rootwizard" ).find('#bar').attr("aria-valuenow", $percent);
+			$('#rootwizard').find('#bar').css({
 				width : $percent + '%'
 			});
 		},
