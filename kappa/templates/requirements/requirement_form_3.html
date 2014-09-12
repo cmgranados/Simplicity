@@ -69,11 +69,11 @@
 				<tbody>
 				{% for businessrule in businessrule_associated_list %}
 					<tr>
-						<th><input type='checkbox' name='businessruleCheckbox' value=''></th>
-						<th><span name='businessruleName' maxlength='11' readonly='readonly'>
-							{{ businessrule.name}}</span></th>
-						<th><span name='businessruleDescription' maxlength='11' readonly='readonly'>{{ businessrule.description}}</span></th>
-						<input type='hidden' name='businessruleId' value='{{ businessrule.id}}'>
+						<td><input type='checkbox' name='businessruleCheckbox' value=''></td>
+						<td><span name='businessruleName' maxlength='11' readonly='readonly'>
+							{{ businessrule.name}}</span></td>
+						<td><span name='businessruleDescription' maxlength='11' readonly='readonly'>{{ businessrule.description}}</span></td>
+						<input type='hidden' name='businessruleId' value='{{ businessrule.business_rule_id}}'>
 							</input>
 					</tr>
 				{% endfor %}

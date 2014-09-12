@@ -6,7 +6,28 @@
 {% block content %}
 <div id="messages"></div>
 <form method="post" class="form-horizontal" role="form" id="myReqForm" action="/save_requirement_definition/">
+	<input type='hidden' name='requirementID' id='requirementID' value='{{ requirement.requirement_id }}'>
+		    	</input>
 	{% csrf_token %}
 	{% include "requirement_wizard.html" %}
 </form>
+
+<div class="modal fade" id="modal-response-req">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Informaci&oacute;n</h4>
+      </div>
+      <div class="modal-body" id="information-modal">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
 {% endblock %}

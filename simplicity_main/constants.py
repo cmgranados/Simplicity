@@ -18,3 +18,5 @@ class MyConstants:
     REGISTRATION_TYPE_GOOGLE = "Google"
 
     REGISTRATION_TYPE_REGULAR = "Regular"
+    
+    ZERO = 0

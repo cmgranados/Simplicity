@@ -101,6 +101,11 @@ $(document).ready(function() {
 	
 	function buildRequirementDefinion() {
 		var requirement = new Object();
+		if( $('#requirementID').val() != null && $('#requirementID').val() != ""){
+			requirement.requirement_id = $('#requirementID').val();
+		}else{
+			requirement.requirement_id = 0;
+		}
 		requirement.name = $('#requirementTitle').val();
 		requirement.type = $('#requirementType').val();
 		requirement.description = $('#requirementDescription').val();
@@ -113,9 +118,9 @@ $(document).ready(function() {
 			var i = 0;
 			$('#preconditionTable > tbody  > tr').each(function(index) {
 				var precondition = new Object();
-				var preconditionType = $("input[type='hidden'][name^='preconditionType_']",this);
-				var preconditionId = $("input[type='hidden'][name^='preconditionRequirement_id_']",this);
-				var descriptionId = $("input[type='hidden'][name^='preconditionDescription_']",this);
+				var preconditionType = $("input[type='hidden'][name^='preconditionType']",this);
+				var preconditionId = $("input[type='hidden'][name^='preconditionRequirement_id']",this);
+				var descriptionId = $("input[type='hidden'][name^='preconditionDescription']",this);
 				precondition.type = preconditionType.val();
 				precondition.id = preconditionId.val();
 				precondition.description = descriptionId.val();
@@ -133,7 +138,7 @@ $(document).ready(function() {
 		
 		$('#businessrulesTable > tbody  > tr').each(function(index) {
 			var businessRule = new Object();
-			var id = $("input[type='hidden'][name^='businessruleId_']",this);
+			var id = $("input[type='hidden'][name^='businessruleId']",this);
 			businessRule.id = id.val();
 			console.log(businessRule.id); 
 			businessRules[i] = businessRule;
@@ -207,8 +212,9 @@ $(document).ready(function() {
 		requirement.acceptanceCriteria = acceptanceCriteria;
 	}
 	
-	function success() {
-		alert("Done!!");
+	function success(data, textStatus, jqXHR) {
+		$('#information-modal').html(data);
+		$('#modal-response-req').modal('show');
 	}  
 });
 

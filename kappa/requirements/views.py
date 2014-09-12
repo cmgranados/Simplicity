@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import datetime, timedelta
 import json
 import logging
@@ -177,12 +179,24 @@ def save_requirement_ajax(request):
         requirement_str = request.POST.get('requirement', None)
         requirement_dict = json.loads(requirement_str)
         if not requirement_dict:
-            message = "error"
+            message = "Ocurrio un error"
             return render_to_response('error.html', {'message': message})
             #return HttpResponseRedirect("error.html")
         else:
             message = "success "
-            requirement = Requirement()
+            
+            if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
+                requirement = Requirement()
+                message = "Requisito se guardó correctamente"
+            else:
+                requirement = Requirement.objects.get( requirement_id=requirement_dict[u'id'] )
+                Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                message = "Requisito se actualizó correctamente"
+            
             requirement.title = requirement_dict[u'name']
             #requirement.code = requirement_dict[u'code']
             requirement.requirement_date_created = datetime.now()

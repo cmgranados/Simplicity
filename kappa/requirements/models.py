@@ -45,7 +45,7 @@ class RequirementInput(models.Model):
     data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return self.requirement_input_id
+        return str(self.requirement_input_id)
 
     class Meta:
         db_table = "kp_req_requirement_input"
@@ -59,7 +59,7 @@ class RequirementOutput(models.Model):
     data_type = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return self.requirement_output_id
+        return str(self.requirement_output_id)
 
     class Meta:
         db_table = "kp_req_requirement_output"
