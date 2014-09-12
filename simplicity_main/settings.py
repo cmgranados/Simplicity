@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-from django.conf.global_settings import gettext_noop
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -30,9 +28,9 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "alfa/templates/projects"),
 )
 
-STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'shared/static'),
-                     os.path.join(BASE_DIR, 'kappa/static'),
-                     os.path.join(BASE_DIR, 'alfa/static'), )
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'shared/static'),
+                    os.path.join(BASE_DIR, 'kappa/static'),
+                    os.path.join(BASE_DIR, 'alfa/static'), )
 
 
 # Quick-start development settings - unsuitable for production
@@ -76,7 +74,6 @@ INSTALLED_APPS = (
     'debug_toolbar',
 )
 
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,6 +82,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'shared.userprofiles.middleware.LoginValidationMiddleware',
 )
 
 ROOT_URLCONF = 'simplicity_main.urls'
@@ -166,29 +164,29 @@ STATIC_URL = '/shared/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.contrib.auth.context_processors.auth',
-   'django.core.context_processors.debug',
-   'django.core.context_processors.i18n',
-   'django.core.context_processors.media',
-   'django.core.context_processors.static',
-   'django.core.context_processors.tz',
-   'django.contrib.messages.context_processors.messages',
-   'social.apps.django_app.context_processors.backends',
-   'social.apps.django_app.context_processors.login_redirect',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 AUTHENTICATION_BACKENDS = (
-   'social.backends.facebook.FacebookOAuth2',
-   'social.backends.google.GoogleOAuth2',
-   'social.backends.twitter.TwitterOAuth',
-   'django.contrib.auth.backends.ModelBackend',
-   'shared.userprofiles.backends.EmailBackend',
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+    'shared.userprofiles.backends.EmailBackend',
 )
 
 LOGIN_REDIRECT_URL = '/'
 
 # aplicaciones@itc.com.co, see installation guide.
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ="363982401495-roer8bb6sterf8uk8ana8v154fgrji3c.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "363982401495-roer8bb6sterf8uk8ana8v154fgrji3c.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "U587jEnWMoXwP1xZ0T3_KuI4"
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
 
@@ -198,7 +196,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.auth_allowed',
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
-    'social.pipeline.mail.mail_validation',
+    'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
     'social.pipeline.user.create_user',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
@@ -211,7 +209,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
 
-DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -227,7 +225,7 @@ LOGGING = {
         'mail_admins': {
             'class': 'django.utils.log.AdminEmailHandler',
             'level': 'ERROR',
-             # But the emails are plain text by default - HTML is nicer
+            # But the emails are plain text by default - HTML is nicer
             'include_html': True,
         },
         # Log to a text file that can be rotated by logrotate
@@ -252,7 +250,7 @@ LOGGING = {
         # Your own app - this assumes all your logger names start with "myapp."
         'simplicity_main': {
             'handlers': ['logfile'],
-            'level': 'DEBUG', # Or maybe INFO or DEBUG
+            'level': 'DEBUG',  # Or maybe INFO or DEBUG
             'propagate': False
         },
     },
@@ -285,7 +283,7 @@ EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
-#JIRA CONFIGURATION
+# JIRA CONFIGURATION
 OPTIONS = {
     'server': 'https://itcsas.atlassian.net',
 }

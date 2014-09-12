@@ -14,7 +14,7 @@ def signup(request):
 
     if form.is_valid():
         user = form.save()
-        register_user(MyConstants.GROUP_REQUIREMENT_ANALYST_NAME, user, MyConstants.REGISTRATION_TYPE_GOOGLE)
+        register_user(MyConstants.GROUP_REQUIREMENT_ANALYST_NAME, user, MyConstants.REGISTRATION_TYPE_REGULAR)
 
     return render(request, 'signup.html', {'form': form})
 

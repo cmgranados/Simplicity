@@ -1,5 +1,8 @@
-from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.http import HttpResponseRedirect
+
+from shared.userprofiles.models import UserProfile
+from simplicity_main.constants import MyConstants
 
 
 class LoginValidationMiddleware:
@@ -14,8 +17,14 @@ class LoginValidationMiddleware:
          'django.contrib.auth.middleware.AuthenticationMiddleware'.\
           If that doesn't work, ensure your TEMPLATE_CONTEXT_PROCESSORS\
            setting includes 'django.core.context_processors.auth'."
-        if not request.user.is_authenticated():
-            print request.usr + "Is not Autenticated"
+        user = request.user
+        if not user.is_authenticated():
+#             print user.username + " is not Autenticated"
+            profile_arr = UserProfile.objects.filter(user__username=user.username)
+            if len(profile_arr) > 0:
+                profile = profile_arr[0]
+                if profile.registration_type.name == MyConstants.REGISTRATION_TYPE_GOOGLE :
+                    None
         else:
-            print request.usr + "Is Autenticated"
+            print request.user.username + " is Autenticated"
 
