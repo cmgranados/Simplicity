@@ -88,3 +88,9 @@
 	margin: 0; 
 	padding: 0; 
 }
+
+.navbar{
+	background:#000;
+	border:solid 2px #fc0; 
+
+}
