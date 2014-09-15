@@ -16,6 +16,7 @@ class Requirement(models.Model):
     code = models.CharField(max_length=45, blank=False)
     keywords = models.CharField(max_length=512, null=True)
     is_active = models.CharField(max_length=20, blank=False)
+    author = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.title
@@ -30,10 +31,10 @@ class RequirementBusinessRule(models.Model):
     business_rule = models.ForeignKey(BusinessRule)
 
     def __unicode__(self):
-        return self.requirement_business_rule_id
+        return str(self.requirement_business_rule_id)
 
     class Meta:
-        unique_together = (("requirement", "business_rule"),)
+        unique_together = (("requirement", "business_rule"))
         db_table = "kp_req_requirement_business_rule"
 
 
@@ -79,15 +80,15 @@ class AcceptanceCriteria(models.Model):
 
     class Meta:
         db_table = "kp_req_acceptance_criteria"
-    
-    
-class RequirementAuthor(models.Model):
-    requirement_author_id = models.AutoField(primary_key=True)
+
+class RequirementUpdateAuthor(models.Model):
+    requirement_update_author_id = models.AutoField(primary_key=True)
     requirement = models.ForeignKey(Requirement)
     author = models.ForeignKey(User)
+    update_date = models.DateTimeField(blank=False)
     
     def __unicode__(self):
-        return self.requirement_author_id
+        return str(self.requirement_author_id)
 
     class Meta:
-        db_table = "kp_req_requirement_author"
+        db_table = "kp_req_requirement_update_author"

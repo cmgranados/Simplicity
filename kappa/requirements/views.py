@@ -22,7 +22,8 @@ from kappa.preconditions.models import Precondition, PreconditionRequirement, \
 from kappa.preconditions.utils import  \
     get_preconditions_req_by_req, get_preconditions_desc_by_req
 from kappa.requirements.models import Requirement, RequirementBusinessRule, \
-    RequirementInput, RequirementOutput, AcceptanceCriteria
+    RequirementInput, RequirementOutput, AcceptanceCriteria,\
+    RequirementUpdateAuthor
 from kappa.requirements.utils import get_requirement_types, \
     get_businessrules_types, get_if_inputs_associated_to_requirement, \
     get_if_outputs_associated_to_requirement, \
@@ -137,13 +138,12 @@ def save_requirement_ajax(request):
         if not requirement_dict:
             message = "Ocurrio un error"
             return render_to_response('error.html', {'message': message})
-            #return HttpResponseRedirect("error.html")
         else:
-            message = "success "
-            
             if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
                 requirement = Requirement()
                 message = "Requisito se guardó correctamente"
+                requirement.date_created = datetime.now()
+                requirement.author = request.user
             else:
                 requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
                 Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
@@ -151,6 +151,10 @@ def save_requirement_ajax(request):
                 RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
                 RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
                 AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                requirementUpdateAuthor = RequirementUpdateAuthor()
+                requirementUpdateAuthor.author = request.user
+                requirementUpdateAuthor.update_date = datetime.now()
+                requirementUpdateAuthor.requirement = requirement
                 message = "Requisito se actualizó correctamente"
             
             requirement.title = requirement_dict[u'name']
@@ -161,12 +165,12 @@ def save_requirement_ajax(request):
             state = State.objects.get(state_id=STATE_REGISTERED) 
             requirement.state = state
             requirement.date_modified = datetime.now()
-            requirement.date_created = datetime.now()
             requirement.is_active =ACTIVE
             requirement.keywords = requirement_dict[u'keywords']
             requirement.save()
             requirement.code = "RE_" + str(requirement.requirement_id)
             requirement.save()
+            requirementUpdateAuthor.save()
             save_preconditions(requirement_dict, requirement)
             save_business_rules(requirement_dict, requirement)
             save_information_flow(requirement_dict, requirement)
