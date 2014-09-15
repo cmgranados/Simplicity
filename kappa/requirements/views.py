@@ -82,50 +82,6 @@ def new_requirement(request):
     br_type_list = get_businessrules_types();
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
                                                           'br_type_list' : br_type_list})
-
-@login_required
-def save_requirement_definition(request):
-    if request.method == "POST": 
-        new_requirement = Requirement()
-        
-        requirement_title = request.POST.get('requirementTitle', None)
-        new_requirement.title = requirement_title
-        
-        requirement_code = request.POST.get('requirementCode', None)
-        new_requirement.code = requirement_code
-        
-        requirement_date_created = datetime.now()
-        new_requirement.date_created = requirement_date_created
-        
-        requirement_type = request.POST.get('requirementType', None)
-        type_retrieved = Type.objects.get(type_id=requirement_type) 
-        new_requirement.type = type_retrieved
-        
-        requirement_description = request.POST.get('requirementDescription', None)
-        new_requirement.description = requirement_description
-        
-        state = State.objects.get(state_id=STATE_REGISTERED) 
-        new_requirement.state = state
-        new_requirement.date_modified = requirement_date_created
-        new_requirement.is_active = ACTIVE
-        
-        requirement_keywords = request.POST.get('requirementKeywords', None)
-        new_requirement.keywords = requirement_keywords
-        
-        new_requirement.save()
-        
-        # loop through keys
-        prerequirement_counter = 0
-        for key in request.POST:
-            if key.startswith("type_"):
-                value = request.POST[key]
-                if value is PRECONDITION_TYPE_REQ_ES:
-                    var = value
-                
-            
-            # loop through keys and values
-                
-        return HttpResponseRedirect("/kappa/requirements")
     
 @login_required 
 def delete_requirement(request):
@@ -189,7 +145,7 @@ def save_requirement_ajax(request):
                 requirement = Requirement()
                 message = "Requisito se guardó correctamente"
             else:
-                requirement = Requirement.objects.get( requirement_id=requirement_dict[u'id'] )
+                requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
                 Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
                 RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
                 RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()

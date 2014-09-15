@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <div id="messages"></div>
-<form method="post" class="form-horizontal" role="form" id="myReqForm" action="/save_requirement_definition/">
+<form method="post" class="form-horizontal" role="form" id="myReqForm">
 	<input type='hidden' name='requirementID' id='requirementID' value='{{ requirement.requirement_id }}'>
 		    	</input>
 	{% csrf_token %}
