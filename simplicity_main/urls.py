@@ -16,6 +16,7 @@ router = DefaultRouter()
 router.register(r'businessrules', BusinessRuleView)
 
 urlpatterns = patterns('',
+                       url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
                        url(r'^admin/', include(admin.site.urls)),
                        #url(r'^kappa/requirements/$', RequirementListView.as_view(), name='requirement-list'),
                        url(r'^$', 'simplicity_main.views.index'),
