@@ -11,10 +11,13 @@ django-mockups==0.4.8
 django-password-reset==0.7
 djangorestframework==2.3.14
 haystack==0.16
+ipdb==0.8
+ipython==2.2.0
 jira==0.31
 mysql-python==1.2.5
 oauthlib==0.6.3
 pycrypto==2.6.1
+pyreadline==2.0
 pysolr==3.2.0
 python-openid==2.2.5
 python-ptrace==0.7
