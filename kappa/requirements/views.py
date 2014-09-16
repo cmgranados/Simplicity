@@ -33,6 +33,7 @@ from shared.types_simplicity.models import Type, TypeClassification
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE, \
     PRECONDITION_TYPE_REQ_ES
+import ipdb
 
 
 # Get an instance of a logger
@@ -79,6 +80,7 @@ def searchBusinessRules(request):
     return render_to_response('ajax_businessrule_search.html', {'businessrules': businessrules})
 
 def new_requirement(request):
+    
     requirement_type_list = get_requirement_types();
     br_type_list = get_businessrules_types();
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 

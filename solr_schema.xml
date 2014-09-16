@@ -147,25 +147,25 @@
 
     <field name="description" type="text_es" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type_id" type="text_en" indexed="true" stored="true" multiValued="false" />
+    <field name="type_id" type="text_en" indexed="long" stored="true" multiValued="false" />
 
     <field name="text" type="text_es" indexed="true" stored="true" multiValued="false" />
 
     <field name="description_exact" type="string" indexed="true" stored="true" multiValued="false" />
 
-    <field name="business_rule_id" type="text_en" indexed="true" stored="true" multiValued="false" />
+    <field name="business_rule_id" type="long" indexed="true" stored="true" multiValued="false" />
 
     <field name="pub_created_exact" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="requirement_id" type="text_en" indexed="true" stored="true" multiValued="false" />
+    <field name="requirement_id" type="long" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type_id_exact" type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="type_id_exact" type="long" indexed="true" stored="true" multiValued="false" />
 
-    <field name="requirement_id_exact" type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="requirement_id_exact" type="long" indexed="true" stored="true" multiValued="false" />
 	
-	<field name="state_id" type="text_en" indexed="true" stored="true" multiValued="false" />
+	<field name="state_id" type="long" indexed="true" stored="true" multiValued="false" />
 	
-	<field name="project_id" type="text_en" indexed="true" stored="true" multiValued="false" />
+	<field name="project_id" type="long" indexed="true" stored="true" multiValued="false" />
 	
 	<field name="name" type="text_es" indexed="true" stored="true" multiValued="false" />
 	

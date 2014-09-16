@@ -63,16 +63,15 @@ class RequirementSearchForm(SearchForm):
 		if not self.is_valid():
 			return self.no_query_found()
 		
-		if not self.cleaned_data['q']:
-			logger.debug('empty q value')
-			return self.no_query_found()
+		#if not self.cleaned_data['q']:
+			#sqs = sqs.filter('*:*')
 		
 		 # Check to see if a start_date was chosen.
 		if self.cleaned_data['type']:
-			sqs = sqs.filter(type_id__gte=self.cleaned_data.get('type').type_id)
+			sqs = sqs.filter(type_id__exact=self.cleaned_data.get('type').type_id)
 			
 		if self.cleaned_data['state']:
-			sqs = sqs.filter(state_id__gte=self.cleaned_data.get('state').state_id)
+			sqs = sqs.filter(state_id__exact=self.cleaned_data.get('state').state_id)
 			
 		 # Check to see if a start_date was chosen.
 		if self.cleaned_data['start_date']:
@@ -92,7 +91,7 @@ class RequirementSearchForm(SearchForm):
 	
 	def no_query_found(self):
 		logger.debug('load all!')
-		return self.searchqueryset.all()
+		return self.searchqueryset.models(Requirement).all()
 	
 # Requirements Wizard
 class RequirementForm1(forms.Form):
