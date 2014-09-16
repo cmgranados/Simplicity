@@ -4,6 +4,7 @@ argparse==1.2.1
 django-autofixture==0.9.1
 django-crispy-forms==1.4.0
 django-debug-toolbar==1.2.1
+django-grappelli==2.5.4
 django-haystack==2.2.1
 django-jira-oauth==0.1.2
 django-mockups==0.4.8
