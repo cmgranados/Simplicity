@@ -10,10 +10,13 @@
 	<h3>Requisitos</h3>
 {%endblock%}
 {% block section_statistics %}
-	<a href="new_requirement"> <input type="button" name="new-requirement-btn" class="btn btn-default" value="Registrar requisito" /> </a>
-    <input type="button" name="delete-requirement-btn" id="delete-requirement-btn" class="btn btn-default" value="Eliminar" />
+	<div class="row">		
+	    <div class="list-group">
+		  <a href="new_requirement" name="new-requirement-btn" class="list-group-item">Registrar requisito</a>
+		  <a name="delete-requirement-btn" id="delete-requirement-btn" class="list-group-item">Eliminar</a>
+		</div>	
 
-    
+	</div>
 {%endblock%}
 {% block content %}
 

@@ -24,7 +24,7 @@ from kappa.preconditions.utils import  \
 from kappa.requirements.models import Requirement, RequirementBusinessRule, \
     RequirementInput, RequirementOutput, AcceptanceCriteria,\
     RequirementUpdateAuthor
-from kappa.requirements.utils import get_requirement_types, \
+from kappa.requirements.utils import get_requirement_types, get_datatypes_types,\
     get_businessrules_types, get_if_inputs_associated_to_requirement, \
     get_if_outputs_associated_to_requirement, \
     get_acceptancecriterias_associated_to_requirement
@@ -83,8 +83,10 @@ def new_requirement(request):
     
     requirement_type_list = get_requirement_types();
     br_type_list = get_businessrules_types();
+    datatype_type_list = get_datatypes_types();
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
-                                                          'br_type_list' : br_type_list})
+                                                          'br_type_list' : br_type_list,
+                                                          'dt_type_list' : datatype_type_list})
     
 @login_required 
 def delete_requirement(request):

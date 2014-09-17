@@ -56,7 +56,14 @@
 								<td><input type='checkbox' name='infFlowOutput_checkbox' value=''></td>
 					            <td><input type='text' name='infFlowOutput' maxlength='50' value='{{ output.output }}' required></input></td>
 					            <td><textarea name='infFlowOutput_description' maxlength='50' required>{{ output.description }}</textarea></td>
-					            <td><input type='text' name='infFlowOutput_datatype' value='{{ output.data_type }}' maxlength='50' required></input></td>
+					            <!--<td><input type='text' name='infFlowOutput_datatype' value='{{ output.data_type }}' maxlength='50' required></input></td> -->
+					            <td><select class="form-control"
+									id="infFlowOutput_datatype" name="infFlowOutput_datatype">
+									<option>Seleccione tipo de dato</option> 
+									{% for type in dt_type_list %}
+										<option value='{{ type.type_id }}'>{{ type.name }}</option> 
+									{% endfor %}
+								</select></td>
 					        </tr>
 						{% endfor %}
 					    </tbody>

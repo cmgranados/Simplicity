@@ -115,9 +115,9 @@ DATABASES = {
 
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'simplicity',
+#         'NAME': 'local_simplicity',
 #         'USER': 'root',
-#         'PASSWORD': 'root',
+#         'PASSWORD': 'meconio3',
 #         'HOST': 'localhost',
 #     }
 }

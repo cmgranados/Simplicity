@@ -31,7 +31,7 @@ $(document).ready(function(){
 					<td><input type='checkbox' name='infFlowOutput_checkbox_1' value=''></td>\
 		            <td><input type='text' name='infFlowOutput_1' maxlength='50' required /></td> \
 		            <td><textArea type='text' name='infFlowOutput_description_1' maxlength='50' required /></td> \
-		            <td><input type='text' name='infFlowOutput_datatype_1' maxlength='50' required /></td> \
+		            <td><select class='form-control' id='infFlowOutput_datatype_1' name='infFlowOutput_datatype_1'><option>Seleccione tipo de dato</option>{% for type in dt_type_list %}<option value='{{ type.type_id }}'>{{ type.name }}</option> {% endfor %}</select></td> \
 		        </tr>"
 				$('#outputTable > tbody:last').append($firstRow)			
 		    } else {
