@@ -12,24 +12,6 @@ def get_requirement_types():
                                                 type_classification_req.type_classification_id)
     return requirement_type_list
     
-    
-
-def get_businessrules_types():
-    constants = MyConstants()
-    br_type_code = constants.BUSINESS_RULE_TYPE_CLASSIFICATION_CODE
-    type_classification_br = TypeClassification.objects.get(code = br_type_code)
-    br_type_list = Type.objects.filter(type_classification_id = 
-                                       type_classification_br.type_classification_id)
-    return br_type_list
-
-def get_datatypes_types():
-    constants = MyConstants()
-    dt_type_code = constants.DATATYPE_TYPE_CLASSIFICATION_CODE
-    type_classification_dt = TypeClassification.objects.get(code = dt_type_code)
-    dt_type_list = Type.objects.filter(type_classification_id = 
-                                       type_classification_dt.type_classification_id)
-    return dt_type_list
-    
 
 def get_if_inputs_associated_to_requirement(requirement):
     requirement_input_list = RequirementInput.objects.filter(requirement_id=requirement.requirement_id)
