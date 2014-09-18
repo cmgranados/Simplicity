@@ -222,7 +222,7 @@ def save_information_flow(requirement_dict, requirement):
         req_output.requirement = requirement
         req_output.output = ou[u'value']
         req_output.description = ou[u'description']
-        req_output.data_type = ou[u'dataType']
+        req_output.data_type = Type.objects.get(type_id=ou[u'dataType'])
         req_output.save()
         
     for inp in input_dict:
@@ -230,7 +230,7 @@ def save_information_flow(requirement_dict, requirement):
         req_input.requirement = requirement
         req_input.input = inp[u'value']
         req_input.description = inp[u'description']
-        req_input.data_type = inp[u'dataType']
+        req_input.data_type = Type.objects.get(type_id=inp[u'dataType'])
         req_input.save()
         
 def save_acceptance_criteria(requirement_dict, requirement):
