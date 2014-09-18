@@ -161,6 +161,7 @@ def save_requirement_ajax(request):
                 requirementUpdateAuthor.author = request.user
                 requirementUpdateAuthor.update_date = datetime.now()
                 requirementUpdateAuthor.requirement = requirement
+                requirementUpdateAuthor.save()
                 message = "Requisito se actualizó correctamente"
             
             requirement.title = requirement_dict[u'name']
@@ -176,7 +177,6 @@ def save_requirement_ajax(request):
             requirement.save()
             requirement.code = "RE_" + str(requirement.requirement_id)
             requirement.save()
-            requirementUpdateAuthor.save()
             save_preconditions(requirement_dict, requirement)
             save_business_rules(requirement_dict, requirement)
             save_information_flow(requirement_dict, requirement)
@@ -222,7 +222,7 @@ def save_information_flow(requirement_dict, requirement):
         req_output.requirement = requirement
         req_output.output = ou[u'value']
         req_output.description = ou[u'description']
-        req_output.data_type = Type.objects.get(type_id=ou[u'dataType'])
+        req_output.data_type = Type.objects.get(type_id = ou[u'dataType'])
         req_output.save()
         
     for inp in input_dict:
@@ -259,6 +259,7 @@ def update_requirement(request):
         if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
         if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
         acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
+        datatype_type_list = get_datatypes_types();
         return render(request, 'requirement_form_base.html', {'requirement': requirement, 
                                                               'requirement_type_list': requirement_type_list, 
                                                               'br_type_list' : br_type_list,
@@ -268,4 +269,6 @@ def update_requirement(request):
                                                               'if_input_associated_list': if_input_associated_list,
                                                               'if_output_associated_list': if_output_associated_list,
                                                               'acceptancecriteria_associated_list': acceptancecriteria_associated_list,
+                                                              'dt_type_list' : datatype_type_list,
                                                               }) 
+

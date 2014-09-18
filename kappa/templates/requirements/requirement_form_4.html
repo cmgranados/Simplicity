@@ -61,8 +61,12 @@
 					            <td><select class="form-control"
 									id="infFlowOutput_datatype" name="infFlowOutput_datatype">
 									<option>Seleccione tipo de dato</option> 
-									{% for type in br_type_list %}
-										<option value='{{ type.type_id }}'>{{ type.name }}</option> 
+									{% for dt_type in dt_type_list %}
+										{% if dt_type.type_id == output.data_type %}
+											<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
+										{% else %}
+											<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
+										{% endif %} 
 									{% endfor %}
 								</select></td>
 					        </tr>
