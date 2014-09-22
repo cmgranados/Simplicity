@@ -1,0 +1,4 @@
+Directorio que contendrá los static files en producción
+Cuando se instale por favor ejecutar el siguiente comando
+
+python manage.py collectstatic
