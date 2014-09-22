@@ -148,6 +148,7 @@ def save_requirement_ajax(request):
                 message = "Requisito se guardó correctamente"
                 requirement.date_created = datetime.now()
                 requirement.author = request.user
+                requirementUpdateAuthor = None
             else:
                 requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
                 Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
