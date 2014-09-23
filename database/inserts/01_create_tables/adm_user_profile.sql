@@ -1,4 +1,5 @@
-CREATE TABLE `adm_user_profile` (
+
+REATE TABLE `adm_user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `registration_type_id` int(11) NOT NULL,

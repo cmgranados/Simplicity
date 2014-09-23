@@ -1,0 +1,1 @@
+INSERT INTO simplicity.auth_user VALUES (1,'pbkdf2_sha256$12000$iHIUYLy2roh4$eZldHF8Z5JehbmnKZpsDdVBILXBfegz5ZmYoQM7SXJc=','2014-09-17 16:52:28',1,'itc','','','rlabs@itc.com.co',1,1,'2014-09-09 17:38:14');

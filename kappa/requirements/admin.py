@@ -1,4 +1,5 @@
-from django.contrib import admin
+
+rom django.contrib import admin
 
 from kappa.requirements.models import RequirementOutput
 
@@ -9,4 +10,3 @@ admin.site.register(Requirement)
 admin.site.register(RequirementBusinessRule)
 admin.site.register(RequirementInput)
 admin.site.register(RequirementOutput)
-
