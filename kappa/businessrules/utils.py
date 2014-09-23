@@ -1,5 +1,4 @@
-
-rom kappa.businessrules.models import BusinessRule
+from kappa.businessrules.models import BusinessRule
 from shared.types_simplicity.models import TypeClassification, Type
 from simplicity_main.constants import MyConstants
 
