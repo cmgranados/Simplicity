@@ -42,4 +42,5 @@ urlpatterns = patterns('',
                        url(r'^kappa/save_requirement_ajax/$', 'kappa.requirements.views.save_requirement_ajax'),
                        url(r'^kappa/new_businessrule_ajax/$', 'kappa.businessrules.views.new_businessrule_ajax'),
                        url(r'^kappa/requirements/update_requirement', 'kappa.requirements.views.update_requirement'),
+                       url(r'^omicron/test-cases/new', 'omicron.testcases.views.new_test_case', name='new_test_case'),
 )

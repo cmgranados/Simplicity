@@ -1,0 +1,40 @@
+{% load static %}
+{% block javascript %}
+<script src="{% static 'testcases/js/tc_process.js' %}"></script>
+{% endblock %}
+
+<div class="container">
+		<div class="row">
+	    	<div class="col-md-9">
+		    	<form id="process-form" role="form">
+					<table id="tableProcess" class="table table-bordered table-striped">
+					    <thead>
+					        <tr>
+					        	<th></th>
+					            <th>Paso</th>
+					            <th>Actividad</th>
+					        </tr>
+					    </thead>
+					    <tbody id="testcases_params_body">
+					    {% for input in input_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='input_params_checkbox' value=''></td>
+					            <td><input type='text' name='input_params_name' maxlength='255' value='{{ input.name }}' required></input></td>
+					            <td><input type='text' name='input_params_description' value='{{ input.description }}' maxlength='255' required></input></td>
+					        </tr>
+						{% endfor %}
+					    </tbody>
+					</table>
+				</form>
+			</div>
+			<div class="col-md-3">
+				<div>
+					<button id="addRowInput" class="btn btn-default" type="button">Agregar</button>
+				</div>
+				<div>
+					<button id="deleteRowInput" class="btn btn-default" type="button">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+

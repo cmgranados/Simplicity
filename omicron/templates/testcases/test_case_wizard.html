@@ -1,0 +1,58 @@
+<div id="rootwizard">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<ul>
+<!-- 					<li><a href="#tab1" data-toggle="tab">Definici&#243n</a></li> -->
+<!-- 					<li><a href="#tab2" data-toggle="tab">Precondici&#243n</a></li> -->
+<!-- 					<li><a href="#tab3" data-toggle="tab">Asociaci&#243n de Requisitos</a></li> -->
+<!-- 					<li><a href="#tab4" data-toggle="tab">Par&aacute;metros de Entrada</a></li> -->
+					<li><a href="#tab5" data-toggle="tab">Procedimiento de Caso de Prueba</a></li>
+					<li><a href="#tab6" data-toggle="tab">Poscondici&#243n</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="progress">
+		<div id="bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"  >
+			<span class="sr-only"></span>
+		</div>
+	</div>
+	<div class="tab-content">
+		<div class="pull-right">	
+			<ul class="pager wizard">
+				<li id="save-test-case-btn"><a href="#">Guardar</a></li>
+			</ul>
+		</div>
+		<div class="tab-pane" id="tab1">
+			<h3>Definici&#243n</h3>
+			{% include "test_case_form_1.html" %}
+		</div>
+		<div class="tab-pane" id="tab2">
+			<h3>Precondici&#243n</h3>
+			{% include "test_case_form_2.html" %}
+		</div>
+		<div class="tab-pane" id="tab3">
+			<h3>Asociaci&#243n de Requisitos</h3>
+			{% include "test_case_form_3.html" %}
+		</div>
+		<div class="tab-pane" id="tab4">
+			<h3>Par&aacute;metros de Entrada</h3>
+			{% include "test_case_form_4.html" %}
+		</div>
+		<div class="tab-pane" id="tab5">
+			<h3>Procedimiento de Caso de Prueba</h3>
+			{% include "test_case_form_5.html" %}
+		</div>
+		<div class="tab-pane" id="tab6">
+			<h3>Poscondici&#243n</h3>
+			{% include "test_case_form_6.html" %}
+		</div>
+		<ul class="pager wizard">
+			<li class="previous first" style="display: none;"><a href="#">Inicio</a></li>
+			<li class="previous"><a href="#">Anterior</a></li>
+			<li class="next last" style="display: none;"><a href="#">Ultimo</a></li>
+			<li class="next"><a href="#">Siguiente</a></li>
+		</ul>
+	</div>
+</div>
