@@ -107,13 +107,13 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 
 DATABASES = {
 
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'simplicity',
-        'USER': 'simplicity',
-        'PASSWORD': 'porteaW1',
-        'HOST': 'mysql1.itc.com.co',
-     }
+#    'default': {
+#        'ENGINE': '192.168.60.137',
+#        'NAME': 'simplicity',
+#        'USER': 'simplicity',
+#        'PASSWORD': 'porteaW1',
+#        'HOST': 'mysql1.itc.com.co',
+#     }
 
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -122,6 +122,14 @@ DATABASES = {
 #         'PASSWORD': 'meconio3',
 #         'HOST': 'localhost',
 #     }
+
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'simplicity_test',
+        'USER': 'simplicity_test',
+        'PASSWORD': 'simplicity_test',
+        'HOST': 'mysql1.itc.com.co',
+     }
 }
 
 # List of finder classes that know how to find static files in
