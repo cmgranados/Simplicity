@@ -42,4 +42,7 @@ urlpatterns = patterns('',
                        url(r'^kappa/save_requirement_ajax/$', 'kappa.requirements.views.save_requirement_ajax'),
                        url(r'^kappa/new_businessrule_ajax/$', 'kappa.businessrules.views.new_businessrule_ajax'),
                        url(r'^kappa/requirements/update_requirement', 'kappa.requirements.views.update_requirement'),
+                       url(r'^kappa/get_businessrules_types_ajax/$', 'kappa.businessrules.views.get_businessrules_types_ajax'),
+                       url(r'^types/get_data_types_ajax/$', 'shared.types_simplicity.views.get_data_types_ajax'),
+                       
 )

@@ -157,7 +157,7 @@ $(document).ready(function() {
 		$('#outputTable > tbody  > tr').each(function(index) {
 			var out = $(this).find("td").eq(1).find("input").val();
 			var description = $(this).find("td").eq(2).find("textArea").val();
-			var dataType = $(this).find("td").eq(3).find("input").val();
+			var dataType = $(this).find("td").eq(3).find("select").val();
 			
 			var output = new Object();
 			output.value = out;
@@ -179,7 +179,7 @@ $(document).ready(function() {
 		$('#inputTable > tbody  > tr').each(function(index) {
 			var inp = $(this).find("td").eq(1).find("input").val();
 			var description = $(this).find("td").eq(2).find("textArea").val();
-			var dataType = $(this).find("td").eq(3).find("input").val();
+			var dataType = $(this).find("td").eq(3).find("select").val();
 			
 			var input = new Object();
 			input.value = inp;

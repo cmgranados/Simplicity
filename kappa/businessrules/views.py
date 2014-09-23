@@ -1,17 +1,17 @@
 from datetime import datetime
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from rest_framework import viewsets
 
 from kappa.businessrules.models import BusinessRule
 from kappa.businessrules.serializers import BusinessRuleSerializer
+from kappa.businessrules.utils import get_businessrules_types
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
 from simplicity_main.settings import STATE_REGISTERED
 
 
 # Create your views here.
-
 def new_businessrule_ajax(request):
     if request.method == "POST":
         business_rule = BusinessRule()
@@ -29,6 +29,12 @@ def new_businessrule_ajax(request):
         business_rule.state = State.objects.get(state_id=STATE_REGISTERED) 
         business_rule.save()
     return render_to_response('done.html')
+
+
+def get_businessrules_types_ajax(request):
+    br_type_list = get_businessrules_types();
+    return render(request, 'ajax_businessrule_types_options.html', {'br_type_list' : br_type_list} )
+
 
 class BusinessRuleView(viewsets.ModelViewSet):
     serializer_class = BusinessRuleSerializer
