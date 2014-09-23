@@ -62,7 +62,7 @@
 									id="infFlowOutput_datatype" name="infFlowOutput_datatype">
 									<option>Seleccione tipo de dato</option> 
 									{% for dt_type in dt_type_list %}
-										{% if dt_type.type_id == output.data_type %}
+										{% if dt_type.type_id == output.data_type_id %}
 											<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
 										{% else %}
 											<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
