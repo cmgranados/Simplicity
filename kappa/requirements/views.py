@@ -13,27 +13,29 @@ from django.shortcuts import render_to_response, render
 from django.views.generic.list import ListView
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
+import ipdb
 from jira.client import JIRA
 
 from kappa.businessrules.models import BusinessRule
-from kappa.businessrules.utils import get_businessrules_associated_to_requirement
+from kappa.businessrules.utils import get_businessrules_associated_to_requirement, \
+    get_businessrules_types
 from kappa.preconditions.models import Precondition, PreconditionRequirement, \
     PreconditionDescription
 from kappa.preconditions.utils import  \
     get_preconditions_req_by_req, get_preconditions_desc_by_req
 from kappa.requirements.models import Requirement, RequirementBusinessRule, \
-    RequirementInput, RequirementOutput, AcceptanceCriteria,\
+    RequirementInput, RequirementOutput, AcceptanceCriteria, \
     RequirementUpdateAuthor
-from kappa.requirements.utils import get_requirement_types, get_datatypes_types,\
-    get_businessrules_types, get_if_inputs_associated_to_requirement, \
+from kappa.requirements.utils import get_requirement_types, \
+    get_if_inputs_associated_to_requirement, \
     get_if_outputs_associated_to_requirement, \
     get_acceptancecriterias_associated_to_requirement
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type, TypeClassification
+from shared.types_simplicity.utils import get_datatypes_types
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE, \
     PRECONDITION_TYPE_REQ_ES
-import ipdb
 
 
 # Get an instance of a logger
@@ -225,7 +227,7 @@ def save_information_flow(requirement_dict, requirement):
         req_output.requirement = requirement
         req_output.output = ou[u'value']
         req_output.description = ou[u'description']
-        req_output.data_type = ou[u'dataType']
+        req_output.data_type = Type.objects.get(type_id = ou[u'dataType'])
         req_output.save()
         
     for inp in input_dict:
@@ -233,7 +235,7 @@ def save_information_flow(requirement_dict, requirement):
         req_input.requirement = requirement
         req_input.input = inp[u'value']
         req_input.description = inp[u'description']
-        req_input.data_type = inp[u'dataType']
+        req_input.data_type = Type.objects.get(type_id=inp[u'dataType'])
         req_input.save()
         
 def save_acceptance_criteria(requirement_dict, requirement):
@@ -262,6 +264,7 @@ def update_requirement(request):
         if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
         if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
         acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
+        datatype_type_list = get_datatypes_types();
         return render(request, 'requirement_form_base.html', {'requirement': requirement, 
                                                               'requirement_type_list': requirement_type_list, 
                                                               'br_type_list' : br_type_list,
@@ -271,4 +274,6 @@ def update_requirement(request):
                                                               'if_input_associated_list': if_input_associated_list,
                                                               'if_output_associated_list': if_output_associated_list,
                                                               'acceptancecriteria_associated_list': acceptancecriteria_associated_list,
+                                                              'dt_type_list' : datatype_type_list,
                                                               }) 
+
