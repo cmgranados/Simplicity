@@ -1,1 +1,1 @@
-INSERT INTO simplicity_test.auth_group VALUES (1,'Requirement Analyst');
+INSERT INTO simplicity.auth_group VALUES (1,'Requirement Analyst');

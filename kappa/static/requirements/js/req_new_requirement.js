@@ -218,5 +218,10 @@ $(document).ready(function() {
 		$('#information-modal').html(data);
 		$('#modal-response-req').modal('show');
 	}  
+	
+	function failure(data, textStatus, jqXHR) {
+		$('#information-modal').html(data);
+		$('#modal-response-req').modal('show');
+	}  
 });
 

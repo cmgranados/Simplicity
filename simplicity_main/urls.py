@@ -46,3 +46,4 @@ urlpatterns = patterns('',
                        url(r'^types/get_data_types_ajax/$', 'shared.types_simplicity.views.get_data_types_ajax'),
                        
 )
+

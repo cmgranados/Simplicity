@@ -1,2 +1,2 @@
-INSERT INTO simplicity_test.adm_state_type
+INSERT INTO simplicity.adm_state_type
 VALUES (1,'REQUERIMENT','');

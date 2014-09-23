@@ -138,52 +138,56 @@ def search_jira_projects(request):
 
 
 def save_requirement_ajax(request):
-    if request.method == "POST":
-        requirement_str = request.POST.get('requirement', None)
-        requirement_dict = json.loads(requirement_str)
-        if not requirement_dict:
+        try:
+            if request.method == "POST":
+                requirement_str = request.POST.get('requirement', None)
+                requirement_dict = json.loads(requirement_str)
+                error = '0'
+                if not requirement_dict:
+                    raise Exception('requirement_dict_empty', 'requirement_dict_empty')
+                else:
+                    if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
+                        requirement = Requirement()
+                        message = "Requisito se guardó correctamente"
+                        requirement.date_created = datetime.now()
+                        requirement.author = request.user
+                        requirementUpdateAuthor = None
+                    else:
+                        requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
+                        Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        requirementUpdateAuthor = RequirementUpdateAuthor()
+                        requirementUpdateAuthor.author = request.user
+                        requirementUpdateAuthor.update_date = datetime.now()
+                        requirementUpdateAuthor.requirement = requirement
+                        requirementUpdateAuthor.save()
+                        message = "Requisito se actualizó correctamente"
+                    
+                    requirement.title = requirement_dict[u'name']
+                    #requirement.code = requirement_dict[u'code']
+                    requirement.requirement_date_created = datetime.now()
+                    requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
+                    requirement.description = requirement_dict[u'description']
+                    state = State.objects.get(state_id=STATE_REGISTERED) 
+                    requirement.state = state
+                    requirement.date_modified = datetime.now()
+                    requirement.is_active =ACTIVE
+                    requirement.keywords = requirement_dict[u'keywords']
+                    requirement.save()
+                    requirement.code = "RE_" + str(requirement.requirement_id)
+                    requirement.save()
+                    save_preconditions(requirement_dict, requirement)
+                    save_business_rules(requirement_dict, requirement)
+                    save_information_flow(requirement_dict, requirement)
+                    save_acceptance_criteria(requirement_dict, requirement)
+                    return render_to_response('done.html', {'message': message,'error': error})
+        except:
+            error = '1'
             message = "Ocurrio un error"
-            return render_to_response('error.html', {'message': message})
-        else:
-            if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
-                requirement = Requirement()
-                message = "Requisito se guardó correctamente"
-                requirement.date_created = datetime.now()
-                requirement.author = request.user
-                requirementUpdateAuthor = None
-            else:
-                requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
-                Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                requirementUpdateAuthor = RequirementUpdateAuthor()
-                requirementUpdateAuthor.author = request.user
-                requirementUpdateAuthor.update_date = datetime.now()
-                requirementUpdateAuthor.requirement = requirement
-                requirementUpdateAuthor.save()
-                message = "Requisito se actualizó correctamente"
-            
-            requirement.title = requirement_dict[u'name']
-            #requirement.code = requirement_dict[u'code']
-            requirement.requirement_date_created = datetime.now()
-            requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
-            requirement.description = requirement_dict[u'description']
-            state = State.objects.get(state_id=STATE_REGISTERED) 
-            requirement.state = state
-            requirement.date_modified = datetime.now()
-            requirement.is_active =ACTIVE
-            requirement.keywords = requirement_dict[u'keywords']
-            requirement.save()
-            requirement.code = "RE_" + str(requirement.requirement_id)
-            requirement.save()
-            save_preconditions(requirement_dict, requirement)
-            save_business_rules(requirement_dict, requirement)
-            save_information_flow(requirement_dict, requirement)
-            save_acceptance_criteria(requirement_dict, requirement)
-            return render_to_response('done.html', {'message': message})
-            #return HttpResponseRedirect("done.html")
+            return render_to_response('done.html', {'message': message,'error': error})
             
 def save_preconditions(requirement_dict, requirement):    
     preconditions = requirement_dict[u'preconditions']
