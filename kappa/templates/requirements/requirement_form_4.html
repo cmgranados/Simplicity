@@ -1,6 +1,7 @@
 {% load static %}
 {% block javascript %}
 <script src="{% static 'requirements/js/req_information_flow.js' %}" type="text/javascript"></script>
+<script src="{% static 'businessrules/js/br_get_types.js' %}" type="text/javascript"></script>
 {% endblock %}
 <div class="container">
 		<div class="row">
@@ -21,7 +22,20 @@
 								<td><input type='checkbox' name='infFlowInput_checkbox_{{forloop.counter}}' value=''></td>
 					            <td><input type='text' name='infFlowInput_{{forloop.counter}}' maxlength='50' value='{{ input.input }}' required></input></td>
 					            <td><textarea name='infFlowInput_description_{{forloop.counter}}' maxlength='50' required>{{ input.description }}</textarea></td>
-					            <td><input type='text' name='infFlowInput_datatype_{{forloop.counter}}' maxlength='50' value='{{ input.data_type }}' required></input></td>
+					            <td>
+					            	<select class="form-control"
+									id="infFlowOutput_datatype" name='infFlowOutput_datatype_{{forloop.counter}}'>
+									<option>Seleccione tipo de dato</option> 
+									{% for dt_type in dt_type_list %}
+										{% if dt_type.type_id == input.data_type_id %}
+											<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
+										{% else %}
+											<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
+										{% endif %} 
+									{% endfor %}
+								</select>
+
+					            </td>
 					        </tr>
 						{% endfor %}
 					    </tbody>
@@ -53,15 +67,19 @@
 					    <tbody id="output_table_body">
 					    {% for output in if_output_associated_list %}
 							<tr>
-								<td><input type='checkbox' name='infFlowOutput_checkbox' value=''></td>
-					            <td><input type='text' name='infFlowOutput' maxlength='50' value='{{ output.output }}' required></input></td>
-					            <td><textarea name='infFlowOutput_description' maxlength='50' required>{{ output.description }}</textarea></td>
+								<td><input type='checkbox' name='infFlowOutput_checkbox_{{forloop.counter}}' value=''></td>
+					            <td><input type='text' name='infFlowOutput_{{forloop.counter}}' maxlength='50' value='{{ output.output }}' required></input></td>
+					            <td><textarea name='infFlowOutput_description_{{forloop.counter}}' maxlength='50' required>{{ output.description }}</textarea></td>
 					            <!--<td><input type='text' name='infFlowOutput_datatype' value='{{ output.data_type }}' maxlength='50' required></input></td> -->
 					            <td><select class="form-control"
-									id="infFlowOutput_datatype" name="infFlowOutput_datatype">
+									id="infFlowOutput_datatype" name='infFlowOutput_datatype_{{forloop.counter}}'>
 									<option>Seleccione tipo de dato</option> 
-									{% for type in dt_type_list %}
-										<option value='{{ type.type_id }}'>{{ type.name }}</option> 
+									{% for dt_type in dt_type_list %}
+										{% if dt_type.type_id == output.data_type_id %}
+											<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
+										{% else %}
+											<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
+										{% endif %} 
 									{% endfor %}
 								</select></td>
 					        </tr>
