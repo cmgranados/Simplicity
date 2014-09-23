@@ -1,5 +1,4 @@
-
-rom django.contrib import admin
+from django.contrib import admin
 
 from kappa.requirements.models import RequirementOutput
 
