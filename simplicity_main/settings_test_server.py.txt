@@ -14,29 +14,26 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates"),
     os.path.join(BASE_DIR, "shared/templates/home"),
-    os.path.join(BASE_DIR, "shared/templates/others"),
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "kappa/templates/businessrules"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"),
     os.path.join(BASE_DIR, "alfa/templates/projects"),
-    os.path.join(BASE_DIR, "omicron/templates/testcases"),
 )
 
 STATIC_ROOT = (os.path.join(BASE_DIR, 'simplicity_main/static'))
 
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'shared/static'),
                     os.path.join(BASE_DIR, 'kappa/static'),
-                    os.path.join(BASE_DIR, 'alfa/static'), 
-                    os.path.join(BASE_DIR, 'omicron/static'),)
+                    os.path.join(BASE_DIR, 'alfa/static'), )
 
+ALLOWED_HOSTS = ['192.168.60.137', '127.0.0.1', 'localhost',]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -45,11 +42,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'shared/static'),
 SECRET_KEY = '$sz2z@6k4k2fdyqxv8ffbmj691^b(^zc)vczbh^!z3jis&0f#s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+#TEMPLATE_DEBUG = True
 
 # GRAPPELLI ADMIN THEME
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
@@ -87,9 +82,7 @@ INSTALLED_APPS = (
     'autofixture',
     'mockups',
     'debug_toolbar',
-    'omicron.postconditions',
-    'omicron.preconditions',
-    'omicron.testcases',
+    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,23 +105,15 @@ WSGI_APPLICATION = 'simplicity_main.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'simplicity',
-        'USER': 'simplicity',
-        'PASSWORD': 'porteaW1',
-        'HOST': 'mysql1.itc.com.co',
+        'NAME': 'simplicity_test',
+        'USER': 'root',
+        'PASSWORD': 'simplicity2014',
+        'HOST': '192.168.60.137',
      }
-
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'local_simplicity',
-#         'USER': 'root',
-#         'PASSWORD': 'meconio3',
-#         'HOST': 'localhost',
-#     }
 }
+    
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -154,7 +139,7 @@ REST_FRAMEWORK = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr'
+        'URL': 'http://127.0.0.1:8080/solr'
         # ...or for multicore...
         # 'URL': 'http://127.0.0.1:8983/solr/mysite',
     },
@@ -177,7 +162,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/shared/static/'
+STATIC_URL = '/simplicity_main/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -276,7 +261,7 @@ LOGGING = {
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-#HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # States for requirements
 STATE_REGISTERED = 1
