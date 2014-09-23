@@ -26,5 +26,26 @@ $(document).ready(function() {
 			}*/
 			return false;
 		}
+
 	});
 });
+
+
+function validate(index) {
+		var isValid = true;
+		if (index == 1) {
+			$("#myReqForm").validate();
+			if (!$('#myReqForm').valid()) {
+				isValid = false;
+			}
+		} else if(index == 4) {
+			if (!$('#inputs-form').valid() || !$('#outputs-form').valid()) {
+				isValid = false;
+			}
+		} else if(index == 5) {
+			if (!$('criteria-form').valid()) {
+				isValid = false;
+			}
+		}
+		return isValid;
+	}
