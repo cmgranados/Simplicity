@@ -1,0 +1,137 @@
+{% load static %}
+<div class="container">	
+	<div class="row">
+		<div class="col-md-9">
+			<table class="table table-bordered table-striped"
+				id="postconditionTable" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Descripci&#243n</th>
+						<th>Tipo</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for postcondition_tc in postcondition_testcase_associated_list %}
+					<tr>
+						<td><input type='checkbox' name='postconditionCheckbox' value='' class='require-one'></td>
+						<td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>
+							{{ postcondition_tc.test_case.code }}-{{ postcondition_tc.test_case.title }}</span></td>
+						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Requisito</span></td>
+						<input type='hidden' name='postconditionDescription' value='{{ postcondition_tc.test_case.code }}-{{ postcondition_tc.test_case.title }}'>
+							</input>
+					    <input type='hidden' name='postconditionType' value='Caso de prueba'>
+					    	</input> 
+					    <input type='hidden' name='postconditionTestCase_id' value='{{ postcondition_tc.test_case.test_case_id }}'>
+					    	</input>
+					</tr>
+					{% endfor %}
+					
+					{% for postcondition_desc in postcondition_testcase_associated_list %}
+					<tr>
+						<td><input type='checkbox' name='postconditionCheckbox' value='' class='require-one'></td>
+						<td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>
+							{{ postcondition_desc.description }}</span></td>
+						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Descripci&oacute;n</span></td>
+						<input type='hidden' name='postconditionDescription' value='{{ postcondition_desc.description }}'>
+							</input>
+					    <input type='hidden' name='postconditionType' value='Descripcion'>
+					    	</input> 
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-3">
+			<div>
+				<button class="btn btn-default" type="button" data-toggle="modal"
+					data-target="#myModal">Agregar</button>
+			</div>
+			<div>
+				<button class="btn btn-default" type="button"
+					id="delete-postcondition-row-btn">Eliminar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"
+					id="close-postcondition-modal-btn">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Precondici&#243n</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active"><a href="#home" role="tab"
+						data-toggle="tab">Agregar descripci&#243n</a></li>
+					<li><a href="#profile" role="tab" data-toggle="tab">Asociar
+							caso de prueba</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<form id="description-form" role="form">
+							<p>Descripci&#243n de las precondiciones</p>
+							<textarea class="form-control" rows="3" id="description_textarea" maxlength="4000" required></textarea>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary"
+									id="add-description-row-btn">Registar Descripci&#243n</button>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="profile">
+						<form id="requirements-form" role="form" class="form-horizontal">
+							<div class="container">
+								<div class="row">
+									<div class="padding-20">
+										<div class="col-md-3 col-md-offset-1">
+											{% csrf_token %}
+											<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+											<div id="div_id_q" class="form-group">
+												<div class="controls">
+													<input class="textinput textInput form-control" id="q" maxlength="255" name="q" type="text"> 
+												</div>
+											</div>
+									    </div>
+									   	<div class="form-actions">
+									            <button type="button" class="btn btn-primary" id="search-postconditions-btn">
+									            	 <span class="glyphicon glyphicon-search"></span>
+									            </button>
+									    </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5 table-responsive bodycontainer scrollable">
+										<table id="postconditionResultTable"
+											class="table table-bordered table-striped ">
+											<thead>
+												<tr>
+													<th>Selecci&oacute;n</th>
+													<th>Precondici&oacute;n</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+							</div>
+							<div id="errors">
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary"
+									id="add-requirement-row-btn">Registar caso de prueba</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
