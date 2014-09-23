@@ -12,22 +12,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for precondition_req in precondition_req_associated_list %}
+					{% for precondition_tc in precondition_testcase_associated_list %}
 					<tr>
 						<td><input type='checkbox' name='preconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='preconditionDescription_txt' maxlength='11' readonly='readonly'>
-							{{ precondition_req.requirement.code }}-{{ precondition_req.requirement.title }}</span></td>
+							{{ precondition_tc.test_case.code }}-{{ precondition_tc.test_case.title }}</span></td>
 						<td><span name='preconditionType_txt' maxlength='11' readonly='readonly'>Requisito</span></td>
-						<input type='hidden' name='preconditionDescription' value='{{ precondition_req.requirement.code }}-{{ precondition_req.requirement.title }}'>
+						<input type='hidden' name='preconditionDescription' value='{{ precondition_tc.test_case.code }}-{{ precondition_tc.test_case.title }}'>
 							</input>
-					    <input type='hidden' name='preconditionType' value='REQ'>
+					    <input type='hidden' name='preconditionType' value='Caso de prueba'>
 					    	</input> 
-					    <input type='hidden' name='preconditionRequirement_id' value='{{ precondition_req.requirement.requirement_id }}'>
+					    <input type='hidden' name='preconditionTestCase_id' value='{{ precondition_tc.test_case.test_case_id }}'>
 					    	</input>
 					</tr>
 					{% endfor %}
 					
-					{% for precondition_desc in precondition_desc_associated_list %}
+					{% for precondition_desc in precondition_testcase_associated_list %}
 					<tr>
 						<td><input type='checkbox' name='preconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='preconditionDescription_txt' maxlength='11' readonly='readonly'>
@@ -35,7 +35,7 @@
 						<td><span name='preconditionType_txt' maxlength='11' readonly='readonly'>Descripci&oacute;n</span></td>
 						<input type='hidden' name='preconditionDescription' value='{{ precondition_desc.description }}'>
 							</input>
-					    <input type='hidden' name='preconditionType' value='DES'>
+					    <input type='hidden' name='preconditionType' value='Descripcion'>
 					    	</input> 
 					</tr>
 					{% endfor %}
@@ -70,9 +70,8 @@
 					<li class="active"><a href="#home" role="tab"
 						data-toggle="tab">Agregar descripci&#243n</a></li>
 					<li><a href="#profile" role="tab" data-toggle="tab">Asociar
-							requisito</a></li>
+							caso de prueba</a></li>
 				</ul>
-
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
@@ -113,7 +112,7 @@
 											<thead>
 												<tr>
 													<th>Selecci&oacute;n</th>
-													<th>Requisito</th>
+													<th>Precondici&oacute;n</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -127,7 +126,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-primary"
-									id="add-requirement-row-btn">Registar Requisito</button>
+									id="add-requirement-row-btn">Registar caso de prueba</button>
 							</div>
 						</form>
 					</div>

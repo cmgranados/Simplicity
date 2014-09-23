@@ -1,0 +1,40 @@
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="testCaseTitle">Nombre</label>
+      <input type="text" class="form-control" id="testCaseTitle" 
+      name="testCaseTitle" placeholder="Introduce el t&iacute;tulo del caso de prueba" 
+      required aria-required="true" maxlength="512" value="{{ testCase.title }}">
+    </div>
+  </div>
+</div>
+
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="testCaseType">Tipo de Prueba</label>
+      <select class="form-control" id="testCaseType" name="testCaseType" required>
+        <option value="default">Seleccione tipo de caso de prueba</option>
+        {% for type in test_case_type_list %}
+          <option value='{{ type.type_id }}' 
+          	{% if type.type_id = testCase.type.type_id %}
+          		selected="selected"
+          	{% endif %}
+          >
+              {{ type.name }}
+          </option>
+		{% endfor %}
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="wizard-input-section">
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label for="testCaseDescription">Descripci&#243n de Requisito</label>
+      <textarea class="form-control" rows="3" id="testCaseDescription" name="testCaseDescription" maxlength="4000"
+      placeholder="Introduce una descripci&#243n para tu caso de prueba">{{ testCase.description }}</textarea>
+    </div>
+  </div>
+</div>

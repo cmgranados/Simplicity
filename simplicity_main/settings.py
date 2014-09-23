@@ -20,19 +20,22 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "shared/templates"),
     os.path.join(BASE_DIR, "shared/templates/home"),
+    os.path.join(BASE_DIR, "shared/templates/others"),
     os.path.join(BASE_DIR, "kappa/templates"),
     os.path.join(BASE_DIR, "kappa/templates/requirements"),
     os.path.join(BASE_DIR, "kappa/templates/businessrules"),
     os.path.join(BASE_DIR, "kappa/templates/home"),
     os.path.join(BASE_DIR, "shared/templates/userprofiles"),
     os.path.join(BASE_DIR, "alfa/templates/projects"),
+    os.path.join(BASE_DIR, "omicron/templates/testcases"),
 )
 
 STATIC_ROOT = (os.path.join(BASE_DIR, 'simplicity_main/static'))
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'shared/static'),
                     os.path.join(BASE_DIR, 'kappa/static'),
-                    os.path.join(BASE_DIR, 'alfa/static'), )
+                    os.path.join(BASE_DIR, 'alfa/static'), 
+                    os.path.join(BASE_DIR, 'omicron/static'),)
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,6 +87,9 @@ INSTALLED_APPS = (
     'autofixture',
     'mockups',
     'debug_toolbar',
+    'omicron.postconditions',
+    'omicron.preconditions',
+    'omicron.testcases',
 )
 
 MIDDLEWARE_CLASSES = (

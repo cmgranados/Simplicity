@@ -1,0 +1,104 @@
+{% load static %} 
+<div class="modal fade" id="reqModal" tabindex="-1" role="dialog"
+	aria-labelledby="reqModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"
+					id="close-precondition-modal-btn">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="reqModalLabel">Requisito</h4>
+			</div>
+			<div class="modal-body">
+				<div class="tab-pane active" id="home">
+					<div class="tab-pane" id="profile">
+						<form id="req-form" role="form" class="form-horizontal">
+							<div class="container">
+								<div class="row">
+									<div class="padding-20">
+										<div class="col-md-3 col-md-offset-1">
+											{% csrf_token %}
+											<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+											<div id="div_id_q" class="form-group">
+												<div class="controls">
+													<input class="textinput textInput form-control" id="req" maxlength="255" name="q" type="text"> 
+												</div>
+											</div>
+									    </div>
+									   	<div class="form-actions">
+									            <button type="button" class="btn btn-primary" id="search-business-rules-btn">
+									            	 <span class="glyphicon glyphicon-search"></span>
+									            </button>
+									    </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5 table-responsive bodycontainer scrollable">
+										<table id="requirementResultTable"
+											class="table table-bordered table-striped ">
+											<thead>
+												<tr>
+													<th>Selecci&oacute;n</th>
+													<th>Nombre</th>
+													<th>Descripci&#243n</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								</div>
+								<div id="errorsBr">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary"
+										id="add-business-rule-row-btn">Asociar Requisitos</button>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<table class="table table-bordered table-striped"
+				id="requirementsTable" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Nombre</th>
+						<th>Descripci&#243n</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for requirement in requirement_associated_list %}
+					<tr>
+						<td><input type='checkbox' name=requirementeCheckbox' value=''></td>
+						<td><span name='requirementName' maxlength='11' readonly='readonly'>
+							{{ requirement.name}}</span></td>
+						<td><span name='requirementDescription' maxlength='11' readonly='readonly'>{{ requirement.description}}</span></td>
+						<input type='hidden' name='requirementId' value='{{ requirement.requirement_id}}'>
+							</input>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-3">
+			<div>
+				<button class="btn btn-default" type="button" data-toggle="modal"
+					data-target="#reqModal">Agregar</button>
+			</div>
+			<div>
+				<button id="delete-busines-rule-row-add" class="btn btn-default"
+					type="button">Eliminar</button>
+			</div>
+		</div>
+	</div>
+</div>

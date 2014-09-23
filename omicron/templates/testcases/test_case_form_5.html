@@ -1,0 +1,40 @@
+{% load static %}
+{% block javascript %}
+<script src="{% static 'testcases/js/tc_process.js' %}"></script>
+{% endblock %}
+
+<div class="container">
+		<div class="row">
+	    	<div class="col-md-9">
+		    	<form id="process-form" role="form">
+					<table id="tableProcess" class="table table-bordered table-striped">
+					    <thead>
+					        <tr>
+					        	<th></th>
+					            <th>Paso</th>
+					            <th>Actividad</th>
+					        </tr>
+					    </thead>
+					    <tbody id="testcases_params_body">
+					    {% for step in step_associated_list %}
+							<tr>
+								<td><input type='checkbox' name='step_checkbox' value=''></td>
+					            <td><input type='text' name='step_number' maxlength='255' value='{{ step.number }}' required></input></td>
+					            <td><input type='text' name='step_activity' value='{{ step.activity }}' maxlength='255' required></input></td>
+					        </tr>
+						{% endfor %}
+					    </tbody>
+					</table>
+				</form>
+			</div>
+			<div class="col-md-3">
+				<div>
+					<button id="addRowStep" class="btn btn-default" type="button">Agregar</button>
+				</div>
+				<div>
+					<button id="deleteRowStep" class="btn btn-default" type="button">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
