@@ -170,6 +170,10 @@
 	<field name="name" type="text_es" indexed="true" stored="true" multiValued="false" />
 	
 	<field name="name_exact" type="string" indexed="true" stored="true" multiValued="false" />
+	
+    <field name="author_id" type="long" indexed="true" stored="true" multiValued="false" />
+
+    <field name="test_case_id" type="long" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 
