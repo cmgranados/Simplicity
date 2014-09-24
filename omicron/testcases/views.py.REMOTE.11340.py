@@ -90,21 +90,3 @@ def save_preconditions(requirement_dict, test_case):
             precondition_req_tmp.test_case = test_case
             precondition_req_tmp.precondition = precondition_tmp
             precondition_req_tmp.save();
-
-def home_test_cases(request):
-    testcases = []
-    testcases = SearchQuerySet().models(TestCase).load_all()
-    return render(request, 'testcase_list.html', {'testcases': testcases})
-
-def search_test_cases(request):
-    testcases = []
-    logger.debug("searching testcases: ")
-    if not request.POST.get('q', '') :
-        content_auto_v = "*:*"
-        testcases = SearchQuerySet().models(TestCase).load_all()
-    else:
-        content_auto_v = request.POST.get('q', '')
-        logger.debug("searching testcases by: " + content_auto_v)
-        testcases = SearchQuerySet().models(TestCase).filter(text=content_auto_v)
-        
-    return render_to_response('_testcase_result.html', {'testcases': testcases})

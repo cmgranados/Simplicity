@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+import logging
+=======
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
@@ -14,11 +17,39 @@ from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE
+>>>>>>> 6bce2b5753eb68308c3a44ef86d0edf602ed58e9
 
+from django.shortcuts import render, render_to_response
+from haystack.query import SearchQuerySet
+
+from omicron.testcases.models import TestCase
+
+
+logger = logging.getLogger('simplicity_main.omicron.testcases.views')
 
 def new_test_case(request):    
     return render(request, 'test_case_form_base.html')
 
+<<<<<<< HEAD
+def home_test_cases(request):
+    testcases = []
+    testcases = SearchQuerySet().models(TestCase).load_all()
+    return render(request, 'testcase_list.html', {'testcases': testcases})
+
+def search_test_cases(request):
+    testcases = []
+    logger.debug("searching testcases: ")
+    if not request.POST.get('q', '') :
+        content_auto_v = "*:*"
+        testcases = SearchQuerySet().models(TestCase).load_all()
+    else:
+        content_auto_v = request.POST.get('q', '')
+        logger.debug("searching testcases by: " + content_auto_v)
+        testcases = SearchQuerySet().models(TestCase).filter(text=content_auto_v)
+        
+    return render_to_response('_testcase_result.html', {'testcases': testcases})
+
+=======
 def save_test_case_ajax(request):
         try:
             if request.method == "POST":
@@ -90,21 +121,4 @@ def save_preconditions(requirement_dict, test_case):
             precondition_req_tmp.test_case = test_case
             precondition_req_tmp.precondition = precondition_tmp
             precondition_req_tmp.save();
-
-def home_test_cases(request):
-    testcases = []
-    testcases = SearchQuerySet().models(TestCase).load_all()
-    return render(request, 'testcase_list.html', {'testcases': testcases})
-
-def search_test_cases(request):
-    testcases = []
-    logger.debug("searching testcases: ")
-    if not request.POST.get('q', '') :
-        content_auto_v = "*:*"
-        testcases = SearchQuerySet().models(TestCase).load_all()
-    else:
-        content_auto_v = request.POST.get('q', '')
-        logger.debug("searching testcases by: " + content_auto_v)
-        testcases = SearchQuerySet().models(TestCase).filter(text=content_auto_v)
-        
-    return render_to_response('_testcase_result.html', {'testcases': testcases})
+>>>>>>> 6bce2b5753eb68308c3a44ef86d0edf602ed58e9

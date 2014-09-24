@@ -62,3 +62,16 @@ class TestCaseProcedure(models.Model):
 
     class Meta:
         db_table = "om_tc_test_case_procedure"
+
+class TestCaseUpdateAuthor(models.Model):
+    test_case_update_author_id = models.AutoField(primary_key=True)
+    test_case = models.ForeignKey(TestCase)
+    author = models.ForeignKey(User)
+    update_date = models.DateTimeField(blank=False)
+    
+    def __unicode__(self):
+        return str(self.requirement_author_id)
+
+    class Meta:
+        db_table = "om_tc_test_case_update_author"
+

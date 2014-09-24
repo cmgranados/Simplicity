@@ -29,6 +29,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "alfa/templates/projects"),
     os.path.join(BASE_DIR, "omicron/templates"),
     os.path.join(BASE_DIR, "omicron/templates/testcases"),
+    os.path.join(BASE_DIR, "omicron/templates/home"),
 )
 
 STATIC_ROOT = (os.path.join(BASE_DIR, 'simplicity_main/static'))

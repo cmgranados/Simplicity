@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//kappa/requirements/forms.py=utf-8
 encoding//kappa/requirements/views.py=utf-8
+encoding//omicron/testcases/views.py=utf-8
 encoding//shared/userprofiles/forms.py=utf-8
