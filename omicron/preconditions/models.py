@@ -1,7 +1,7 @@
 from django.db import models
 from omicron.testcases.models import TestCase
 
-class Precondition(models.Model):
+class OmPrecondition(models.Model):
     precondition_id = models.AutoField(primary_key=True)
     test_case = models.ForeignKey(TestCase)
 
@@ -12,10 +12,10 @@ class Precondition(models.Model):
         db_table = "om_pco_precondition"
 
 
-class PreconditionTestCase(models.Model):
+class OmPreconditionTestCase(models.Model):
     precondition_test_case_id = models.AutoField(primary_key=True)
     test_case = models.ForeignKey(TestCase)
-    precondition = models.ForeignKey(Precondition)
+    precondition = models.ForeignKey(OmPrecondition)
 
     def __unicode__(self):
         return str(self.precondition_test_case_id)
@@ -25,10 +25,10 @@ class PreconditionTestCase(models.Model):
         db_table = "om_pco_precondition_test_case"
 
 
-class PreconditionDescription(models.Model):
+class OmPreconditionDescription(models.Model):
     precondition_description_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)
-    precondition = models.ForeignKey(Precondition)
+    precondition = models.ForeignKey(OmPrecondition)
 
     def __unicode__(self):
         return str(self.precondition_description_id)
