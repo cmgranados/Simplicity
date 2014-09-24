@@ -2,8 +2,10 @@
 
 from datetime import datetime
 import json
+import logging
 
 from django.shortcuts import render, render_to_response
+from haystack.query import SearchQuerySet
 
 from omicron.postconditions.models import Postcondition
 from omicron.preconditions.models import OmPrecondition, \
@@ -15,6 +17,8 @@ from shared.types_simplicity.models import Type
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE
 
+
+logger = logging.getLogger('simplicity_main.omicron.testcases.views')
 
 def new_test_case(request):    
     return render(request, 'test_case_form_base.html')
