@@ -1,0 +1,39 @@
+<tr>
+	<th></th>
+	<th>Caso de prueba</th>
+	<th>Estado</th>
+	<th>Fecha de creaci&#243n</th>
+	<th>Fecha de modificaci&#243n</th>
+	<th>Tipo</th>
+</tr>
+{% for testcase in testcases %}
+	<tr>
+    	<td>
+    		<input type='checkbox'>
+    	</td>
+    	<td>
+        	<a href="#">{{ testcase.code }} - {{ testcase.name }}</a>
+        	<br/>
+        	<p>{{testcase.description}}</p>
+        </td>
+        <td>
+        	<p>{{testcase.state}}</p>
+        </td>
+        <td>
+        	<p>{{testcase.pub_created}}</p>
+        </td>
+        <td>
+        	<p>{{testcase.pub_modified}}</p>
+        </td>
+        <td>
+        	<p>{{testcase.type}}</p>
+        </td>
+    </tr>
+{% empty %}
+	<tr>
+    	<td colspan="6">
+        	<p>No encontro resultados.</p>
+        </td>
+    </tr>
+{% endfor %}
+

@@ -24,9 +24,8 @@ def search_projects(request):
         content_auto_v = "*:*"
         projects = SearchQuerySet().models(Project).load_all()
     else:
-        content_auto_v = request.POST.get('q', '')
-        logger.debug("searching projects by: " + content_auto_v)
-        projects = SearchQuerySet().models(Project).filter(text=content_auto_v)
+        logger.debug("searching projects by: " + request.POST.get('q', ''))
+        projects = SearchQuerySet().models(Project).filter(text=request.POST.get('q', ''))
         
     return render_to_response('_project_result.html', {'projects': projects})
 

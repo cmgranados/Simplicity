@@ -277,7 +277,7 @@ LOGGING = {
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-#HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # States for requirements
 STATE_REGISTERED = 1

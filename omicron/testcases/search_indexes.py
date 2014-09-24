@@ -6,10 +6,12 @@ from omicron.testcases.models import TestCase
 
 class TestCaseIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True,)
+    name = indexes.CharField(model_attr='name', faceted=True, default=True)
     description = indexes.CharField(model_attr='description', faceted=True, default=True)
     type_id = indexes.IntegerField(model_attr='type_id', faceted=False)
     test_case_id = indexes.IntegerField(model_attr='test_case_id', faceted=False, default=True)
     pub_created = indexes.DateTimeField(model_attr='date_created', faceted=True)
+    pub_modified = indexes.DateTimeField(model_attr='date_modified', faceted=True)
     state_id = indexes.IntegerField(model_attr='state_id', faceted=False)
     author_id = indexes.IntegerField(model_attr='author_id', faceted=False)
 
