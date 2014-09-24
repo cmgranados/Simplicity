@@ -1,4 +1,7 @@
 {% load static %}
+{% block javascript %}
+<script src="{% static 'testcases/js/tc_postcondition.js' %}"></script>
+{% endblock %}
 <div class="container">	
 	<div class="row">
 		<div class="col-md-9">
@@ -20,7 +23,7 @@
 						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Requisito</span></td>
 						<input type='hidden' name='postconditionDescription' value='{{ postcondition_tc.test_case.code }}-{{ postcondition_tc.test_case.title }}'>
 							</input>
-					    <input type='hidden' name='postconditionType' value='Caso de prueba'>
+					    <input type='hidden' name='postconditionType' value='TST'>
 					    	</input> 
 					    <input type='hidden' name='postconditionTestCase_id' value='{{ postcondition_tc.test_case.test_case_id }}'>
 					    	</input>
@@ -35,7 +38,7 @@
 						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Descripci&oacute;n</span></td>
 						<input type='hidden' name='postconditionDescription' value='{{ postcondition_desc.description }}'>
 							</input>
-					    <input type='hidden' name='postconditionType' value='Descripcion'>
+					    <input type='hidden' name='postconditionType' value='Descripci&oacute;n'>
 					    	</input> 
 					</tr>
 					{% endfor %}
@@ -45,7 +48,7 @@
 		<div class="col-md-3">
 			<div>
 				<button class="btn btn-default" type="button" data-toggle="modal"
-					data-target="#myModalPostconditions">Agregar</button>
+					data-target="#postconditionsModal">Agregar</button>
 			</div>
 			<div>
 				<button class="btn btn-default" type="button"
@@ -54,7 +57,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="myModalPostconditions" tabindex="-1" role="dialog"
+<div class="modal fade" id="postconditionsModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -75,17 +78,17 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
-						<form id="description-form" role="form">
+						<form id="post-description-form" role="form">
 							<p>Descripci&#243n de las postcondiciones</p>
-							<textarea class="form-control" rows="3" id="description_textarea" maxlength="4000" required></textarea>
+							<textarea class="form-control" rows="3" id="post_description_textarea" maxlength="4000" required></textarea>
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-primary"
-									id="add-description-row-btn">Registar Descripci&#243n</button>
+									id="post-add-description-row-btn">Registar Descripci&#243n</button>
 							</div>
 						</form>
 					</div>
 					<div class="tab-pane" id="profile">
-						<form id="requirements-form" role="form" class="form-horizontal">
+						<form id="post-test-cases-form" role="form" class="form-horizontal">
 							<div class="container">
 								<div class="row">
 									<div class="padding-20">
@@ -107,6 +110,8 @@
 								</div>
 								<div class="row">
 									<div class="col-md-5 table-responsive bodycontainer scrollable">
+
+
 										<table id="postconditionResultTable"
 											class="table table-bordered table-striped ">
 											<thead>

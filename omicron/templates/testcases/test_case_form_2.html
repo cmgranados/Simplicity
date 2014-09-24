@@ -1,4 +1,7 @@
 {% load static %}
+{% block javascript %}
+<script src="{% static 'testcases/js/tc_precondition.js' %}"></script>
+{% endblock %}
 <div class="container">	
 	<div class="row">
 		<div class="col-md-9">
@@ -17,10 +20,10 @@
 						<td><input type='checkbox' name='preconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='preconditionDescription_txt' maxlength='11' readonly='readonly'>
 							{{ precondition_tc.test_case.code }}-{{ precondition_tc.test_case.title }}</span></td>
-						<td><span name='preconditionType_txt' maxlength='11' readonly='readonly'>Requisito</span></td>
+						<td><span name='preconditionType_txt' maxlength='11' readonly='readonly'>Caso de Prueba</span></td>
 						<input type='hidden' name='preconditionDescription' value='{{ precondition_tc.test_case.code }}-{{ precondition_tc.test_case.title }}'>
 							</input>
-					    <input type='hidden' name='preconditionType' value='Caso de prueba'>
+					    <input type='hidden' name='preconditionType' value='TST'>
 					    	</input> 
 					    <input type='hidden' name='preconditionTestCase_id' value='{{ precondition_tc.test_case.test_case_id }}'>
 					    	</input>
@@ -35,7 +38,7 @@
 						<td><span name='preconditionType_txt' maxlength='11' readonly='readonly'>Descripci&oacute;n</span></td>
 						<input type='hidden' name='preconditionDescription' value='{{ precondition_desc.description }}'>
 							</input>
-					    <input type='hidden' name='preconditionType' value='Descripcion'>
+					    <input type='hidden' name='preconditionType' value='Descripci&oacute;n'>
 					    	</input> 
 					</tr>
 					{% endfor %}
@@ -45,7 +48,7 @@
 		<div class="col-md-3">
 			<div>
 				<button class="btn btn-default" type="button" data-toggle="modal"
-					data-target="#myModal">Agregar</button>
+					data-target="#preconditionsModal">Agregar</button>
 			</div>
 			<div>
 				<button class="btn btn-default" type="button"
@@ -54,7 +57,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="preconditionsModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -75,17 +78,17 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
-						<form id="description-form" role="form">
+						<form id="prec-description-form" role="form">
 							<p>Descripci&#243n de las precondiciones</p>
-							<textarea class="form-control" rows="3" id="description_textarea" maxlength="4000" required></textarea>
+							<textarea class="form-control" rows="3" id="prec_description_textarea" maxlength="4000" required></textarea>
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-primary"
-									id="add-description-row-btn">Registar Descripci&#243n</button>
+									id="prec-add-description-row-btn">Registar Descripci&#243n</button>
 							</div>
 						</form>
 					</div>
 					<div class="tab-pane" id="profile">
-						<form id="requirements-form" role="form" class="form-horizontal">
+						<form id="prec-test-cases-form" role="form" class="form-horizontal">
 							<div class="container">
 								<div class="row">
 									<div class="padding-20">
@@ -108,6 +111,8 @@
 								<div class="row">
 									<div class="col-md-5 table-responsive bodycontainer scrollable">
 										<table id="preconditionResultTable"
+
+
 											class="table table-bordered table-striped ">
 											<thead>
 												<tr>
