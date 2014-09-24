@@ -13,27 +13,29 @@ from django.shortcuts import render_to_response, render
 from django.views.generic.list import ListView
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
+import ipdb
 from jira.client import JIRA
 
 from kappa.businessrules.models import BusinessRule
-from kappa.businessrules.utils import get_businessrules_associated_to_requirement
+from kappa.businessrules.utils import get_businessrules_associated_to_requirement, \
+    get_businessrules_types
 from kappa.preconditions.models import Precondition, PreconditionRequirement, \
     PreconditionDescription
 from kappa.preconditions.utils import  \
     get_preconditions_req_by_req, get_preconditions_desc_by_req
 from kappa.requirements.models import Requirement, RequirementBusinessRule, \
-    RequirementInput, RequirementOutput, AcceptanceCriteria,\
+    RequirementInput, RequirementOutput, AcceptanceCriteria, \
     RequirementUpdateAuthor
-from kappa.requirements.utils import get_requirement_types, get_datatypes_types,\
-    get_businessrules_types, get_if_inputs_associated_to_requirement, \
+from kappa.requirements.utils import get_requirement_types, \
+    get_if_inputs_associated_to_requirement, \
     get_if_outputs_associated_to_requirement, \
     get_acceptancecriterias_associated_to_requirement
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type, TypeClassification
+from shared.types_simplicity.utils import get_datatypes_types
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE, \
     PRECONDITION_TYPE_REQ_ES
-import ipdb
 
 
 # Get an instance of a logger
@@ -136,52 +138,56 @@ def search_jira_projects(request):
 
 
 def save_requirement_ajax(request):
-    if request.method == "POST":
-        requirement_str = request.POST.get('requirement', None)
-        requirement_dict = json.loads(requirement_str)
-        if not requirement_dict:
+        try:
+            if request.method == "POST":
+                requirement_str = request.POST.get('requirement', None)
+                requirement_dict = json.loads(requirement_str)
+                error = '0'
+                if not requirement_dict:
+                    raise Exception('requirement_dict_empty', 'requirement_dict_empty')
+                else:
+                    if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
+                        requirement = Requirement()
+                        message = "Requisito se guardó correctamente"
+                        requirement.date_created = datetime.now()
+                        requirement.author = request.user
+                        requirementUpdateAuthor = None
+                    else:
+                        requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
+                        Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
+                        requirementUpdateAuthor = RequirementUpdateAuthor()
+                        requirementUpdateAuthor.author = request.user
+                        requirementUpdateAuthor.update_date = datetime.now()
+                        requirementUpdateAuthor.requirement = requirement
+                        requirementUpdateAuthor.save()
+                        message = "Requisito se actualizó correctamente"
+                    
+                    requirement.title = requirement_dict[u'name']
+                    #requirement.code = requirement_dict[u'code']
+                    requirement.requirement_date_created = datetime.now()
+                    requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
+                    requirement.description = requirement_dict[u'description']
+                    state = State.objects.get(state_id=STATE_REGISTERED) 
+                    requirement.state = state
+                    requirement.date_modified = datetime.now()
+                    requirement.is_active =ACTIVE
+                    requirement.keywords = requirement_dict[u'keywords']
+                    requirement.save()
+                    requirement.code = "RE_" + str(requirement.requirement_id)
+                    requirement.save()
+                    save_preconditions(requirement_dict, requirement)
+                    save_business_rules(requirement_dict, requirement)
+                    save_information_flow(requirement_dict, requirement)
+                    save_acceptance_criteria(requirement_dict, requirement)
+                    return render_to_response('done.html', {'message': message,'error': error})
+        except:
+            error = '1'
             message = "Ocurrio un error"
-            return render_to_response('error.html', {'message': message})
-        else:
-            if  MyConstants.ZERO == requirement_dict[u'requirement_id']:
-                requirement = Requirement()
-                message = "Requisito se guardó correctamente"
-                requirement.date_created = datetime.now()
-                requirement.author = request.user
-                requirementUpdateAuthor = None
-            else:
-                requirement = Requirement.objects.get( requirement_id=requirement_dict[u'requirement_id'] )
-                Precondition.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementBusinessRule.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementInput.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                RequirementOutput.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                AcceptanceCriteria.objects.filter( requirement_id=requirement.requirement_id ).delete()
-                requirementUpdateAuthor = RequirementUpdateAuthor()
-                requirementUpdateAuthor.author = request.user
-                requirementUpdateAuthor.update_date = datetime.now()
-                requirementUpdateAuthor.requirement = requirement
-                message = "Requisito se actualizó correctamente"
-            
-            requirement.title = requirement_dict[u'name']
-            #requirement.code = requirement_dict[u'code']
-            requirement.requirement_date_created = datetime.now()
-            requirement.type = Type.objects.get(type_id = requirement_dict[u'type'])
-            requirement.description = requirement_dict[u'description']
-            state = State.objects.get(state_id=STATE_REGISTERED) 
-            requirement.state = state
-            requirement.date_modified = datetime.now()
-            requirement.is_active =ACTIVE
-            requirement.keywords = requirement_dict[u'keywords']
-            requirement.save()
-            requirement.code = "RE_" + str(requirement.requirement_id)
-            requirement.save()
-            requirementUpdateAuthor.save()
-            save_preconditions(requirement_dict, requirement)
-            save_business_rules(requirement_dict, requirement)
-            save_information_flow(requirement_dict, requirement)
-            save_acceptance_criteria(requirement_dict, requirement)
-            return render_to_response('done.html', {'message': message})
-            #return HttpResponseRedirect("done.html")
+            return render_to_response('done.html', {'message': message,'error': error})
             
 def save_preconditions(requirement_dict, requirement):    
     preconditions = requirement_dict[u'preconditions']
@@ -221,7 +227,7 @@ def save_information_flow(requirement_dict, requirement):
         req_output.requirement = requirement
         req_output.output = ou[u'value']
         req_output.description = ou[u'description']
-        req_output.data_type = ou[u'dataType']
+        req_output.data_type = Type.objects.get(type_id = ou[u'dataType'])
         req_output.save()
         
     for inp in input_dict:
@@ -229,7 +235,7 @@ def save_information_flow(requirement_dict, requirement):
         req_input.requirement = requirement
         req_input.input = inp[u'value']
         req_input.description = inp[u'description']
-        req_input.data_type = inp[u'dataType']
+        req_input.data_type = Type.objects.get(type_id=inp[u'dataType'])
         req_input.save()
         
 def save_acceptance_criteria(requirement_dict, requirement):
@@ -258,6 +264,7 @@ def update_requirement(request):
         if_input_associated_list = get_if_inputs_associated_to_requirement(requirement);
         if_output_associated_list = get_if_outputs_associated_to_requirement(requirement);
         acceptancecriteria_associated_list = get_acceptancecriterias_associated_to_requirement(requirement);
+        datatype_type_list = get_datatypes_types();
         return render(request, 'requirement_form_base.html', {'requirement': requirement, 
                                                               'requirement_type_list': requirement_type_list, 
                                                               'br_type_list' : br_type_list,
@@ -267,4 +274,6 @@ def update_requirement(request):
                                                               'if_input_associated_list': if_input_associated_list,
                                                               'if_output_associated_list': if_output_associated_list,
                                                               'acceptancecriteria_associated_list': acceptancecriteria_associated_list,
+                                                              'dt_type_list' : datatype_type_list,
                                                               }) 
+

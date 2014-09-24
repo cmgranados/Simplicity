@@ -1,7 +1,7 @@
 #!/bin/bash
  
 NAME="simplicity_main"                                  # Name of the application
-DJANGODIR=/opt/apps/simplicity             # Django project directory
+DJANGODIR=/opt/apps/simplicity              # Django project directory
 SOCKFILE=/opt/apps/simplicity/gunicorn.sock  # we will communicte using this unix socket
 USER=simplicityuser                                        # the user to run as
 GROUP=webapps                                     # the group to run as
