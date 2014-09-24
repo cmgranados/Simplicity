@@ -1,0 +1,16 @@
+<form method="get" action="projects" class="form-horizontal" role="form" id="searchTestCasesForm">
+	<div class="col-md-4 col-md-offset-4">
+		{% csrf_token %}
+		<input type="hidden" name="csrfmiddlewaretoken" value="iXZ2Gxfo4dWmwnH1cNPc3hmqPggZyLg9">
+		<div id="div_id_q" class="form-group">
+			<div class="controls ">
+				<input class="textinput textInput form-control" id="q" maxlength="255" name="q" type="text"> 
+			</div>
+		</div>
+    </div>
+   	<div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="search-test-cases-btn">
+            	 <span class="glyphicon glyphicon-search"></span>
+            </button>
+    </div>
+</form>
