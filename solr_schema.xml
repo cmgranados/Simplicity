@@ -147,7 +147,7 @@
 
     <field name="description" type="text_es" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type_id" type="text_en" indexed="long" stored="true" multiValued="false" />
+    <field name="type_id" type="long" indexed="true" stored="true" multiValued="false" />
 
     <field name="text" type="text_es" indexed="true" stored="true" multiValued="false" />
 
@@ -159,8 +159,6 @@
 
     <field name="requirement_id" type="long" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type_id_exact" type="long" indexed="true" stored="true" multiValued="false" />
-
     <field name="requirement_id_exact" type="long" indexed="true" stored="true" multiValued="false" />
 	
 	<field name="state_id" type="long" indexed="true" stored="true" multiValued="false" />
@@ -171,7 +169,11 @@
 	
 	<field name="name_exact" type="string" indexed="true" stored="true" multiValued="false" />
 	
-    <field name="author_id" type="long" indexed="true" stored="true" multiValued="false" />
+	<field name="pub_modified" type="date" indexed="true" stored="true" multiValued="false" />
+
+    <field name="pub_modified_exact" type="date" indexed="true" stored="true" multiValued="false" />
+	
+	<field name="author_id" type="long" indexed="true" stored="true" multiValued="false" />
 
     <field name="test_case_id" type="long" indexed="true" stored="true" multiValued="false" />
 
