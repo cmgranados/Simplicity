@@ -26,7 +26,7 @@ def new_test_case(request):
     test_case_type_list = get_testcase_types();
     return render(request, 'test_case_form_base.html', {'test_case_type_list': test_case_type_list})
 
-def save_test_case_ajax(request):
+def save_testcase_ajax(request):
         try:
             if request.method == "POST":
                 test_case_str = request.POST.get('test_case', None)

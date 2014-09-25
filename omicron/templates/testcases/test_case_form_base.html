@@ -2,10 +2,13 @@
 {% load static %}
 {% block javascript %}
 <script src="{% static 'js/wizard/wizard.js' %}"></script>
+<script src="{% static 'testcases/js/tc_submit_testcase.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div id="messages"></div>
-<form method="post" class="form-horizontal" role="form" id="myReqForm">
+<form method="post" class="form-horizontal" role="form" id="testCaseForm">
+	<input type='hidden' name='testcaseID' id='testcaseID' value='{{ testcase.test_case_id }}'>
+		    	</input>
 	{% csrf_token %}
 	{% include "test_case_wizard.html" %}
 </form>

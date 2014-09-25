@@ -13,6 +13,7 @@
 					        	<th></th>
 					            <th>Campo</th>
 					            <th>Descripci&#243n</th>
+					            <th>Tipo de dato</th>
 					        </tr>
 					    </thead>
 					    <tbody id="table_input_params_body">
@@ -21,6 +22,19 @@
 								<td><input type='checkbox' name='input_params_checkbox' value=''></td>
 					            <td><input type='text' name='input_params_name' maxlength='255' value='{{ input.name }}' required></input></td>
 					            <td><input type='text' name='input_params_description' value='{{ input.description }}' maxlength='255' required></input></td>
+					            <td>
+					            	<select class="form-control"
+										id="input_params_datatype" name='input_params_datatype_{{forloop.counter}}'>
+										<option>Seleccione tipo de dato</option> 
+										{% for dt_type in dt_type_list %}
+											{% if dt_type.type_id == input.data_type_id %}
+												<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
+											{% else %}
+												<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
+											{% endif %} 
+										{% endfor %}
+									</select>
+					            </td>
 					        </tr>
 						{% endfor %}
 					    </tbody>
