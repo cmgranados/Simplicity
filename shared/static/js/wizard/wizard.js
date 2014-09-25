@@ -2,11 +2,11 @@ $(document).ready(function() {
 	$('#rootwizard').bootstrapWizard({
 		onNext : function(tab, navigation, index) {
 			
-			var isValid = validate(index);
-			
-			if(!isValid) {
-				return false;
-			}
+//			var isValid = validate(index);
+//			
+//			if(!isValid) {
+//				return false;
+//			}
 		},
 		onTabShow : function(tab, navigation, index) {
 			var $total = navigation.find('li').length;

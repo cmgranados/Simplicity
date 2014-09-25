@@ -1,11 +1,14 @@
 {% load static %} 
+{% block javascript %}
+<script src="{% static 'testcases/js/tc_requirement.js' %}"></script>
+{% endblock %}
 <div class="modal fade" id="reqModal" tabindex="-1" role="dialog"
 	aria-labelledby="reqModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close"
-					id="close-precondition-modal-btn">
+					id="close-requirement-modal-btn">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title" id="reqModalLabel">Requisito</h4>
@@ -27,7 +30,7 @@
 											</div>
 									    </div>
 									   	<div class="form-actions">
-									            <button type="button" class="btn btn-primary" id="search-business-rules-btn">
+									            <button type="button" class="btn btn-primary" id="search-requirements-btn">
 									            	 <span class="glyphicon glyphicon-search"></span>
 									            </button>
 									    </div>
@@ -41,7 +44,6 @@
 												<tr>
 													<th>Selecci&oacute;n</th>
 													<th>Nombre</th>
-													<th>Descripci&#243n</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -54,7 +56,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-primary"
-										id="add-business-rule-row-btn">Asociar Requisitos</button>
+										id="add-requirement-row-btn">Asociar Requisitos</button>
 								</div>
 						</form>
 					</div>
@@ -73,7 +75,6 @@
 					<tr>
 						<th></th>
 						<th>Nombre</th>
-						<th>Descripci&#243n</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,7 +83,6 @@
 						<td><input type='checkbox' name=requirementeCheckbox' value=''></td>
 						<td><span name='requirementName' maxlength='11' readonly='readonly'>
 							{{ requirement.name}}</span></td>
-						<td><span name='requirementDescription' maxlength='11' readonly='readonly'>{{ requirement.description}}</span></td>
 						<input type='hidden' name='requirementId' value='{{ requirement.requirement_id}}'>
 							</input>
 					</tr>
@@ -96,7 +96,7 @@
 					data-target="#reqModal">Agregar</button>
 			</div>
 			<div>
-				<button id="delete-busines-rule-row-add" class="btn btn-default"
+				<button id="delete-requirement-row-add" class="btn btn-default"
 					type="button">Eliminar</button>
 			</div>
 		</div>

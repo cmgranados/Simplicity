@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 	$("#addRowStep").click(function(){
 	 	if ($('#input-params-form').valid()) {
-			if ($('#table_input_params_body tr').length == 0) {
+			if ($('#table_process_params_body tr').length == 0) {
 				$firstRow = "<tr> \
 				<td><input type='checkbox' name='step_checkbox_1' value=''></td>\
 	            <td><input type='text'  maxlength='255' required name='step_number_1' required/></td> \

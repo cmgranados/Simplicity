@@ -48,7 +48,7 @@ $( document ).ready(function() {
 	$( "#myModal #search-preconditions-btn" ).click(function() {
 		$.ajax({
 	        type: "POST",
-	        url: "/kappa/preconditions_ajax_search/",
+	        url: "/kappa/requirements_ajax_search/",
 	        data: { 
 	            'q' : $('#q').val(),
 	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
