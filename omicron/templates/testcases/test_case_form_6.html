@@ -20,7 +20,7 @@
 						<td><input type='checkbox' name='postconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>
 							{{ postcondition_tc.test_case.code }}-{{ postcondition_tc.test_case.title }}</span></td>
-						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Requisito</span></td>
+						<td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>Caso de Prueba</span></td>
 						<input type='hidden' name='postconditionDescription' value='{{ postcondition_tc.test_case.code }}-{{ postcondition_tc.test_case.title }}'>
 							</input>
 					    <input type='hidden' name='postconditionType' value='TST'>
@@ -70,14 +70,14 @@
 			</div>
 			<div class="modal-body">
 				<ul class="nav nav-tabs" role="tablist">
-					<li class="active"><a href="#home" role="tab"
+					<li class="active"><a href="#homePostcondition" role="tab"
 						data-toggle="tab">Agregar descripci&#243n</a></li>
-					<li><a href="#profile" role="tab" data-toggle="tab">Asociar
+					<li><a href="#profilePostcondition" role="tab" data-toggle="tab">Asociar
 							caso de prueba</a></li>
 				</ul>
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="tab-pane active" id="home">
+					<div class="tab-pane active" id="homePostcondition">
 						<form id="post-description-form" role="form">
 							<p>Descripci&#243n de las postcondiciones</p>
 							<textarea class="form-control" rows="3" id="post_description_textarea" maxlength="4000" required></textarea>
@@ -87,7 +87,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab-pane" id="profile">
+					<div class="tab-pane" id="profilePostcondition">
 						<form id="post-test-cases-form" role="form" class="form-horizontal">
 							<div class="container">
 								<div class="row">
