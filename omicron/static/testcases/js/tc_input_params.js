@@ -32,6 +32,7 @@ $(document).ready(function(){
 				$get_lastID_input_paramsTable();
 				$('#tableInputParams > tbody:last').append($newRow);
 			}
+			getDataTypesOptions("tableInputParams");
 		}
 		  
 	});

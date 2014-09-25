@@ -15,16 +15,19 @@ from omicron.testcases.models import TestCase, TestCaseRequirement, \
 from omicron.testcases.utlis import get_testcase_types
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
+from shared.types_simplicity.utils import get_datatypes_types
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE
+
 
 
 logger = logging.getLogger('simplicity_main.omicron.testcases.views')
 
 def new_test_case(request):    
-    
     test_case_type_list = get_testcase_types();
-    return render(request, 'test_case_form_base.html', {'test_case_type_list': test_case_type_list})
+    datatype_type_list = get_datatypes_types();
+    return render(request, 'test_case_form_base.html', {'test_case_type_list': test_case_type_list,
+                                                        'dt_type_list' : datatype_type_list})
 
 def save_testcase_ajax(request):
         try:

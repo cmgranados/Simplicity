@@ -87,8 +87,8 @@ def new_requirement(request):
     br_type_list = get_businessrules_types();
     datatype_type_list = get_datatypes_types();
     return render(request, 'requirement_form_base.html', {'requirement_type_list': requirement_type_list, 
-                                                          'br_type_list' : br_type_list,
-                                                          'dt_type_list' : datatype_type_list})
+                                                          'dt_type_list' : datatype_type_list, 
+                                                          'br_type_list' : br_type_list })
     
 @login_required 
 def delete_requirement(request):

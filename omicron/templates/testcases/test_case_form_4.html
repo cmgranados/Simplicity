@@ -1,6 +1,8 @@
 {% load static %}
 {% block javascript %}
+<script src="{% static 'js/types/datatypes.js' %}" type="text/javascript"></script>
 <script src="{% static 'testcases/js/tc_input_params.js' %}"></script>
+
 {% endblock %}
 
 <div class="container">
@@ -27,7 +29,7 @@
 										id="input_params_datatype" name='input_params_datatype_{{forloop.counter}}'>
 										<option>Seleccione tipo de dato</option> 
 										{% for dt_type in dt_type_list %}
-											{% if dt_type.type_id == input.data_type_id %}
+											{% if dt_type.type_id == output.data_type_id %}
 												<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 
 											{% else %}
 												<option value='{{ dt_type.type_id }}'>{{ dt_type.name }}</option> 
