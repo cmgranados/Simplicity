@@ -4,6 +4,12 @@
 	<script src="{% static 'testcases/js/tc_search.js' %}" type="text/javascript"></script>
 {% endblock %}
 {% block section_statistics %}
+	<div class="row">		
+	    <div class="list-group">
+		  <a href="testcases/new" name="new-requirement-btn" class="list-group-item">Registrar caso de prueba</a>
+		  <a name="delete-testcase-btn" id="delete-testcase-btn" class="list-group-item">Eliminar</a>
+		</div>	
+	</div>
 	{% csrf_token %}
 {% endblock %}
 {% block content %}
