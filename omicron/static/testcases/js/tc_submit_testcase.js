@@ -16,7 +16,7 @@ $(document).ready(function() {
 		            'testCase' : JSON.stringify(testCase),
 		            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 		        },
-		        success: success,
+		        success: successTestCaseCreation,
 		        dataType: 'html'
 		    });
 		}
@@ -127,13 +127,13 @@ $(document).ready(function() {
 		testcase.postconditions = list;
 	}
 	
-	function success(data, textStatus, jqXHR) {
-		$('#information-modal').html(data);
-		$('#modal-response-req').modal('show');
+	function successTestCaseCreation(data, textStatus, jqXHR) {
+		$('#information-modal-tc').html(data);
+		$('#modal-response-tc').modal('show');
 	}  
 	
 	function failure(data, textStatus, jqXHR) {
-		$('#information-modal').html(data);
-		$('#modal-response-req').modal('show');
+		$('#information-modal-tc').html(data);
+		$('#modal-response-tc').modal('show');
 	}  
 });

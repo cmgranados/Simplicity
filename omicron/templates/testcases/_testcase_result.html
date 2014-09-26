@@ -28,6 +28,8 @@
         <td>
         	<p>{{testcase.type}}</p>
         </td>
+	    <input type='hidden' id="testCaseCodeRetrieved" value='{{testcase.state}}'></input>
+		<input type='hidden' id="testCaseIdRetrieved" value='{{testcase.state}}'></input>
     </tr>
 {% empty %}
 	<tr>
