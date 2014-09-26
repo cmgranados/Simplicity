@@ -1,3 +1,9 @@
+{% if page.object_list %}
+<div class="col-md-12">
+	Encontr&oacute; {{ page.paginator.count }} casos de prueba
+</div>
+{% endif %}
+<table class="table table-bordered table-hover" >
 <tr>
 	<th></th>
 	<th>Caso de prueba</th>
@@ -6,7 +12,7 @@
 	<th>Fecha de modificaci&#243n</th>
 	<th>Tipo</th>
 </tr>
-{% for testcase in testcases %}
+{% for testcase in page.object_list %}
 	<tr>
     	<td>
     		<input type='checkbox'>
@@ -36,4 +42,5 @@
         </td>
     </tr>
 {% endfor %}
-
+</table>
+{% include "_solr_paginator.html" %}

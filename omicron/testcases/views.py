@@ -4,6 +4,8 @@ from datetime import datetime
 import json
 import logging
 
+from django.core.paginator import Paginator, InvalidPage
+from django.http.response import Http404
 from django.shortcuts import render, render_to_response
 from haystack.query import SearchQuerySet
 
@@ -16,12 +18,13 @@ from omicron.testcases.utlis import get_testcase_types, get_sort_options
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
 from shared.types_simplicity.utils import get_datatypes_types
+from simplicity_main import constants, settings
 from simplicity_main.constants import MyConstants
 from simplicity_main.settings import STATE_REGISTERED, ACTIVE
 
 
-
 logger = logging.getLogger('simplicity_main.omicron.testcases.views')
+results_per_page = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 10)
 
 def new_test_case(request):    
     test_case_type_list = get_testcase_types();
@@ -113,6 +116,7 @@ def search_test_cases(request):
     sort_value = "pub_created"
     sqs = []
     testcases = []
+    
     if not request.POST.get('q', '') :
         content_auto_v = "*:*"
         sqs = SearchQuerySet().models(TestCase)
@@ -130,15 +134,40 @@ def search_test_cases(request):
         
      # Check to see if a start_date was chosen.
     if request.POST.get('start_date', '') and request.POST.get('end_date', ''):
-        sqs = sqs.filter(pub_created__range=[request.POST.get('start_date', '')+'T00:00:00Z', 
-                                             request.POST.get('end_date', '')+'T00:00:00Z'])
+        sqs = sqs.filter(pub_created__range=[request.POST.get('start_date', '') + constants.MyConstants.ZERO_HOURS, 
+                                             request.POST.get('end_date', '') + constants.MyConstants.ZERO_HOURS])
     
     
     if request.POST.get('sort', ''):
         if str(request.POST.get('sort', '')) == 'desc':
             sort_value = "-pub_created"
-    
-    sqs = sqs.order_by(sort_value)
+            
     testcases = sqs.all()
-        
-    return render_to_response('_testcase_result.html', {'testcases': testcases})
+    (paginator, page) = build_page(request, testcases)
+    context = {
+        'page': page,
+        'paginator': paginator,
+    }
+    return render_to_response('_testcase_result.html', context)
+    #return render_to_response('_testcase_result.html', {'paginator': paginator, 'page': page})
+
+def build_page(request, results):
+        try:
+            page_no = int(request.POST.get('pageIndex', 1))
+        except (TypeError, ValueError):
+            raise Http404("Not a valid number for page.")
+
+        if page_no < 1:
+            raise Http404("Pages should be 1 or greater.")
+
+        start_offset = (page_no - 1) * results_per_page
+        results[start_offset:start_offset + results_per_page]
+
+        paginator = Paginator(results, results_per_page)
+
+        try:
+            page = paginator.page(page_no)
+        except InvalidPage:
+            raise Http404("No such page!")
+
+        return (paginator, page)

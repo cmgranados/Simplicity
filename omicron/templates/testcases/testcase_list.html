@@ -20,10 +20,8 @@
 {% include "_testcase_search_form.html" %}
 <div id="messages" class="div-hidden">
 </div>
-
-<table class="table table-bordered table-hover" id="test-cases-tbl">
-	{% include "_testcase_result.html" %}
-</table>
-
+<div id="test-cases-tbl" class="col-md-12 results" >
+{% include "_testcase_result.html" %}
+</div>
 
 {% endblock %}

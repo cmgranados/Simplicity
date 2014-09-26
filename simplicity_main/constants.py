@@ -21,4 +21,6 @@ class MyConstants:
 
     REGISTRATION_TYPE_REGULAR = "Regular"
     
+    ZERO_HOURS = 'T00:00:00Z'
+    
     ZERO = 0

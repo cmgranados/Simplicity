@@ -8,14 +8,24 @@ $(document).ready(function() {
 	    format: "yyyy-mm-dd",
 	});
 	
+	
+	$(".results").on("click", 'a', function(event) {
+		var pageIndex = getParameterByName('pageIndex', $(this).attr('href'));
+		sendRequest(pageIndex);
+		return false;
+	});
+
 	$( "#searchTestCasesForm" ).submit(function(event) {
-		
 		event.preventDefault();
-		
+		sendRequest(1);
+	});
+	
+	function sendRequest(pageIndex) {
 		$request = $.ajax({
 	        type: "POST",
 	        url: "/omicron/testcases/search",
 	        data: { 
+	        	pageIndex: pageIndex,
 	        	q: $('#q').val(),
 	        	type: $('#testCaseType').val(),
 	        	sort: $('#sort').val(),
@@ -30,7 +40,7 @@ $(document).ready(function() {
             },
 	        dataType: 'html'
 	    });
-	});
+	}
 	
 	function showMessage(divId, type, message) {
 		divClass = getClassByType(type);
@@ -64,8 +74,15 @@ $(document).ready(function() {
 	}
 
 	function searchSuccess(data, textStatus, jqXHR) {
-		$('#test-cases-tbl tbody').html(data);
+		$('#test-cases-tbl').html(data);
 	}  
+	
+	function getParameterByName(name, url) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(url);
+	    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
 	
 });
 

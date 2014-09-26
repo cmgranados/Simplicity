@@ -84,7 +84,12 @@
 	margin: 0; 
 	overflow-y: auto; 
 }
+
 .table-scrollable { 
 	margin: 0; 
 	padding: 0; 
 }
+
+.centered-text {
+    text-align:center
+} 
