@@ -12,7 +12,7 @@ from omicron.preconditions.models import OmPrecondition, \
     OmPreconditionDescription, OmPreconditionTestCase
 from omicron.testcases.models import TestCase, TestCaseRequirement, \
     TestCaseInput, TestCaseProcedure, TestCaseUpdateAuthor
-from omicron.testcases.utlis import get_testcase_types
+from omicron.testcases.utlis import get_testcase_types, get_sort_options
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
 from shared.types_simplicity.utils import get_datatypes_types
@@ -103,18 +103,42 @@ def save_preconditions(requirement_dict, test_case):
 
 def home_test_cases(request):
     testcases = []
+    test_case_type_list = get_testcase_types();
+    sort_options = get_sort_options();
     testcases = SearchQuerySet().models(TestCase).load_all()
-    return render(request, 'testcase_list.html', {'testcases': testcases})
+    return render(request, 'testcase_list.html', {'testcases': testcases, 'test_case_type_list': test_case_type_list, 'sort_options': sort_options})
 
 def search_test_cases(request):
-    testcases = []
     logger.debug("searching testcases: ")
+    sort_value = "pub_created"
+    sqs = []
+    testcases = []
     if not request.POST.get('q', '') :
         content_auto_v = "*:*"
-        testcases = SearchQuerySet().models(TestCase).load_all()
+        sqs = SearchQuerySet().models(TestCase)
     else:
         content_auto_v = request.POST.get('q', '')
         logger.debug("searching testcases by: " + content_auto_v)
-        testcases = SearchQuerySet().models(TestCase).filter(text=content_auto_v)
+        sqs = SearchQuerySet().models(TestCase).filter(text=content_auto_v)
+    
+     # Check to see if a start_date was chosen.
+    if request.POST.get('type', '') and request.POST.get('type', '') != 'default':
+        sqs = sqs.filter(type_id__exact=request.POST.get('type', ''))
+        
+    if request.POST.get('state', ''):
+        sqs = sqs.filter(state_id__exact=request.POST.get('state', ''))
+        
+     # Check to see if a start_date was chosen.
+    if request.POST.get('start_date', '') and request.POST.get('end_date', ''):
+        sqs = sqs.filter(pub_created__range=[request.POST.get('start_date', '')+'T00:00:00Z', 
+                                             request.POST.get('end_date', '')+'T00:00:00Z'])
+    
+    
+    if request.POST.get('sort', ''):
+        if str(request.POST.get('sort', '')) == 'desc':
+            sort_value = "-pub_created"
+    
+    sqs = sqs.order_by(sort_value)
+    testcases = sqs.all()
         
     return render_to_response('_testcase_result.html', {'testcases': testcases})

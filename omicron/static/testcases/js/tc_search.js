@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	$('.input-daterange').datepicker({
+	    weekStart: 1,
+	    todayBtn: "linked",
+	    language: "es",
+	    calendarWeeks: true,
+	    todayHighlight: true,
+	    format: "yyyy-mm-dd",
+	});
 	
 	$( "#searchTestCasesForm" ).submit(function(event) {
 		
@@ -9,6 +17,10 @@ $(document).ready(function() {
 	        url: "/omicron/testcases/search",
 	        data: { 
 	        	q: $('#q').val(),
+	        	type: $('#testCaseType').val(),
+	        	sort: $('#sort').val(),
+	        	start_date: $('#fechaInicioInput').val(),
+	        	end_date: $('#fechaFinInput').val(),
 	        	csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
 	        },
 	        success : searchSuccess,
