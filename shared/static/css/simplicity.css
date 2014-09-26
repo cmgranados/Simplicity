@@ -89,8 +89,29 @@
 	padding: 0; 
 }
 
+/* */
+
 nav.navbar{
 	background:#000 !important;
-	border:solid 2px #fc0 !important; 
-
 }
+
+.btn-center{
+	padding: 0;
+	text-align:center;
+	float:none;
+	margin: 0 auto !important;
+}
+.btn-center ul,.btn-center li,.row ul, .row li{
+	list-style:none;
+}
+
+.btn-center .btn{
+	margin:1em 0;
+	clear:both;
+}
+
+.btn-group-vertical{
+	display:block;
+}
+
+

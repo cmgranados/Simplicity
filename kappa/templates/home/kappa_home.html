@@ -7,11 +7,11 @@
 <div class="title-module">
 	{% if user and not user.is_anonymous%}
 
-	<div class="row">
+	<!--  div class="row">
 		<div class="col-md-12 col-md-offset-4">
 			<h4><small>Bienvenido</small> {{user.get_full_name}}  <small>a Simplicity</small></h4>
 		</div>
-	</div>
+	</div-->
 
 	<!-- <div class="row">
 
@@ -33,7 +33,7 @@
 
 {% block content %}
 
-<div class="row">
+<!-- div class="row">
 	<div class="col-md-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading" data-content="Funcionalidad que permite la captura de las necesidades del cliente, a&uacute;n sin estar formalizadas en un requisito."
@@ -60,6 +60,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="col-md-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading" data-content="Etapa para el an&aacute;lisis de requisitos, en donde se encuentra el Core del sistema Kappa. Se pueden crear requisitos y asociar las reglas de negocio."
@@ -86,6 +88,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="col-md-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading"  data-content="El dise&ntilde;o de requisitos es la etapa posterior al an&aacute;lisis. Por el momento, se contempla el manejo de dos metodolog&iacute;as: historias de usuario y casos de uso."
@@ -112,11 +116,15 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="col-md-2">
 	<img src="{% static "img/Banner.png" %}" alt="..." data-toggle="popover"
 		data-content=""
 		data-trigger="hover">
 	</div>
+	
+	
 	<div class="col-md-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading" data-content="Sistema para Verificaci&oacute;n y Validaci&oacute;n de procesos."
@@ -151,7 +159,126 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
+
+<section>
+	<div class="panel panel-default col-md-4">
+		  <div class="panel-body">
+		    Basic panel example
+		  </div>
+	</div>
+
+</section>
+
+
+ <section id="" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+	          <h3 class="list-group-item-heading ">Elicitacion / Educcion</h3>
+	          <p class="list-group-item-text">Funcionalidad que permite la captura de las necesidades del cliente, a&uacute;n sin estar formalizadas en un requisito. </p>
+                <hr class="intro-divider"><ul class="list-inline intro-social-buttons">
+                    <li>
+						<a href="#" class="btn btn-primary btn-lg" disabled="disabled">Necesidades de Negocio</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-primary btn-lg"  disabled="disabled">Otros Temas</a>
+                    </li>
+                </ul>
+                                
+            </div>
+            
+            <hr class="intro-divider">
+      		
+      		<div class="col-lg-8 col-lg-offset-2">
+	          <h3 class="list-group-item-heading ">Elicitacion / Educcion</h3>
+	          <p class="list-group-item-text">Funcionalidad que permite la captura de las necesidades del cliente, a&uacute;n sin estar formalizadas en un requisito. </p>
+                
+                <ul class="list-inline intro-social-buttons">
+                    <li>
+						<a href="requirements"  class="btn btn-primary btn-lg" >Requisitos</a
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-primary btn-lg"  disabled="disabled">Casos de Uso</a> 
+                    </li>
+                </ul>
+                 
+            </div>
+            
+            <hr class="intro-divider">
+            
+            <div class="col-lg-8 col-lg-offset-2">
+	         <h3 class="list-group-item-heading">An&aacute;lisis</h3>
+         		 <p class="list-group-item-text">Etapa para el an&aacute;lisis de requisitos, en donde se encuentra el Core del sistema Kappa. Se pueden crear requisitos y asociar las reglas de negocio.</p>
+        		
+                <ul class="list-inline intro-social-buttons">
+                    <li>
+                   		 <a href="#" class="btn btn-primary btn-lg" disabled="disabled">Inspeccionar</a>
+                    </li>
+                    <li>
+                       	<a href="#" class="btn btn-primary btn-lg" disabled="disabled">Revisar</a> 
+                    </li>
+                    <li>
+                       <a href="#" class="btn btn-primary btn-lg" disabled="disabled">Casos de Uso</a> 
+                    </li>
+                </ul>
+                
+                 
+            </div>
+        </div>
+    </section>
+
+
+<!-- section class="">
+    <div class="list-group btn-center col-md-6">
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">An&aacute;lisis</h3>
+          <p class="list-group-item-text">Etapa para el an&aacute;lisis de requisitos, en donde se encuentra el Core del sistema Kappa. Se pueden crear requisitos y asociar las reglas de negocio.</p>
+        
+          <div class="panel"> 
+              <div class="panel-heading"><h3 class="panel-title"><b>Elicitacion / Educcion</b></h3></div>
+              <div class="btn-group-vertical">
+              	 <a href="requirements" class="btn btn-primary btn-lg">Requisitos</a>
+
+              		<a href="#" class="btn btn-default btn-lg" disabled="disabled">Casos de Uso</a>  
+              </div>
+          </div>
+        </div>
+        
+         
+        
+      	<div class="list-group-item ">
+          <h3 class="list-group-item-heading">An&aacute;lisis</h3>
+          <p class="list-group-item-text">Etapa para el an&aacute;lisis de requisitos, en donde se encuentra el Core del sistema Kappa. Se pueden crear requisitos y asociar las reglas de negocio.</p>
+
+			<div class="btn-group-vertical">               
+              <a href="requirements" class="btn btn-primary btn-lg">Requisitos</a> 
+              <a href="#" class="btn btn-primary btn-lg">...</a> 
+           	</div>
+        </div>
+        
+        <div class="list-group-item" >
+          <h3 class="list-group-item-heading">Diseno</h3>
+          <p class="list-group-item-text">El diseno de requisitos es la etapa posterior al an&aacute;lisis. Por el momento, se contempla el manejo de dos metodolog&iacute;as: historias de usuario y casos de uso.</p>
+           	<div class="panel-body btn-group-vertical"> 
+              	<a href="#" class="btn btn-primary btn-lg">Historias de Usuario</a> 
+              	<a href="#" class="btn btn-primary btn-lg">Casos de Uso</a> 
+            </div>
+        </div>
+        
+        
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">Sistema AneMO</h3>
+          <p class="list-group-item-text">Sistema para Verificaci&oacute;n y Validaci&oacute;n de procesos. </p>
+         	<div class="panel-body btn-group-vertical"> 
+              	<a href="#" class="btn btn-primary btn-lg">Inspeccionar</a> 
+              	<a href="#" class="btn btn-primary btn-lg">Revisar</a> 
+              	<a href="#" class="btn btn-primary btn-lg">Administrar</a> 
+        	</div>
+        </div>
+        
+ 	</div>  
+</section-->
+
 {% endblock %}
 
 {% block section_statistics %}
