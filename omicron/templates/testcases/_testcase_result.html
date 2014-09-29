@@ -34,8 +34,9 @@
         <td>
         	<p>{{testcase.object.type}}</p>
         </td>
-	    <input type='hidden' id="testCaseCodeRetrieved" value='{{testcase.state}}'></input>
-		<input type='hidden' id="testCaseIdRetrieved" value='{{testcase.state}}'></input>
+	    <input type='hidden' id="testCaseCodeRetrieved" value='{{testcase.object.code}}'></input>
+	    <input type='hidden' id="testCaseNameRetrieved" value='{{testcase.object.name}}'></input>
+		<input type='hidden' id="testCaseIdRetrieved" value='{{testcase.object.test_case_id}}'></input>
     </tr>
 {% empty %}
 	<tr>

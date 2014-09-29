@@ -109,7 +109,8 @@ def save_preconditions(test_case_dict, test_case):
             precondition_desc_tmp.save();
         else:
             precondition_tc_tmp = OmPreconditionTestCase()
-            precondition_tc_tmp.test_case = test_case
+            testcase_tmp = TestCase.objects.get(test_case_id = precondition[u'precondition_id'])
+            precondition_tc_tmp.test_case = testcase_tmp
             precondition_tc_tmp.precondition = precondition_tmp
             precondition_tc_tmp.save();
 
@@ -129,7 +130,8 @@ def save_postconditions(test_case_dict, test_case):
             postcondition_desc_tmp.save();
         else:
             postcondition_tc_tmp = PostconditionTestCase()
-            postcondition_tc_tmp.test_case = test_case
+            testcase_tmp = TestCase.objects.get(test_case_id = postcondition[u'postcondition_id'])
+            postcondition_tc_tmp.test_case = testcase_tmp
             postcondition_tc_tmp.postcondition = postcondition_tmp
             postcondition_tc_tmp.save();
             

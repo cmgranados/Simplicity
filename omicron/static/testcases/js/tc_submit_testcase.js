@@ -44,7 +44,7 @@ $(document).ready(function() {
 				var preconditionId = $("input[type='hidden'][name^='preconditionTestCase_id']",this);
 				var descriptionId = $("input[type='hidden'][name^='preconditionDescription']",this);
 				precondition.type = preconditionType.val();
-				precondition.id = preconditionId.val();
+				precondition.precondition_id = preconditionId.val();
 				precondition.description = descriptionId.val();
 				console.log(precondition.type); 
 				console.log(precondition.id); 
@@ -117,7 +117,7 @@ $(document).ready(function() {
 			var postconditionId = $("input[type='hidden'][name^='postconditionTestCase_id']",this);
 			var descriptionId = $("input[type='hidden'][name^='postconditionDescription']",this);
 			postcondition.type = postconditionType.val();
-			postcondition.id = postconditionId.val();
+			postcondition.postcondition_id = postconditionId.val();
 			postcondition.description = descriptionId.val();
 			console.log(postcondition.type); 
 			console.log(postcondition.id); 

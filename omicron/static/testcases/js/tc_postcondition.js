@@ -83,7 +83,7 @@ $( document ).ready(function() {
 			$('#postconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='postconditionCheckbox' value=''></td> \
-		            <td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>"+$(this).find('input:hidden[id=testCaseCodeRetrieved]').val()+"-"+$(this).find('input:hidden[id=testCaseTitleRetrieved]').val()+"</span></td> \
+		            <td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>"+$(this).find('input:hidden[id=testCaseCodeRetrieved]').val()+"-"+$(this).find('input:hidden[id=testCaseNameRetrieved]').val()+"</span></td> \
 		            <td><span name='postconditionType_txt' maxlength='11' readonly='readonly'>"+$testCaseType+"</span></td> \
 		            <input type='hidden' name='postconditionDescription' value='"+$(this).find('input:hidden[id=testCaseCodeRetrieved]').val()+"-"+$(this).find('input:hidden[id=testCaseNameRetrieved]').val()+"'></input> \
 		            <input type='hidden' name='postconditionType' value='"+$testCaseTypeID+"'></input> \
