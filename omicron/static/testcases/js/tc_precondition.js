@@ -21,7 +21,7 @@ $( document ).ready(function() {
 	
     $.validator.addMethod('validateRepeatElements', function(value, ele) {
     	$valid = true;
-    	$('#preconditionTable  > tbody  > tr').each(function (index) {
+    	$('#preconditionResultTable  > tbody  > tr').each(function (index) {
     		$selectedId = value;
 			$addedId = $("input[type='hidden'][name^='preconditionTestCase_id']",this).val();
     		console.log("added: " + $selectedId + " lista: " + $addedId);
@@ -43,7 +43,7 @@ $( document ).ready(function() {
 
 	
 	$("#prec-description-form").validate();
-	$("#test-cases-form").validate(CONF_VALIDATION);
+	$("#prec-test-cases-form").validate(CONF_VALIDATION);
 	
 	$( "#preconditionsModal #search-preconditions-btn" ).click(function() {
 		$.ajax({

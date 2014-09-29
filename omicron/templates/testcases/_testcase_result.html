@@ -15,7 +15,7 @@
 {% for testcase in page.object_list %}
 	<tr>
     	<td>
-    		<input type='checkbox'>
+    		<input type='checkbox' name="precondition_checkbox">
     	</td>
     	<td>
         	<a href="testcases/update-testcase?testcaseID={{testcase.test_case_id}}">{{ testcase.code }} - {{ testcase.name }}</a>
