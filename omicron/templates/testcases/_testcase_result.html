@@ -23,7 +23,7 @@
         	<p>{{testcase.description|truncatechars:200}}</p>
         </td>
         <td>
-        	<p>{{testcase.state}}</p>
+        	<p>{{testcase.object.state}}</p>
         </td>
         <td>
         	<p>{{testcase.pub_created}}</p>
@@ -32,7 +32,7 @@
         	<p>{{testcase.pub_modified}}</p>
         </td>
         <td>
-        	<p>{{testcase.type}}</p>
+        	<p>{{testcase.object.type}}</p>
         </td>
 	    <input type='hidden' id="testCaseCodeRetrieved" value='{{testcase.state}}'></input>
 		<input type='hidden' id="testCaseIdRetrieved" value='{{testcase.state}}'></input>
