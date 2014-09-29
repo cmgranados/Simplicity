@@ -12,7 +12,7 @@
     		<input type='checkbox'>
     	</td>
     	<td>
-        	<a href="#">{{ testcase.code }} - {{ testcase.name }}</a>
+        	<a href="testcases/update-testcase?testcaseID={{testcase.test_case_id}}">{{ testcase.code }} - {{ testcase.name }}</a>
         	<br/>
         	<p>{{testcase.description|truncatechars:200}}</p>
         </td>

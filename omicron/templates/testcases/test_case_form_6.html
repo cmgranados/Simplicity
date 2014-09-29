@@ -15,7 +15,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for postcondition_tc in postcondition_testcase_associated_list %}
+					{% for postcondition_tc in postconditions_tc_associated_list %}
 					<tr>
 						<td><input type='checkbox' name='postconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>
@@ -30,7 +30,7 @@
 					</tr>
 					{% endfor %}
 					
-					{% for postcondition_desc in postcondition_testcase_associated_list %}
+					{% for postcondition_desc in postconditions_desc_associated_list %}
 					<tr>
 						<td><input type='checkbox' name='postconditionCheckbox' value='' class='require-one'></td>
 						<td><span name='postconditionDescription_txt' maxlength='11' readonly='readonly'>

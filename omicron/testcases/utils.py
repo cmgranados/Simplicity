@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from omicron.testcases.models import TestCaseRequirement, TestCaseInput, \
+    TestCaseProcedure
 from shared.types_simplicity.models import TypeClassification, Type
 from simplicity_main.constants import MyConstants
 
@@ -18,3 +20,15 @@ def get_sort_options():
                 (NEWER , 'Más nuevo'),
                 (OLDER , 'Más viejo'))
     return SORT_OPTIONS
+
+def get_requirements_by_testcase(testcase):
+    requirements_list = TestCaseRequirement.objects.filter(test_case_id=testcase.test_case_id)
+    return requirements_list
+
+def get_information_params_by_testcase(testcase):
+    info_params_list = TestCaseInput.objects.filter(test_case_id=testcase.test_case_id)
+    return info_params_list
+
+def get_procedure_steps_by_testcase(testcase):
+    procedure_steps_list = TestCaseProcedure.objects.filter(test_case_id=testcase.test_case_id)
+    return procedure_steps_list

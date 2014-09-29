@@ -49,4 +49,5 @@ urlpatterns = patterns('',
                        url(r'^omicron/testcases$', 'omicron.testcases.views.home_test_cases', name="testcases"),
                        url(r'^omicron/testcases/search$', 'omicron.testcases.views.search_test_cases', name="testcases_search"),
                        url(r'^omicron/save_testcase_ajax/$', 'omicron.testcases.views.save_testcase_ajax'),
+                       url(r'^omicron/testcases/update-testcase', 'omicron.testcases.views.update_testcase'),
 )

@@ -11,11 +11,17 @@ from kappa.businessrules.models import BusinessRule
 from kappa.requirements.models import RequirementBusinessRule, Requirement
 from omicron.postconditions.models import Postcondition, \
     PostconditionDescription, PostconditionTestCase
+from omicron.postconditions.utils import get_postconditions_tc_by_testcase, \
+    get_postconditions_desc_by_testcase
 from omicron.preconditions.models import OmPrecondition, \
     OmPreconditionDescription, OmPreconditionTestCase
+from omicron.preconditions.utils import get_preconditions_tc_by_testcase, \
+    get_preconditions_desc_by_testcase
 from omicron.testcases.models import TestCase, TestCaseRequirement, \
     TestCaseInput, TestCaseProcedure, TestCaseUpdateAuthor
-from omicron.testcases.utlis import get_testcase_types, get_sort_options
+from omicron.testcases.utils import get_testcase_types, get_sort_options, \
+    get_requirements_by_testcase, get_information_params_by_testcase, \
+    get_procedure_steps_by_testcase
 from shared.states_simplicity.models import State
 from shared.types_simplicity.models import Type
 from shared.types_simplicity.utils import get_datatypes_types
@@ -198,3 +204,29 @@ def search_test_cases(request):
         
     return render_to_response('_testcase_result.html', {'testcases': testcases})
 
+def update_testcase(request):
+    if request.method == "GET": 
+        testcase_id_param = request.GET.get('testcaseID', '')
+        testcase = TestCase.objects.get(test_case_id = testcase_id_param)
+        test_case_type_list = get_testcase_types();
+        datatype_type_list = get_datatypes_types();
+        
+        preconditions_tc_associated_list = get_preconditions_tc_by_testcase(testcase)
+        preconditions_desc_associated_list = get_preconditions_desc_by_testcase(testcase)
+        postconditions_tc_associated_list = get_postconditions_tc_by_testcase(testcase)
+        postconditions_desc_associated_list = get_postconditions_desc_by_testcase(testcase)
+        requirements_associated_list = get_requirements_by_testcase(testcase)
+        inf_params_associated_list = get_information_params_by_testcase(testcase)
+        inf_procedure_steps_associated_list = get_procedure_steps_by_testcase(testcase)
+        
+        return render(request, 'test_case_form_base.html', {'testcase': testcase, 
+                                                              'test_case_type_list': test_case_type_list, 
+                                                              'dt_type_list' : datatype_type_list,
+                                                              'preconditions_tc_associated_list': preconditions_tc_associated_list,
+                                                              'preconditions_desc_associated_list': preconditions_desc_associated_list,
+                                                              'postconditions_tc_associated_list': postconditions_tc_associated_list,
+                                                              'postconditions_desc_associated_list': postconditions_desc_associated_list,
+                                                              'requirements_associated_list': requirements_associated_list,
+                                                              'inf_params_associated_list': inf_params_associated_list,
+                                                              'inf_procedure_steps_associated_list': inf_procedure_steps_associated_list,
+                                                              }) 
