@@ -26,8 +26,8 @@
 					            <td><input type='text' name='input_params_description' value='{{ input.description }}' maxlength='255' required></input></td>
 					            <td>
 					            	<select class="form-control"
-										id="input_params_datatype" name='input_params_datatype_{{forloop.counter}}'>
-										<option>Seleccione tipo de dato</option> 
+										id="input_params_datatype" name='input_params_datatype' required>
+										<option value="default">Seleccione tipo de dato</option> 
 										{% for dt_type in dt_type_list %}
 											{% if dt_type.type_id == output.data_type_id %}
 												<option value='{{ dt_type.type_id }}' selected>{{ dt_type.name }}</option> 

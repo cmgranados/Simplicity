@@ -7,7 +7,7 @@ $( document ).ready(function() {
 	
 	var CONF_VALIDATION = {
 			rules: {
-				postcondition_checkbox: {
+				precondition_checkbox: {
 					onecheck: true,
 					validateRepeatElements: true
 				}
@@ -15,7 +15,7 @@ $( document ).ready(function() {
 			messages: {
 			},
 			errorPlacement: function(error, element) {
-                error.appendTo('#errors');
+                error.appendTo('#errorsPost');
             }
 		};
 	
@@ -24,7 +24,6 @@ $( document ).ready(function() {
     	$('#postconditionTable  > tbody  > tr').each(function (index) {
     		$selectedId = value;
 			$addedId = $("input[type='hidden'][name^='postconditionTestCase_id']",this).val();
-    		console.log("added: " + $selectedId + " lista: " + $addedId);
     		
     		if($selectedId == $addedId) {
     			$valid = false;
@@ -43,7 +42,7 @@ $( document ).ready(function() {
 
 	
 	$("#post-description-form").validate();
-	$("#test-cases-form").validate(CONF_VALIDATION);
+	$("#post-test-cases-form").validate(CONF_VALIDATION);
 	
 	$( "#postconditionsModal #search-postconditions-btn" ).click(function() {
 		$.ajax({
@@ -60,7 +59,6 @@ $( document ).ready(function() {
 	
 	$( "#post-add-description-row-btn" ).click(function(event) {
 		event.preventDefault();
-		jQuery( '#home' ).wrap( '<form id="post-description-form" role="form" />' );
 		$("#post-description-form").validate();
 		if($("#post-description-form").valid()) {
 			var $description = $('#post_description_textarea').val();
@@ -74,12 +72,13 @@ $( document ).ready(function() {
 				$('#postconditionTable tbody').append($firstRow)
 		    $('#postconditionsModal').modal('hide');
 		}
-		jQuery( '#home' ).unwrap();
 		  
 	});
 	
 	$( "#post-test-cases-form" ).submit(function(event) {
 		event.preventDefault();
+		$("#post-test-cases-form").validate(CONF_VALIDATION);
+		if($("#post-test-cases-form").valid()) {
 			$('#postconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='postconditionCheckbox' value=''></td> \
@@ -92,6 +91,7 @@ $( document ).ready(function() {
 		        $('#postconditionTable tbody').append($firstRow)
 				$('#postconditionsModal').modal('hide');
 			});
+		}
 	});
 			
 	$( "#delete-postcondition-row-btn" ).click(function() {

@@ -15,13 +15,13 @@ $( document ).ready(function() {
 			messages: {
 			},
 			errorPlacement: function(error, element) {
-                error.appendTo('#errors');
+                error.appendTo('#errorsPre');
             }
 		};
 	
     $.validator.addMethod('validateRepeatElements', function(value, ele) {
     	$valid = true;
-    	$('#preconditionResultTable  > tbody  > tr').each(function (index) {
+    	$('#preconditionTable  > tbody  > tr').each(function (index) {
     		$selectedId = value;
 			$addedId = $("input[type='hidden'][name^='preconditionTestCase_id']",this).val();
     		console.log("added: " + $selectedId + " lista: " + $addedId);
@@ -80,6 +80,8 @@ $( document ).ready(function() {
 	
 	$( "#prec-test-cases-form" ).submit(function(event) {
 		event.preventDefault();
+		$("#prec-test-cases-form").validate(CONF_VALIDATION);
+		if($("#prec-test-cases-form").valid()) {
 			$('#preconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='preconditionCheckbox' value=''></td> \
@@ -92,6 +94,7 @@ $( document ).ready(function() {
 		        $('#preconditionTable tbody').append($firstRow)
 				$('#preconditionsModal').modal('hide');
 			});
+		}
 	});
 			
 	$( "#delete-precondition-row-btn" ).click(function() {

@@ -1,5 +1,5 @@
 {% if dt_type_list.count > 0 %}
-	<option>Seleccione tipo de dato</option> 
+	<option value="default">Seleccione tipo de dato</option> 
 {% for type in dt_type_list %}
 	<option value='{{ type.type_id }}'>{{ type.name }}</option> 
 {% endfor %}
