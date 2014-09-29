@@ -9,7 +9,10 @@ from django.http.response import Http404
 from django.shortcuts import render, render_to_response
 from haystack.query import SearchQuerySet
 
-from omicron.postconditions.models import Postcondition
+from kappa.businessrules.models import BusinessRule
+from kappa.requirements.models import RequirementBusinessRule, Requirement
+from omicron.postconditions.models import Postcondition, \
+    PostconditionDescription, PostconditionTestCase
 from omicron.preconditions.models import OmPrecondition, \
     OmPreconditionDescription, OmPreconditionTestCase
 from omicron.testcases.models import TestCase, TestCaseRequirement, \
@@ -35,7 +38,7 @@ def new_test_case(request):
 def save_testcase_ajax(request):
         try:
             if request.method == "POST":
-                test_case_str = request.POST.get('test_case', None)
+                test_case_str = request.POST.get('testCase', None)
                 test_case_dict = json.loads(test_case_str)
                 error = '0'
                 if not test_case_dict:
@@ -43,7 +46,7 @@ def save_testcase_ajax(request):
                 else:
                     if  MyConstants.ZERO == test_case_dict[u'test_case_id']:
                         test_case = TestCase()
-                        message = "El caso de prueba se guard� correctamente"
+                        message = "El caso de prueba se guardó correctamente"
                         test_case.date_created = datetime.now()
                         test_case.author = request.user
                         test_case_update_author = None
@@ -61,7 +64,7 @@ def save_testcase_ajax(request):
                         test_case_update_author.save()
                         message = "El caso de prueba se actualiz� correctamente"
                     
-                    test_case.title = test_case_dict[u'name']
+                    test_case.name = test_case_dict[u'name']
                     #requirement.code = test_case_dict[u'code']
                     test_case.requirement_date_created = datetime.now()
                     test_case.type = Type.objects.get(type_id = test_case_dict[u'type'])
@@ -69,15 +72,15 @@ def save_testcase_ajax(request):
                     state = State.objects.get(state_id=STATE_REGISTERED) 
                     test_case.state = state
                     test_case.date_modified = datetime.now()
-                    test_case.is_active =ACTIVE
-                    test_case.keywords = test_case_dict[u'keywords']
+                    test_case.is_active = ACTIVE
                     test_case.save()
-                    test_case.code = "TC_" + str(test_case.requirement_id)
+                    test_case.code = "TC_" + str(test_case.test_case_id)
                     test_case.save()
                     save_preconditions(test_case_dict, test_case)
-#                     save_business_rules(test_case_dict, test_case)
-#                     save_information_flow(test_case_dict, test_case)
-#                     save_acceptance_criteria(test_case_dict, test_case)
+                    save_postconditions(test_case_dict, test_case)
+                    save_requirements(test_case_dict, test_case)
+                    save_information_params(test_case_dict, test_case)
+                    save_procedure(test_case_dict, test_case)
                     return render_to_response('done.html', {'message': message,'error': error})
         except:
             error = '1'
@@ -85,25 +88,78 @@ def save_testcase_ajax(request):
             return render_to_response('done.html', {'message': message,'error': error})
 
  
-def save_preconditions(requirement_dict, test_case):   
-    preconditions = requirement_dict[u'preconditions']
+def save_preconditions(test_case_dict, test_case):   
+    preconditions = test_case_dict[u'preconditions']
     for precondition in preconditions:
         print(precondition[u'type'])
         precondition_tmp = OmPrecondition()
         precondition_tmp.test_case = test_case
         precondition_tmp.save()
         
-        if MyConstants.PRECONDITION_TYPE_DESCRIPTION == precondition[u'type']:
+        if MyConstants.TYPE_DESCRIPTION == precondition[u'type']:
             precondition_desc_tmp = OmPreconditionDescription()
             precondition_desc_tmp.description =  precondition[u'description']
             precondition_desc_tmp.precondition = precondition_tmp
             precondition_desc_tmp.save();
         else:
-            precondition_req_tmp = OmPreconditionTestCase()
-            precondition_req_tmp.test_case = test_case
-            precondition_req_tmp.precondition = precondition_tmp
-            precondition_req_tmp.save();
+            precondition_tc_tmp = OmPreconditionTestCase()
+            precondition_tc_tmp.test_case = test_case
+            precondition_tc_tmp.precondition = precondition_tmp
+            precondition_tc_tmp.save();
 
+
+def save_postconditions(test_case_dict, test_case):   
+    postconditions = test_case_dict[u'postconditions']
+    for postcondition in postconditions:
+        print(postcondition[u'type'])
+        postcondition_tmp = Postcondition()
+        postcondition_tmp.test_case = test_case
+        postcondition_tmp.save()
+        
+        if MyConstants.TYPE_DESCRIPTION == postcondition[u'type']:
+            postcondition_desc_tmp = PostconditionDescription()
+            postcondition_desc_tmp.description =  postcondition[u'description']
+            postcondition_desc_tmp.postcondition = postcondition_tmp
+            postcondition_desc_tmp.save();
+        else:
+            postcondition_tc_tmp = PostconditionTestCase()
+            postcondition_tc_tmp.test_case = test_case
+            postcondition_tc_tmp.postcondition = postcondition_tmp
+            postcondition_tc_tmp.save();
+            
+    
+def save_requirements(test_case_dict, test_case):
+    requirements_dict = test_case_dict[u'requirements']
+    for requirement in requirements_dict:
+        requirement_obj = Requirement.objects.get(requirement_id = requirement[u'id'])
+        test_case_requirement = TestCaseRequirement()
+        test_case_requirement.requirement = requirement_obj
+        test_case_requirement.test_case = test_case
+        test_case_requirement.save() 
+    
+
+def save_information_params(test_case_dict, test_case):
+    input_dict = test_case_dict[u'inputParameters']
+    
+    for inp in input_dict:
+        tc_input = TestCaseInput()
+        tc_input.test_case = test_case
+        tc_input.input = inp[u'value']
+        tc_input.description = inp[u'description']
+        tc_input.data_type = Type.objects.get(type_id=inp[u'dataType'])
+        tc_input.save()
+
+
+def save_procedure(test_case_dict, test_case):
+    steps_dict = test_case_dict[u'procedureSteps']
+    for step in steps_dict:
+        tc_step = TestCaseProcedure()
+        tc_step.test_case = test_case
+        tc_step.step = step[u'value']
+        tc_step.activity = step[u'activity']
+        tc_step.save()    
+
+            
 def home_test_cases(request):
     testcases = []
     test_case_type_list = get_testcase_types();

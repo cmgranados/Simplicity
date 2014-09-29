@@ -48,12 +48,12 @@ $( document ).ready(function() {
 	$( "#postconditionsModal #search-postconditions-btn" ).click(function() {
 		$.ajax({
 	        type: "POST",
-	        url: "/kappa/preconditions_ajax_search/",
+	        url: "/omicron/testcases/search",
 	        data: { 
-	            'q' : $('#q').val(),
+	            'q' : $('#postconditionSearchText').val(),
 	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 	        },
-	        success: searchSuccess,
+	        success: searchSuccessPostTc,
 	        dataType: 'html'
 	    });
 	});
@@ -80,8 +80,6 @@ $( document ).ready(function() {
 	
 	$( "#post-test-cases-form" ).submit(function(event) {
 		event.preventDefault();
-		$("#test-cases-form").validate(CONF_VALIDATION);
-		if($("#test-cases-form").valid()) {
 			$('#postconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='postconditionCheckbox' value=''></td> \
@@ -94,7 +92,6 @@ $( document ).ready(function() {
 		        $('#postconditionTable tbody').append($firstRow)
 				$('#postconditionsModal').modal('hide');
 			});
-		}
 	});
 			
 	$( "#delete-postcondition-row-btn" ).click(function() {
@@ -106,6 +103,6 @@ $( document ).ready(function() {
 	});
 });
 
-function searchSuccess(data, textStatus, jqXHR) {
+function searchSuccessPostTc(data, textStatus, jqXHR) {
 	$('#postconditionResultTable tbody').html(data);
 }   

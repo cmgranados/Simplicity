@@ -9,15 +9,15 @@ $( document ).ready(function() {
 		        type: "POST",
 		        url: "/kappa/requirements_ajax_search/",
 		        data: { 
-		            'q' : $('#q').val(),
+		            'q' : $('#requirementSearchText').val(),
 		            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 		        },
-		        success: searchSuccess,
+		        success: searchSuccessReq,
 		        dataType: 'html'
 		    });
 	});
 	
-	function searchSuccess(data, textStatus, jqXHR) {
+	function searchSuccessReq(data, textStatus, jqXHR) {
 		$('#requirementResultTable tbody').html(data);
 	} 
 	

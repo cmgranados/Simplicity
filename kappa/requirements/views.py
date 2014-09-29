@@ -197,7 +197,7 @@ def save_preconditions(requirement_dict, requirement):
         precondition_tmp.requirement = requirement
         precondition_tmp.save()
         
-        if MyConstants.PRECONDITION_TYPE_DESCRIPTION == precondition[u'type']:
+        if MyConstants.TYPE_DESCRIPTION == precondition[u'type']:
             precondition_desc_tmp = PreconditionDescription()
             precondition_desc_tmp.description =  precondition[u'description']
             precondition_desc_tmp.precondition = precondition_tmp

@@ -27,7 +27,7 @@ class TestCase(models.Model):
 
 class TestCaseInput(models.Model):
     test_case_input_id = models.AutoField(primary_key=True)
-    test_case_id = models.ForeignKey(TestCase)
+    test_case = models.ForeignKey(TestCase)
     input = models.CharField(max_length=50, blank=True)
     description = models.TextField(blank=True, null=True)
     data_type = models.ForeignKey(Type)

@@ -50,10 +50,10 @@ $( document ).ready(function() {
 	        type: "POST",
 	        url: "/omicron/testcases/search",
 	        data: { 
-	            'q' : $('#q').val(),
+	            'q' : $('#preconditionSearchText').val(),
 	            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 	        },
-	        success: searchSuccess,
+	        success: searchSuccessPrecTc,
 	        dataType: 'html'
 	    });
 	});
@@ -80,8 +80,6 @@ $( document ).ready(function() {
 	
 	$( "#prec-test-cases-form" ).submit(function(event) {
 		event.preventDefault();
-		$("#test-cases-form").validate(CONF_VALIDATION);
-		if($("#test-cases-form").valid()) {
 			$('#preconditionResultTable input:checkbox:checked').parents("tr").each(function (index) {
 				$firstRow = "<tr> \
 		            <td><input type='checkbox' name='preconditionCheckbox' value=''></td> \
@@ -94,7 +92,6 @@ $( document ).ready(function() {
 		        $('#preconditionTable tbody').append($firstRow)
 				$('#preconditionsModal').modal('hide');
 			});
-		}
 	});
 			
 	$( "#delete-precondition-row-btn" ).click(function() {
@@ -106,6 +103,6 @@ $( document ).ready(function() {
 	});
 });
 
-function searchSuccess(data, textStatus, jqXHR) {
+function searchSuccessPrecTc(data, textStatus, jqXHR) {
 	$('#preconditionResultTable tbody').html(data);
 }   
