@@ -204,7 +204,8 @@ def save_preconditions(requirement_dict, requirement):
             precondition_desc_tmp.save();
         else:
             precondition_req_tmp = PreconditionRequirement()
-            precondition_req_tmp.requirement = requirement
+            requirement_tmp = Requirement.objects.get(requirement_id = precondition[u'id'])
+            precondition_req_tmp.requirement = requirement_tmp
             precondition_req_tmp.precondition = precondition_tmp
             precondition_req_tmp.save();
 
