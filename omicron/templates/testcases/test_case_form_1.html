@@ -4,7 +4,7 @@
       <label for="testCaseTitle">Nombre</label>
       <input type="text" class="form-control" id="testCaseTitle" 
       name="testCaseTitle" placeholder="Introduce el t&iacute;tulo del caso de prueba" 
-      required aria-required="true" maxlength="512" value="{{ testCase.title }}">
+      required aria-required="true" maxlength="512" value="{{ testcase.title }}">
     </div>
   </div>
 </div>
@@ -17,7 +17,7 @@
         <option value="default">Seleccione tipo de caso de prueba</option>
         {% for type in test_case_type_list %}
           <option value='{{ type.type_id }}' 
-          	{% if type.type_id = testCase.type.type_id %}
+          	{% if type.type_id = testcase.type.type_id %}
           		selected="selected"
           	{% endif %}
           >
@@ -34,7 +34,7 @@
     <div class="col-sm-6">
       <label for="testCaseDescription">Descripci&#243n de caso de prueba</label>
       <textarea class="form-control" rows="3" id="testCaseDescription" name="testCaseDescription" maxlength="4000"
-      placeholder="Introduce una descripci&#243n para tu caso de prueba">{{ testCase.description }}</textarea>
+      placeholder="Introduce una descripci&#243n para tu caso de prueba">{{ testcase.description }}</textarea>
     </div>
   </div>
 </div>
