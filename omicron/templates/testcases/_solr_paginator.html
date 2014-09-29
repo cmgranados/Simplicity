@@ -1,5 +1,5 @@
 {% if page.has_previous or page.has_next %}
-    <div class="col-md-12 centered-text">
+    <div class="col-md-12 centered-text paginator">
         {% if page.has_previous %}<a href="?q={{ query }}&amp;pageIndex={{ page.previous_page_number }}" id="prevBtn">{% endif %}&laquo; Anterior {% if page.has_previous %}</a>{% endif %}
         |
         {% if page.has_next %}<a href="?q={{ query }}&amp;pageIndex={{ page.next_page_number }}" id="nextBtn">{% endif %}Siguiente &raquo;{% if page.has_next %}</a>{% endif %}

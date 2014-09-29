@@ -11,8 +11,10 @@ $(document).ready(function() {
 	
 	$(".results").on("click", 'a', function(event) {
 		var pageIndex = getParameterByName('pageIndex', $(this).attr('href'));
-		sendRequest(pageIndex);
-		return false;
+		if(pageIndex != "") {
+			sendRequest(pageIndex);
+			return false;
+		}
 	});
 
 	$( "#searchTestCasesForm" ).submit(function(event) {
