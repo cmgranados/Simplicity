@@ -211,7 +211,6 @@ def search_test_cases(request):
         'paginator': paginator,
     }
     return render_to_response('_testcase_result.html', context)
-    #return render_to_response('_testcase_result.html', {'paginator': paginator, 'page': page})
 
 def build_page(request, results):
         try:
